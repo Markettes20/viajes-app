@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0a2a43">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icon-192.png" type="image/png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" href="../../icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="../../icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Mi crucero">
+<meta name="apple-mobile-web-app-title" content="Anillo Travel">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Vuelta al mundo · MSC Magnifica · Antonio Patiño</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -438,7 +438,25 @@ nav.tabs button[aria-current="page"]::before{content:"";position:absolute;top:0;
 footer{padding-top:14px}
 .count .big + .lbl{text-transform:none;letter-spacing:0;font-size:15.5px;font-weight:600;color:var(--mute)}
 
+/* Zona de la hora y la batería (iPhone): la portada pasa por debajo; el resto de pantallas empiezan debajo */
+.view:not(#v-inicio){padding-top:env(safe-area-inset-top,0px)}
+.tools{top:env(safe-area-inset-top,0px)}
+body:has(#v-inicio:not(.on))::before{content:"";position:fixed;left:0;right:0;top:0;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:40}
+.va-out{display:block;margin:6px auto 18px;padding:10px 16px;background:none;border:0;color:var(--mute);font:600 14px var(--sans);text-decoration:underline;cursor:pointer}
+
 </style>
+<script>(function(){
+  var END = Date.parse("2028-05-02T00:00:00+01:00");
+  function back(){ location.replace("../../index.html"); }
+  if (Date.now() >= END) { back(); return; }
+  setInterval(function(){ if (Date.now() >= END) back(); }, 30000);
+  document.addEventListener("DOMContentLoaded", function(){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "va-out"; b.textContent = "Salir · usar otro código";
+    b.addEventListener("click", function(){ try { localStorage.removeItem("va:code"); } catch (e) {} back(); });
+    (document.querySelector("main") || document.body).appendChild(b);
+  });
+})();</script>
 </head>
 <body>
 <main>
@@ -2669,7 +2687,7 @@ addEventListener("appinstalled", () => {
   instEvt = null;
   pintaInstalar();
 });
-if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol) && window.top === window) addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {
+if (false) addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {
 }));
 pintar();
 cuenta();

@@ -800,31 +800,11 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
   }
 
   // ---------- viaje con su propia página (p. ej. el crucero) ----------
-  // Se muestra la página tal cual, a pantalla completa. Solo se añade abajo un enlace para cambiar de código.
+  // Se abre la página tal cual, a pantalla completa (sin marco, para que respete la zona de la hora y la batería).
+  // La propia página comprueba la caducidad y trae el botón de salir.
   function renderPage() {
-    closeSheet(true); S.expired = false;
-    document.getElementById("app").innerHTML = `<div class="page-shell"><iframe class="page-frame" id="pageFrame" src="${esc(S.trip.page)}" title="${esc(S.trip.title || S.agency.name)}"></iframe></div>`;
-    document.documentElement.classList.add("page-mode");
-    const fr = $("#pageFrame");
-    fr.addEventListener("load", () => {
-      let d; try { d = fr.contentDocument; } catch (e) { return; }
-      if (!d || !d.body) return;
-      // Enlaces externos fuera del marco: WhatsApp, mapas, webs, teléfono y correo.
-      d.addEventListener("click", (e) => {
-        const a = e.target.closest && e.target.closest("a[href]"); if (!a || a.hasAttribute("download")) return;
-        const h = a.getAttribute("href") || "";
-        if (/^(tel|mailto|sms|whatsapp):/i.test(h)) { e.preventDefault(); window.location.href = h; return; }
-        if (/^https?:/i.test(h) && new URL(h, d.baseURI).origin !== location.origin) { e.preventDefault(); window.open(h, "_blank", "noopener"); }
-      }, true);
-      if (!d.getElementById("vaOut")) {
-        const b = d.createElement("button");
-        b.id = "vaOut"; b.type = "button"; b.textContent = L("Salir · usar otro código");
-        b.style.cssText = "display:block;margin:6px auto 18px;padding:10px 16px;background:none;border:0;color:inherit;opacity:.55;font:500 14px/1.2 system-ui,sans-serif;text-decoration:underline;cursor:pointer";
-        b.addEventListener("click", logout);
-        (d.querySelector("main") || d.body).append(b);
-      }
-    });
-    startTimer();
+    stopTimer(); closeSheet(true);
+    location.replace(S.trip.page);
   }
   function logout() {
     stopTimer(); document.documentElement.classList.remove("page-mode");
