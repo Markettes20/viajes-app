@@ -2178,7 +2178,7 @@ document.addEventListener("keydown", (e) => {
     y0 = null;
   }, { passive: true });
 })();
-const M = [["USD", "D\xF3lar estadounidense (US$)", 1.1225], ["AUD", "D\xF3lar australiano (A$)", 1.6068], ["NZD", "D\xF3lar neozeland\xE9s (NZ$)", 1.9792], ["XPF", "Franco CFP (XPF)", 119.332], ["PEN", "Sol peruano (PEN)", 0], ["CLP", "Peso chileno (CLP)", 0], ["TOP", "Pa\u02BBanga tongano (TOP)", 0], ["IDR", "Rupia indonesia (IDR)", 20253.16], ["VND", "Dong vietnamita (VND)", 0], ["THB", "Baht tailand\xE9s (THB)", 37.665], ["SGD", "D\xF3lar de Singapur (S$)", 1.4379], ["MYR", "Ringgit (MYR)", 4.5826], ["LKR", "Rupia de Sri Lanka (LKR)", 0], ["INR", "Rupia india (INR)", 106.559], ["AED", "D\xEDrham (AED)", 4.123], ["OMR", "Rial oman\xED (OMR)", 0.432], ["JOD", "Dinar jordano (JOD)", 0.796], ["EGP", "Libra egipcia (EGP)", 0]];
+const M = [["USD", "D\xF3lar estadounidense (US$)", 1.1222], ["AUD", "D\xF3lar australiano (A$)", 1.5964], ["NZD", "D\xF3lar neozeland\xE9s (NZ$)", 1.9681], ["XPF", "Franco CFP (XPF)", 119.33], ["PEN", "Sol peruano (PEN)", 3.8515], ["CLP", "Peso chileno (CLP)", 1117], ["TOP", "Pa\u02BBanga tongano (TOP)", 2.6848], ["IDR", "Rupia indonesia (IDR)", 20337], ["VND", "Dong vietnamita (VND)", 28994], ["THB", "Baht tailand\xE9s (THB)", 37.93], ["SGD", "D\xF3lar de Singapur (S$)", 1.4343], ["MYR", "Ringgit (MYR)", 4.583], ["LKR", "Rupia de Sri Lanka (LKR)", 372.22], ["INR", "Rupia india (INR)", 106.56], ["AED", "D\xEDrham (AED)", 4.1212], ["OMR", "Rial oman\xED (OMR)", 0.432], ["JOD", "Dinar jordano (JOD)", 0.7956], ["EGP", "Libra egipcia (EGP)", 61.71]];
 function curIdx(p) {
   let k = M.findIndex((m) => p[3].includes("(" + m[0] + ")"));
   if (k >= 0) return k;
@@ -2209,7 +2209,7 @@ function cargaTasa() {
   $("rate").value = g && num(g) > 0 ? g : m[2] ? String(m[2]).replace(".", ",") : "";
   $("locl").textContent = m[1];
   $("ratel").textContent = "1 \u20AC equivale a (" + m[0] + ")";
-  $("mnote").textContent = m[2] ? "Tasa de referencia del 19 de octubre de 2026 (BCE y paridades oficiales). C\xE1mbiala por la de tu banco el d\xEDa del viaje." : "Escribe la tasa del d\xEDa: a\xFAn no hay una de referencia.";
+  $("mnote").textContent = m[2] ? "Tasa de referencia del 26 de octubre de 2026. C\xE1mbiala por la de tu banco el d\xEDa del viaje." : "Escribe la tasa del d\xEDa: a\xFAn no hay una de referencia.";
   const u = $("uses");
   u.innerHTML = "";
   const vistos = /* @__PURE__ */ new Set();

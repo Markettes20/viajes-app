@@ -573,8 +573,8 @@
       "symbol": "₺",
       "code": "TRY",
       "text": "Se paga con tarjeta casi en todas partes. Lleva algo de efectivo para propinas y bazares. Cambia en una casa de cambio (döviz) del centro, no en el aeropuerto.",
-      "rate": 50,
-      "rateNote": "Cambio aproximado. Compruébalo en tu banco o en una casa de cambio.",
+      "rate": 55.8,
+      "rateNote": "Cambio del 26 de octubre de 2026 (aprox.). Compruébalo en tu banco o en una casa de cambio.",
       "quick": [
         5,
         10,
@@ -1124,7 +1124,7 @@
         "currency": {
           "name": "Turkish lira",
           "text": "Cards are accepted almost everywhere. Carry some cash for tips and bazaars. Change money at an exchange office (döviz) in town, not at the airport.",
-          "rateNote": "Approximate rate. Check with your bank or an exchange office."
+          "rateNote": "Rate on 26 October 2026 (approx.). Check with your bank or an exchange office."
         },
         "weather": [
           {
