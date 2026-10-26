@@ -7,5 +7,7 @@
   "end": "2028-05-01",
   "tz": "+01:00",
   "flights": [],
-  "documents": []
+  "documents": [],
+  "destination": "Crucero vuelta al mundo",
+  "cover": "img/crucero-mar.jpg"
 }

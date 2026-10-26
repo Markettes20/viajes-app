@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A1E30">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Anillo Travel">
+<meta name="robots" content="noindex, nofollow">
+<title>Panel del organizador</title>
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" href="../../icons/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Marcellus&display=swap">
+<style>
+/* Layout: misma marca que la app. Cabecera azul noche, barra de herramientas tipo explorador (buscar, filtros, lista/cuadrados) y la colección de viajes debajo. Ancha en ordenador, una columna en el móvil. */
+:root {
+  --bg: #F2F5F7; --surface: #FFFFFF; --surface-2: #E8EEF2; --ink: #0E2233; --muted: #586A78; --line: #D8E1E7;
+  --brand: #0B3B5C; --brand-ink: #0B3B5C; --brand-deep: #0A1E30; --accent: #C9973A; --accent-ink: #8A6216;
+  --sea: #14898F; --sea-soft: #DCEFEF; --ok: #2E8B57; --ok-soft: #DDF1E5; --warn: #A86A0B; --warn-soft: #FBF1DC; --danger: #C2412D;
+  --row-hover: #F6F9FB; --sel: #E4F0F7; --on-brand: #FFFFFF; --scrim: rgba(6,18,28,.5);
+  --shadow: 0 1px 2px rgba(14,34,51,.06), 0 8px 24px rgba(14,34,51,.08);
+  --font-display: "Marcellus", Georgia, "Times New Roman", serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --r: 18px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #07121B; --surface: #0E1D2A; --surface-2: #142838; --ink: #EAF1F5; --muted: #98AAB7; --line: #1E3344;
+    --brand-ink: #9CCBEA; --accent: #E0B35A; --accent-ink: #E8C27A; --sea: #44C2C7; --sea-soft: #10303A; --ok: #5BC48A; --ok-soft: #12301F; --warn: #E8B45A; --warn-soft: #2B2414;
+    --row-hover: #122433; --sel: #15324A; --scrim: rgba(0,0,0,.6); --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #07121B; --surface: #0E1D2A; --surface-2: #142838; --ink: #EAF1F5; --muted: #98AAB7; --line: #1E3344;
+  --brand-ink: #9CCBEA; --accent: #E0B35A; --accent-ink: #E8C27A; --sea: #44C2C7; --sea-soft: #10303A; --ok: #5BC48A; --ok-soft: #12301F; --warn: #E8B45A; --warn-soft: #2B2414;
+  --row-hover: #122433; --sel: #15324A; --scrim: rgba(0,0,0,.6); --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35); color-scheme: dark;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { background: var(--bg); }
+body { margin: 0; color: var(--ink); font: 16px/1.45 var(--font-body); -webkit-font-smoothing: antialiased; }
+button, input, select { font: inherit; color: inherit; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; margin: 0; text-wrap: balance; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+.num { font-variant-numeric: tabular-nums; }
+.mono { font-family: var(--font-mono); letter-spacing: .05em; }
+.muted { color: var(--muted); }
+.ic { width: 20px; height: 20px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ic.fill { fill: currentColor; stroke: none; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* ---------- Cabecera del panel ---------- */
+.top { background: var(--brand-deep); color: #fff; padding-top: env(safe-area-inset-top, 0px); }
+.top .wrap { display: flex; align-items: center; gap: 14px; padding-block: 14px; }
+.top .logo svg { width: 132px; height: auto; color: #fff; display: block; }
+.top .who { margin-left: auto; text-align: right; font-size: 13px; color: rgba(255,255,255,.7); line-height: 1.3; }
+.top .who b { display: block; color: #fff; font-size: 15px; font-weight: 600; }
+.icon-btn { width: 42px; height: 42px; border-radius: 12px; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.06); color: #fff; display: grid; place-items: center; cursor: pointer; flex: none; }
+.hero { background: var(--brand-deep); color: #fff; }
+.hero .wrap { padding-block: 6px 26px; display: grid; gap: 18px; }
+.hero h1 { font-size: clamp(28px, 4vw, 38px); line-height: 1.1; }
+.hero .sub { color: rgba(255,255,255,.72); font-size: 15px; margin-top: 6px; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.stat { text-align: left; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.05); border-radius: 14px; padding: 12px 14px; color: #fff; cursor: pointer; display: grid; gap: 2px; min-width: 0; }
+.stat b { font-size: 24px; font-weight: 700; line-height: 1.1; }
+.stat span { font-size: 13px; color: rgba(255,255,255,.72); }
+.stat[aria-pressed="true"] { border-color: var(--accent); background: rgba(201,151,58,.16); }
+.stat .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; vertical-align: 1px; }
+.next { display: flex; gap: 12px; align-items: center; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 12px 14px; cursor: pointer; color: #fff; text-align: left; width: 100%; }
+.next .k { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+.next .t { font-weight: 600; }
+.next .m { font-size: 14px; color: rgba(255,255,255,.72); }
+.next .go { margin-left: auto; }
+.newbar { display: flex; gap: 10px; align-items: center; background: var(--accent); color: #1B1406; border-radius: 12px; padding: 10px 14px; font-weight: 600; font-size: 15px; }
+.newbar .nt { flex: 1; min-width: 0; }
+.newbar .tag.new { background: rgba(0,0,0,.14); }
+.newbar button { margin-left: auto; border: 0; background: rgba(0,0,0,.12); border-radius: 10px; padding: 6px 10px; font-weight: 600; cursor: pointer; color: inherit; }
+
+/* ---------- Barra de herramientas ---------- */
+.tools { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--brand-deep); }
+.tools .wrap { display: grid; gap: 10px; padding-block: 12px; }
+.row1 { display: flex; gap: 10px; align-items: center; }
+.search { flex: 1; min-width: 0; position: relative; }
+.search .ic { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+.search input { width: 100%; height: 44px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); padding: 0 12px 0 40px; font-size: 16px; }
+.search input:focus { outline: none; border-color: var(--sea); }
+.seg { display: inline-flex; border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 3px; flex: none; }
+.seg button { border: 0; background: none; height: 36px; min-width: 40px; padding: 0 10px; border-radius: 9px; cursor: pointer; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; }
+.seg button[aria-pressed="true"] { background: var(--brand); color: #fff; }
+.seg .lbl { display: none; }
+@media (min-width: 720px) { .seg .lbl { display: inline; } }
+.chips { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; margin-inline: -2px; padding-inline: 2px; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex: none; height: 36px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); padding: 0 14px; font-size: 14px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--sea-soft); border-color: var(--sea); color: var(--ink); }
+.chip select { border: 0; background: none; font-weight: 600; font-size: 14px; padding: 0; cursor: pointer; }
+.chip select:focus { outline: none; }
+.chip.sep { border: 0; background: none; padding: 0 2px; color: var(--muted); cursor: default; font-weight: 500; }
+.range { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; }
+.range input { height: 38px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); padding: 0 10px; }
+.count { font-size: 14px; color: var(--muted); display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.count .clear { border: 0; background: none; color: var(--sea); font-weight: 600; cursor: pointer; padding: 0; font-size: 14px; }
+
+/* ---------- Estado ---------- */
+.pill { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; font-size: 13px; font-weight: 700; white-space: nowrap; }
+.pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.pill.prox { background: var(--sea-soft); color: var(--sea); }
+.pill.curso { background: var(--ok-soft); color: var(--ok); }
+.pill.fin { background: var(--surface-2); color: var(--muted); }
+.type { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; flex: none; }
+.type.ANI { background: var(--sea-soft); color: var(--sea); }
+.type.FLY { background: var(--warn-soft); color: var(--accent-ink); }
+.tag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .08em; padding: 2px 7px; border-radius: 6px; vertical-align: 2px; }
+.tag.new { background: var(--accent); color: #1B1406; }
+.tag.demo { background: var(--surface-2); color: var(--muted); }
+.tag.ej { background: var(--surface-2); color: var(--muted); font-style: italic; }
+.exp-soon { color: var(--warn); font-weight: 600; }
+
+/* ---------- Vista lista ---------- */
+main { padding-block: 16px 60px; }
+.table-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+thead th { text-align: left; font-size: 13px; font-weight: 600; color: var(--muted); padding: 0; border-bottom: 1px solid var(--line); white-space: nowrap; }
+thead th button { border: 0; background: none; width: 100%; text-align: left; padding: 12px 14px; cursor: pointer; color: inherit; font-weight: 600; display: inline-flex; gap: 4px; align-items: center; }
+thead th button:hover { color: var(--ink); background: var(--row-hover); }
+thead th[aria-sort] button { color: var(--ink); }
+.arrow { width: 14px; height: 14px; }
+tbody tr { border-bottom: 1px solid var(--line); cursor: pointer; }
+tbody tr:last-child { border-bottom: 0; }
+tbody tr:hover { background: var(--row-hover); }
+tbody td { padding: 12px 14px; vertical-align: middle; }
+.c-main { display: flex; gap: 12px; align-items: center; min-width: 0; }
+.c-main .t { font-weight: 600; }
+.c-main .s { font-size: 13px; color: var(--muted); }
+.codecell { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-weight: 600; letter-spacing: .05em; white-space: nowrap; }
+.mini { width: 32px; height: 32px; border-radius: 9px; border: 1px solid transparent; background: none; color: var(--muted); display: inline-grid; place-items: center; cursor: pointer; }
+.mini:hover { border-color: var(--line); color: var(--ink); background: var(--surface); }
+.mini .ic { width: 18px; height: 18px; }
+.acts { display: flex; gap: 2px; justify-content: flex-end; }
+td.nowrap { white-space: nowrap; }
+
+/* Lista en el móvil: filas de dos líneas en vez de columnas */
+.mlist { display: none; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+.mrow { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-bottom: 1px solid var(--line); cursor: pointer; width: 100%; text-align: left; background: none; border-left: 0; border-right: 0; border-top: 0; }
+.mrow:last-child { border-bottom: 0; }
+.mrow .mid { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.mrow .l1 { display: flex; gap: 8px; align-items: baseline; min-width: 0; }
+.mrow .l1 b { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.mrow .l2, .mrow .l3 { font-size: 13px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mrow .l3 .mono { color: var(--ink); font-weight: 600; }
+.mrow .right { display: grid; gap: 4px; justify-items: end; flex: none; }
+@media (max-width: 860px) { .table-wrap { display: none; } .mlist { display: block; } }
+
+/* ---------- Vista cuadrados ---------- */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; }
+@media (max-width: 520px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } }
+.tile { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; cursor: pointer; display: flex; flex-direction: column; text-align: left; padding: 0; transition: transform .15s ease, box-shadow .15s ease; color: var(--ink); }
+.tile:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.tile .ph { aspect-ratio: 16 / 10; max-width: 100%; background: var(--surface-2) center / cover no-repeat; position: relative; }
+.tile .ph .pill { position: absolute; left: 10px; bottom: 10px; box-shadow: 0 1px 6px rgba(0,0,0,.2); }
+.tile .ph .tg { position: absolute; right: 10px; top: 10px; display: flex; gap: 4px; }
+.tile .ph .typ { position: absolute; left: 10px; top: 10px; background: rgba(6,26,43,.72); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: .1em; padding: 4px 8px; border-radius: 7px; display: inline-flex; gap: 5px; align-items: center; }
+.tile .ph .typ .ic { width: 14px; height: 14px; }
+.tile .bd { padding: 12px 14px 14px; display: grid; gap: 4px; min-width: 0; }
+.tile .cd { font-family: var(--font-mono); font-weight: 700; letter-spacing: .06em; font-size: 15px; color: var(--brand-ink); }
+.tile .nm { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tile .ds { font-size: 13px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tile .dt { font-size: 13px; color: var(--muted); }
+.tile .bar { height: 4px; border-radius: 4px; background: var(--surface-2); overflow: hidden; margin-top: 4px; }
+.tile .bar i { display: block; height: 100%; background: var(--ok); }
+@media (max-width: 520px) { .tile .bd { padding: 10px 11px 12px; } .tile .cd { font-size: 13px; } .tile .nm { font-size: 14px; } .tile .ph .pill { font-size: 12px; height: 23px; padding: 0 8px; } }
+
+.empty { background: var(--surface); border: 1px dashed var(--line); border-radius: var(--r); padding: 40px 20px; text-align: center; color: var(--muted); display: grid; gap: 8px; justify-items: center; }
+.empty b { color: var(--ink); font-size: 17px; }
+
+/* ---------- Ficha del viaje ---------- */
+.scrim { position: fixed; inset: 0; background: var(--scrim); z-index: 20; display: grid; place-items: center; padding: 20px; animation: fade .2s ease both; }
+@keyframes fade { from { opacity: 0; } }
+.sheet { background: var(--surface); width: min(560px, 100%); max-height: calc(100dvh - 40px); overflow: auto; border-radius: 22px; box-shadow: var(--shadow); animation: up .25s ease both; }
+@keyframes up { from { transform: translateY(24px); opacity: .5; } }
+@media (max-width: 620px) {
+  .scrim { place-items: end stretch; padding: 0; }
+  .sheet { width: 100%; max-height: 92dvh; border-radius: 22px 22px 0 0; padding-bottom: env(safe-area-inset-bottom, 0px); }
+}
+.sheet .cover { aspect-ratio: 16 / 7; max-width: 100%; background: var(--surface-2) center / cover no-repeat; position: relative; }
+.sheet .cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,43,0) 40%, rgba(6,26,43,.75)); }
+.sheet .cover .x { position: absolute; right: 12px; top: 12px; z-index: 1; background: rgba(6,26,43,.55); border-color: rgba(255,255,255,.25); }
+.sheet .cover .ttl { position: absolute; left: 18px; right: 18px; bottom: 14px; z-index: 1; color: #fff; }
+.sheet .cover h2 { font-size: 26px; line-height: 1.15; }
+.sheet .cover .st { font-size: 14px; color: rgba(255,255,255,.82); }
+.sheet .in { padding: 18px; display: grid; gap: 16px; }
+.bigcode { display: flex; align-items: center; gap: 10px; background: var(--surface-2); border-radius: 14px; padding: 12px 14px; }
+.bigcode .mono { font-size: 24px; font-weight: 700; letter-spacing: .12em; color: var(--brand-ink); }
+.bigcode .l { font-size: 12px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+.bigcode .btn { margin-left: auto; }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; margin: 0; }
+.facts div { min-width: 0; }
+.facts dt { font-size: 12px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 700; }
+.facts dd { margin: 2px 0 0; font-weight: 600; overflow-wrap: anywhere; }
+.facts dd small { display: block; font-weight: 500; color: var(--muted); font-size: 13px; }
+.timeline { display: grid; gap: 6px; }
+.timeline .track { height: 8px; border-radius: 8px; background: var(--surface-2); position: relative; overflow: hidden; }
+.timeline .track i { position: absolute; inset: 0 auto 0 0; background: var(--ok); border-radius: 8px; }
+.timeline .ends { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); }
+.btns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.btn { height: 46px; border-radius: 13px; border: 1px solid var(--line); background: var(--surface); font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; text-decoration: none; color: var(--ink); padding: 0 14px; }
+.btn.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+.btn.wa { background: #1F8F4E; border-color: #1F8F4E; color: #fff; }
+.btn.full { grid-column: 1 / -1; }
+.note label { font-size: 12px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 6px; }
+.note textarea { width: 100%; min-height: 76px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); padding: 10px 12px; font: inherit; font-size: 15px; color: var(--ink); resize: vertical; }
+.note small { color: var(--muted); font-size: 12px; }
+
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--brand-deep); color: #fff; padding: 10px 16px; border-radius: 12px; font-weight: 600; font-size: 15px; z-index: 40; box-shadow: var(--shadow); max-width: calc(100% - 32px); }
+
+@media (max-width: 560px) {
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .top .who { display: none; }
+  .top .logo { margin-right: auto; }
+}
+
+html.lock, html.lock body { overflow: hidden; }
+.sheet { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.tile .ph, .tile .bd, .tile .cd, .tile .nm, .tile .ds, .tile .dt, .tile .bar { display: block; }
+.tile .bar i { display: block; }
+.mrow .mid > span { display: block; }
+.mrow .l1 { display: flex; }
+.mrow { color: var(--ink); font: inherit; }
+.mrow:hover { background: var(--row-hover); }
+.stat, .next, .chip, .seg button, .tile, .mrow, .btn, .mini { touch-action: manipulation; }
+a.mini { text-decoration: none; }
+@media (hover: none) { .tile:hover { transform: none; box-shadow: none; } tbody tr:hover, .mrow:hover { background: none; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M4 12h16"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></symbol>
+  <symbol id="i-open" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1.1-1.4-1.1-2.7s.7-2 .9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.1 1.2z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l5-5-5-5M15 12H4"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+</svg>
+<div id="app"><div style="min-height:100vh;display:grid;place-items:center;background:#0A1E30;color:#C9973A;font:600 18px system-ui">Abriendo el panel…</div></div>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<script>
+(function () {
+"use strict";
+// Panel del organizador. Los viajes llegan cifrados en data/panel/<id>.json (los genera tools/build_panel.py
+// en cada build a partir de data/trips/*.json). La app guarda la clave al escribir el código del panel.
+const AGENCY = "Anillo Travel";
+const APP = new URL("../../", location.href).href;
+const store = {
+  get(k, d) { try { const v = localStorage.getItem("va:" + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem("va:" + k, JSON.stringify(v)); } catch (e) {} },
+  del(k) { try { localStorage.removeItem("va:" + k); } catch (e) {} },
+};
+function exit() { ["code", "pk", "pid"].forEach(store.del); location.replace("../../index.html"); }
+const PK = store.get("pk", null), PID = store.get("pid", null);
+if (!PK || !PID || !/^[0-9a-f]{32}$/.test(PID)) { exit(); return; }
+
+let DATA = { trips: [], built: "" };
+const S = { view: store.get("panel:view", "list"), q: "", status: "all", type: "all", when: "all", from: "", to: "", sort: store.get("panel:sort", { k: "start", dir: 1 }), open: null };
+let seen = store.get("panel:seen", null);
+
+// ---------- Fechas (hora de España) ----------
+const todayISO = () => { try { return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Madrid", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date()); } catch (e) { return new Date().toISOString().slice(0, 10); } };
+const d0 = iso => Date.UTC(+iso.slice(0, 4), +iso.slice(5, 7) - 1, +iso.slice(8, 10));
+const days = (a, b) => Math.round((d0(b) - d0(a)) / 864e5);
+const addDays = (iso, n) => new Date(d0(iso) + n * 864e5).toISOString().slice(0, 10);
+const M = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+const fd = (iso, y = true) => `${+iso.slice(8, 10)} ${M[+iso.slice(5, 7) - 1]}${y ? " " + iso.slice(0, 4) : ""}`;
+const fRange = (a, b) => a.slice(0, 4) === b.slice(0, 4) ? `${fd(a, false)} – ${fd(b)}` : `${fd(a)} – ${fd(b)}`;
+
+function info(t) {
+  const T = todayISO(), len = days(t.start, t.end) + 1;
+  let st, label, pct = 0;
+  if (T < t.start) { const n = days(T, t.start); st = "prox"; label = n === 1 ? "Sale mañana" : `Sale en ${n} días`; }
+  else if (T <= t.end) { const n = days(t.start, T) + 1; st = "curso"; label = n === 1 && t.start === T ? "Sale hoy" : `En viaje · día ${n} de ${len}`; pct = Math.round(n / len * 100); }
+  else { st = "fin"; label = "Terminado"; pct = 100; }
+  const expires = t.demo ? null : addDays(t.last || t.end, 1); // el código se bloquea a las 00:00 del día siguiente a la vuelta
+  const expIn = expires ? days(T, expires) : null;
+  return { st, label, pct, len, nights: len - 1, expires, expIn, isNew: !!seen && !seen.includes(t.code) };
+}
+const ST = { prox: "Próximo", curso: "En curso", fin: "Terminado" };
+const link = t => `${APP}?codigo=${t.code}`;
+const img = t => "../../" + t.img;
+const first = s => String(s || "").split(" ")[0];
+const waText = t => `Hola ${first(t.client)}, aquí tienes tu viaje "${t.title}" en la app de ${AGENCY}.\n\nCódigo: ${t.code}\nEnlace: ${link(t)}\n\nGuárdalo en la pantalla de inicio del móvil para tenerlo siempre a mano.`;
+const waURL = t => "https://wa.me/?text=" + encodeURIComponent(waText(t));
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const ic = (n, cls = "") => `<svg class="ic ${cls}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+const norm = s => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+const all = () => DATA.trips;
+const find = code => all().find(t => t.code === code);
+
+function whenRange() {
+  const T = todayISO(), y = T.slice(0, 4), m = T.slice(0, 7);
+  switch (S.when) {
+    case "week": return [T, addDays(T, 7)];
+    case "month": return [m + "-01", new Date(Date.UTC(+y, +T.slice(5, 7), 0)).toISOString().slice(0, 10)];
+    case "3m": return [T, addDays(T, 92)];
+    case "year": return [y + "-01-01", y + "-12-31"];
+    case "custom": return [S.from || "0000-01-01", S.to || "9999-12-31"];
+    default: return null;
+  }
+}
+function list() {
+  const q = norm(S.q.trim()), r = whenRange();
+  const out = all().filter(t => {
+    const i = info(t);
+    if (S.status !== "all" && (S.status === "new" ? !i.isNew : i.st !== S.status)) return false;
+    if (S.type !== "all" && t.type !== S.type) return false;
+    if (r && (t.end < r[0] || t.start > r[1])) return false; // el viaje se solapa con el periodo
+    if (q && !norm([t.code, t.client, t.group, t.title, t.dest].join(" ")).includes(q)) return false;
+    return true;
+  });
+  const k = S.sort.k, dir = S.sort.dir;
+  const val = t => k === "exp" ? (t.demo ? "9999" : addDays(t.last || t.end, 1)) : k === "status" ? ({ curso: 0, prox: 1, fin: 2 }[info(t).st] + t.start) : String(t[k] || "");
+  out.sort((a, b) => val(a).localeCompare(val(b), "es") * dir || a.code.localeCompare(b.code));
+  return out;
+}
+
+// ---------- Pintar ----------
+const app = document.getElementById("app");
+function renderPanel() {
+  const items = all(), infos = items.map(info);
+  const c = { curso: 0, prox: 0, fin: 0, new: 0 }; infos.forEach(i => { c[i.st]++; if (i.isNew) c.new++; });
+  const rank = t => { const i = info(t); return i.st === "curso" ? "0" + t.end : "1" + t.start; };
+  const nextT = items.filter((t, k) => infos[k].st !== "fin").sort((a, b) => rank(a).localeCompare(rank(b)))[0];
+  const newOnes = items.filter((t, k) => infos[k].isNew);
+  const rows = list();
+  const statBtn = (k, label, color) => `<button class="stat" type="button" data-status="${k}" aria-pressed="${S.status === k}"><b class="num">${c[k]}</b><span><i class="dot" style="background:${color}"></i>${label}</span></button>`;
+  const filtered = S.q || S.status !== "all" || S.type !== "all" || S.when !== "all";
+  app.innerHTML = `
+  <header class="top"><div class="wrap">
+    <span class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 44" fill="none" stroke="currentColor" role="img" aria-label="Anillo Travel">
+  <path d="M15 33C4 31 2 21 10 13 19 5 36 3 44 9c5 4 5 9 2 13" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M9 35c14-3 28-12 38-21" stroke-width="2.2" stroke-linecap="round"/>
+  <g transform="translate(50 11) rotate(-36) scale(.55)" fill="currentColor" stroke="none"><path d="M-12-1.6 3.5-1.8 9-9.2h3.3L8.9-1.9 14.6-2c2 0 3.4.8 3.4 2s-1.4 2-3.4 2L8.9 1.9l3.4 7.3H9L3.5 1.8-12 1.6l-1.5 3.6h-2.6L-15 0l-1.1-5.2h2.6Z"/></g>
+  <text x="64" y="26" fill="currentColor" stroke="none" font-family="Marcellus, 'Cormorant Garamond', Georgia, serif" font-size="23" letter-spacing="2.6">ANILLO</text>
+  <path d="M64 35.5h12M144 35.5h12" stroke-width="1"/>
+  <text x="110" y="39" text-anchor="middle" fill="currentColor" stroke="none" font-family="Marcellus, Georgia, serif" font-size="9.5" letter-spacing="3.6">TRAVEL</text>
+</svg>
+</span>
+    <div class="who"><b>Panel del organizador</b>${esc(AGENCY)}</div>
+    <button class="icon-btn" type="button" id="out" aria-label="Salir del panel" title="Salir">${ic("out")}</button>
+  </div></header>
+  <section class="hero"><div class="wrap">
+    <div><h1>Todos los viajes</h1><div class="sub">${items.length} ${items.length === 1 ? "viaje" : "viajes"} con código · hoy ${fd(todayISO())}</div></div>
+    ${newOnes.length ? `<div class="newbar"><span class="tag new">NUEVO</span><span class="nt">${newOnes.length === 1 ? `Hay un código nuevo: <span class="mono">${newOnes[0].code}</span> (${esc(newOnes[0].client.split(" ").slice(0, 2).join(" "))})` : `Hay ${newOnes.length} códigos nuevos desde tu última visita`}</span><button type="button" id="seeNew">Ver</button></div>` : ""}
+    <div class="stats">
+      ${statBtn("curso", "En curso", "var(--ok)")}${statBtn("prox", "Próximos", "var(--sea)")}${statBtn("fin", "Terminados", "#98AAB7")}${statBtn("new", "Nuevos", "var(--accent)")}
+    </div>
+    ${nextT ? `<button class="next" type="button" data-open="${nextT.code}">${ic(nextT.type === "FLY" ? "plane" : "bag")}<div><div class="k">${info(nextT).st === "curso" ? "Ahora de viaje" : "Próxima salida"}</div><div class="t">${esc(nextT.title)}</div><div class="m">${esc(nextT.client)} · ${info(nextT).label.toLowerCase()} · ${fd(info(nextT).st === "curso" ? nextT.end : nextT.start)}</div></div>${ic("chev", "go")}</button>` : ""}
+  </div></section>
+  <div class="tools"><div class="wrap">
+    <div class="row1">
+      <label class="search">${ic("search")}<input id="q" type="search" enterkeyhint="search" autocomplete="off" placeholder="Buscar cliente, código o destino" value="${esc(S.q)}" aria-label="Buscar"></label>
+      <div class="seg" role="group" aria-label="Vista">
+        <button type="button" data-view="list" aria-pressed="${S.view === "list"}" title="Lista">${ic("list")}<span class="lbl">Lista</span></button>
+        <button type="button" data-view="grid" aria-pressed="${S.view === "grid"}" title="Cuadrados">${ic("grid")}<span class="lbl">Cuadrados</span></button>
+      </div>
+    </div>
+    <div class="chips" role="toolbar" aria-label="Filtros">
+      <span class="chip">${ic("cal")}<select id="when" aria-label="Fecha del viaje">
+        ${[["all", "Cualquier fecha"], ["week", "Próximos 7 días"], ["month", "Este mes"], ["3m", "Próximos 3 meses"], ["year", "Este año"], ["custom", "Elegir fechas…"]].map(([v, l]) => `<option value="${v}" ${S.when === v ? "selected" : ""}>${l}</option>`).join("")}
+      </select></span>
+      <span class="chip sep">Tipo</span>
+      ${[["all", "Todos"], ["ANI", "Viaje completo"], ["FLY", "Solo vuelos"]].map(([v, l]) => `<button type="button" class="chip" data-type="${v}" aria-pressed="${S.type === v}">${l}</button>`).join("")}
+      <span class="chip sep">Orden</span>
+      <span class="chip"><select id="sort" aria-label="Ordenar por">
+        ${[["start:1", "Salida más cercana"], ["start:-1", "Salida más lejana"], ["client:1", "Cliente A–Z"], ["code:1", "Código"], ["exp:1", "Caduca antes"], ["status:1", "Estado"]].map(([v, l]) => `<option value="${v}" ${S.sort.k + ":" + S.sort.dir === v ? "selected" : ""}>${l}</option>`).join("")}
+      </select></span>
+    </div>
+    ${S.when === "custom" ? `<div class="range"><span class="muted">Viajes entre</span><input type="date" id="from" value="${S.from}" aria-label="Desde"><span class="muted">y</span><input type="date" id="to" value="${S.to}" aria-label="Hasta"></div>` : ""}
+    <div class="count"><span>${rows.length === items.length ? `${rows.length} ${rows.length === 1 ? "viaje" : "viajes"}` : `${rows.length} de ${items.length} viajes`}</span>${filtered ? `<button type="button" class="clear" id="clear">Quitar filtros</button>` : ""}</div>
+  </div></div>
+  <main class="wrap">${rows.length ? (S.view === "grid" ? grid(rows) : table(rows)) : `<div class="empty"><b>${items.length ? "Ningún viaje con estos filtros" : "Todavía no hay viajes con código"}</b><span>${items.length ? "Prueba con otra fecha o quita los filtros." : "Cuando se cree un código nuevo aparecerá aquí."}</span>${items.length ? `<button type="button" class="btn" id="clear2">Quitar filtros</button>` : ""}</div>`}</main>`;
+  bind();
+}
+
+function expTxt(i) { return i.expires ? `<span class="${i.expIn >= 0 && i.expIn <= 7 ? "exp-soon" : ""}">${i.expIn <= 0 ? "Caducó el " + fd(i.expires) : fd(i.expires)}</span>` : `<span class="muted">No caduca</span>`; }
+function tags(t, i) { return `${i.isNew ? ` <span class="tag new">NUEVO</span>` : ""}${t.demo ? ` <span class="tag demo">DEMO</span>` : ""}`; }
+
+function table(rows) {
+  const th = (k, l) => { const on = S.sort.k === k; return `<th ${on ? `aria-sort="${S.sort.dir > 0 ? "ascending" : "descending"}"` : ""}><button type="button" data-sort="${k}">${l}${on ? ic(S.sort.dir > 0 ? "up" : "down", "arrow") : ""}</button></th>`; };
+  const tr = rows.map(t => { const i = info(t); return `<tr data-open="${t.code}">
+      <td><span class="codecell">${t.code}<button type="button" class="mini" data-copy="${t.code}" title="Copiar código" aria-label="Copiar código ${t.code}">${ic("copy")}</button></span></td>
+      <td><div class="c-main"><span class="type ${t.type}" title="${t.type === "FLY" ? "Solo vuelos" : "Viaje completo"}">${ic(t.type === "FLY" ? "plane" : "bag")}</span><div style="min-width:0"><div class="t">${esc(t.client)}${tags(t, i)}</div><div class="s">${esc(t.title)}</div></div></div></td>
+      <td>${esc(t.dest)}</td>
+      <td class="nowrap num">${fRange(t.start, t.end)}<div class="muted" style="font-size:13px">${i.len} días</div></td>
+      <td><span class="pill ${i.st}">${ST[i.st]}</span><div class="muted" style="font-size:13px;margin-top:3px">${i.st === "fin" ? "" : i.label}</div></td>
+      <td class="nowrap num">${expTxt(i)}</td>
+      <td><div class="acts"><a class="mini" href="${waURL(t)}" target="_blank" rel="noopener" title="Enviar por WhatsApp" aria-label="Enviar por WhatsApp">${ic("wa", "fill")}</a><button type="button" class="mini" data-link="${t.code}" title="Copiar enlace" aria-label="Copiar enlace">${ic("link")}</button><a class="mini" href="${link(t)}" target="_blank" rel="noopener" title="Abrir el viaje como el cliente" aria-label="Abrir viaje">${ic("open")}</a></div></td>
+    </tr>`; }).join("");
+  const mrows = rows.map(t => { const i = info(t); return `<button type="button" class="mrow" data-open="${t.code}">
+      <span class="type ${t.type}">${ic(t.type === "FLY" ? "plane" : "bag")}</span>
+      <span class="mid"><span class="l1"><b>${esc(t.client)}</b>${tags(t, i)}</span><span class="l2">${esc(t.dest)} · ${fRange(t.start, t.end)}</span><span class="l3"><span class="mono">${t.code}</span> · ${i.st === "fin" ? "terminado" : i.label.toLowerCase()}</span></span>
+      <span class="right"><span class="pill ${i.st}">${ST[i.st]}</span></span>
+    </button>`; }).join("");
+  return `<div class="table-wrap"><table><thead><tr>${th("code", "Código")}${th("client", "Cliente y viaje")}${th("dest", "Destino")}${th("start", "Fechas")}${th("status", "Estado")}${th("exp", "Caduca")}<th><span class="sr">Acciones</span></th></tr></thead><tbody>${tr}</tbody></table></div><div class="mlist">${mrows}</div>`;
+}
+
+function grid(rows) {
+  return `<div class="grid">${rows.map(t => { const i = info(t); return `<button type="button" class="tile" data-open="${t.code}">
+    <span class="ph" style="background-image:url('${esc(img(t))}')"><span class="typ">${ic(t.type === "FLY" ? "plane" : "bag")}${t.type}</span><span class="tg">${tags(t, i)}</span><span class="pill ${i.st}" style="background:var(--surface)">${i.st === "fin" ? "Terminado" : i.label}</span></span>
+    <span class="bd"><span class="cd">${t.code}</span><span class="nm">${esc(t.client)}</span><span class="ds">${esc(t.dest)}</span><span class="dt num">${fRange(t.start, t.end)}</span>${i.st === "curso" ? `<span class="bar"><i style="width:${i.pct}%"></i></span>` : ""}</span>
+  </button>`; }).join("")}</div>`;
+}
+
+let lastFocus = null, scrollY0 = 0;
+function sheet(code) {
+  const t = find(code); if (!t) return;
+  const i = info(t);
+  if (seen && !seen.includes(code)) { seen.push(code); store.set("panel:seen", seen); }
+  const old = document.getElementById("scrim"); if (old) old.remove();
+  if (!S.open) { lastFocus = document.activeElement; scrollY0 = window.scrollY; }
+  S.open = code;
+  const notes = store.get("panel:notes", {});
+  const T = todayISO();
+  const tl = i.st === "prox" ? `<div class="timeline"><div class="ends"><span>Hoy</span><span>Salida ${fd(t.start)}</span></div><div class="track"><i style="width:${Math.max(4, 100 - Math.min(96, days(T, t.start)))}%;background:var(--sea)"></i></div><div class="muted" style="font-size:13px">${i.label}.</div></div>`
+    : i.st === "curso" ? `<div class="timeline"><div class="ends"><span>${fd(t.start)}</span><span>${fd(t.end)}</span></div><div class="track"><i style="width:${i.pct}%"></i></div><div class="muted" style="font-size:13px">${i.label}${t.end === T ? " · vuelve hoy" : ` · vuelve en ${days(T, t.end)} ${days(T, t.end) === 1 ? "día" : "días"}`}</div></div>` : "";
+  const el = document.createElement("div");
+  el.className = "scrim"; el.id = "scrim";
+  el.innerHTML = `<div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(t.title)}">
+    <div class="cover" style="background-image:url('${esc(img(t))}')"><button type="button" class="icon-btn x" id="close" aria-label="Cerrar">${ic("x")}</button><div class="ttl"><div class="st">${t.type === "FLY" ? "Solo vuelos" : "Viaje completo"}${t.demo ? " · demo" : ""}</div><h2>${esc(t.title)}</h2></div></div>
+    <div class="in">
+      <div class="bigcode"><div><div class="l">Código del cliente</div><div class="mono">${t.code}</div></div><button type="button" class="btn" data-copy="${t.code}">${ic("copy")} Copiar</button></div>
+      <dl class="facts">
+        <div><dt>Cliente</dt><dd>${esc(t.client) || "—"}${t.group ? `<small>${esc(t.group)}</small>` : ""}</dd></div>
+        <div><dt>Destino</dt><dd>${esc(t.dest) || "—"}</dd></div>
+        <div><dt>Fechas</dt><dd class="num">${fRange(t.start, t.end)}<small>${i.len} ${i.len === 1 ? "día" : "días"} · ${i.nights} ${i.nights === 1 ? "noche" : "noches"}</small></dd></div>
+        <div><dt>Estado</dt><dd><span class="pill ${i.st}">${ST[i.st]}</span></dd></div>
+        <div><dt>El código caduca</dt><dd class="num">${i.expires ? `${fd(i.expires)} a las 00:00<small>${i.expIn > 0 ? `dentro de ${i.expIn} ${i.expIn === 1 ? "día" : "días"}` : "ya no funciona"}</small>` : "Nunca<small>es el viaje de demostración</small>"}</dd></div>
+        <div><dt>Enlace directo</dt><dd style="font-size:13px;font-weight:500">${esc(link(t).replace(/^https?:\/\//, ""))}</dd></div>
+      </dl>
+      ${tl}
+      <div class="btns">
+        <a class="btn wa full" href="${waURL(t)}" target="_blank" rel="noopener">${ic("wa", "fill")} Enviar código por WhatsApp</a>
+        <button type="button" class="btn" data-link="${t.code}">${ic("link")} Copiar enlace</button>
+        <a class="btn primary" href="${link(t)}" target="_blank" rel="noopener">${ic("open")} Abrir viaje</a>
+      </div>
+      <div class="note"><label for="note">Mis notas de este viaje</label><textarea id="note" placeholder="Ej.: pagado el 50 %, falta enviar el seguro…">${esc(notes[code] || "")}</textarea><small>Solo se guardan en este dispositivo.</small></div>
+    </div></div>`;
+  document.body.appendChild(el);
+  document.documentElement.classList.add("lock");
+  el.addEventListener("click", e => { if (e.target === el || e.target.closest("#close")) closeSheet(); });
+  el.querySelector("#note").addEventListener("input", e => { const n = store.get("panel:notes", {}); n[code] = e.target.value; store.set("panel:notes", n); });
+  bindActions(el);
+  try { el.querySelector("#close").focus({ preventScroll: true }); } catch (e) {}
+}
+function closeSheet() {
+  const el = document.getElementById("scrim"); if (el) el.remove();
+  document.documentElement.classList.remove("lock"); S.open = null;
+  renderPanel(); window.scrollTo(0, scrollY0);
+  const back = lastFocus && lastFocus.dataset && lastFocus.dataset.open ? document.querySelector(`[data-open="${lastFocus.dataset.open}"]`) : null;
+  if (back) try { back.focus({ preventScroll: true }); } catch (e) {}
+}
+document.addEventListener("keydown", e => { if (e.key === "Escape" && S.open) closeSheet(); });
+
+function toast(msg) { const el = document.getElementById("toast"); el.textContent = msg; el.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => { el.hidden = true; }, 1800); }
+function copy(text, msg) {
+  const fallback = () => { const ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.cssText = "position:fixed;top:0;left:0;opacity:0;font-size:16px"; document.body.appendChild(ta); ta.focus(); ta.select(); try { ta.setSelectionRange(0, text.length); } catch (e) {} let done = false; try { done = document.execCommand("copy"); } catch (e) {} ta.remove(); toast(done ? msg : "Copia a mano: " + text); };
+  try { if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => toast(msg), fallback); else fallback(); } catch (e) { fallback(); }
+}
+function bindActions(root) {
+  root.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); copy(b.dataset.copy, "Código copiado"); }));
+  root.querySelectorAll("[data-link]").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); const t = find(b.dataset.link); if (t) copy(link(t), "Enlace copiado"); }));
+  root.querySelectorAll("a.mini").forEach(a => a.addEventListener("click", e => e.stopPropagation()));
+}
+let qTimer = null;
+function bind() {
+  document.getElementById("out").onclick = exit;
+  const q = document.getElementById("q");
+  // Buscar sin volver a pintar la barra (así no se cierra el teclado del móvil mientras se escribe).
+  q.addEventListener("input", e => { S.q = e.target.value; clearTimeout(qTimer); qTimer = setTimeout(refreshList, 120); });
+  q.addEventListener("keydown", e => { if (e.key === "Enter") q.blur(); });
+  document.querySelectorAll("[data-view]").forEach(b => b.onclick = () => { S.view = b.dataset.view; store.set("panel:view", S.view); renderPanel(); });
+  document.querySelectorAll("[data-status]").forEach(b => b.onclick = () => { S.status = S.status === b.dataset.status ? "all" : b.dataset.status; renderPanel(); });
+  document.querySelectorAll("[data-type]").forEach(b => b.onclick = () => { S.type = b.dataset.type; renderPanel(); });
+  document.querySelectorAll("[data-sort]").forEach(b => b.onclick = () => { const k = b.dataset.sort; S.sort = { k, dir: S.sort.k === k ? -S.sort.dir : 1 }; store.set("panel:sort", S.sort); renderPanel(); });
+  document.getElementById("when").onchange = e => { S.when = e.target.value; renderPanel(); };
+  document.getElementById("sort").onchange = e => { const [k, d] = e.target.value.split(":"); S.sort = { k, dir: +d }; store.set("panel:sort", S.sort); renderPanel(); };
+  const from = document.getElementById("from"), to = document.getElementById("to");
+  if (from) from.onchange = e => { S.from = e.target.value; renderPanel(); };
+  if (to) to.onchange = e => { S.to = e.target.value; renderPanel(); };
+  ["clear", "clear2"].forEach(id => { const b = document.getElementById(id); if (b) b.onclick = () => { Object.assign(S, { q: "", status: "all", type: "all", when: "all", from: "", to: "" }); renderPanel(); }; });
+  const sn = document.getElementById("seeNew"); if (sn) sn.onclick = () => { S.status = "new"; renderPanel(); };
+  bindMain();
+}
+function bindMain() {
+  app.querySelectorAll("main [data-open], .hero [data-open]").forEach(r => r.addEventListener("click", () => sheet(r.dataset.open)));
+  bindActions(app.querySelector("main"));
+}
+function refreshList() {
+  // Repinta todo salvo el buscador, para no perder el foco ni el teclado.
+  const y = window.scrollY, q = document.getElementById("q"), pos = q ? q.selectionStart : null, had = document.activeElement === q;
+  renderPanel();
+  const q2 = document.getElementById("q");
+  if (had && q2) { q2.focus({ preventScroll: true }); try { q2.setSelectionRange(pos, pos); } catch (e) {} }
+  window.scrollTo(0, y);
+}
+
+// ---------- Cargar y descifrar ----------
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const hex = s => new Uint8Array(s.match(/../g).map(h => parseInt(h, 16)));
+async function load() {
+  const r = await fetch(`../panel/${PID}.json`, { cache: "no-cache" });
+  if (r.status === 404) throw Object.assign(new Error("gone"), { gone: true });
+  if (!r.ok) throw new Error("http " + r.status);
+  const box = await r.json();
+  const key = await crypto.subtle.importKey("raw", hex(PK), "AES-GCM", false, ["decrypt"]);
+  const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(box.iv) }, key, b64(box.ct));
+  const d = JSON.parse(new TextDecoder().decode(plain));
+  d.trips = (d.trips || []).filter(t => t && t.code && /^\d{4}-\d\d-\d\d$/.test(t.start) && /^\d{4}-\d\d-\d\d$/.test(t.end));
+  return d;
+}
+async function refresh(first) {
+  try {
+    const d = await load();
+    const sig = JSON.stringify(d.trips);
+    if (!first && sig === JSON.stringify(DATA.trips)) return;
+    DATA = d;
+    if (!seen) { seen = d.trips.map(t => t.code); store.set("panel:seen", seen); } // primera vez: nada sale como nuevo
+    if (S.open && find(S.open)) sheet(S.open); else { if (S.open) closeSheet(); else renderPanel(); }
+  } catch (e) {
+    if (e.gone || e.name === "OperationError") { exit(); return; } // código del panel cambiado o retirado
+    if (first) app.innerHTML = `<div class="wrap" style="padding-block:60px;display:grid;gap:14px;max-width:520px"><h1 style="font-size:28px">No se ha podido abrir el panel</h1><p class="muted" style="margin:0">Comprueba la conexión a internet y vuelve a intentarlo.</p><div style="display:flex;gap:10px;flex-wrap:wrap"><button type="button" class="btn primary" id="retry">Reintentar</button><button type="button" class="btn" id="out2">Salir</button></div></div>`,
+      document.getElementById("retry").onclick = () => location.reload(), document.getElementById("out2").onclick = exit;
+  }
+}
+if (!window.crypto || !crypto.subtle) { app.innerHTML = `<div class="wrap" style="padding-block:60px">Este navegador no puede abrir el panel. Actualízalo o prueba con otro.</div>`; return; }
+refresh(true);
+// Al volver a la app y cada 10 minutos, mira si hay viajes nuevos.
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") { refresh(false); if (!S.open) renderPanel(); } });
+setInterval(() => refresh(false), 600000);
+// Actualización de la app (igual que en las otras páginas).
+if ("serviceWorker" in navigator) {
+  const had = !!navigator.serviceWorker.controller; let rl = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => { if (had && !rl && !S.open) { rl = true; location.reload(); } });
+  const chk = () => navigator.serviceWorker.getRegistration("../../").then(r => { if (r) r.update().catch(() => {}); }).catch(() => {});
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") chk(); });
+  setInterval(chk, 1800000);
+}
+})();
+</script>
+</body>
+</html>
