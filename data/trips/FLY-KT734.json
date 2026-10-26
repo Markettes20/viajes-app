@@ -8,5 +8,7 @@
   "end": "2026-12-04",
   "tz": "+01:00",
   "flights": [],
-  "documents": []
+  "documents": [],
+  "destination": "Caracas, Venezuela",
+  "cover": "img/ventanilla.jpg"
 }

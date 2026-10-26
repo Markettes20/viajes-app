@@ -774,9 +774,33 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
       renderApp();
       return true;
     } catch (e) {
+      if (await openPanel(code)) return true;
       if (silent) store.del("code");
       return false;
     }
+  }
+
+  // ---------- panel del organizador ----------
+  // Su código no está en ningún archivo: de él se sacan (PBKDF2) el nombre del archivo cifrado y su clave.
+  // Si existe data/panel/<id>.json, se guarda la clave en este móvil y se abre la página del panel.
+  const PANEL_ITER = 120000; // igual que ITER en tools/build_panel.py
+  async function openPanel(code) {
+    try {
+      if (!window.crypto || !crypto.subtle || !window.TextEncoder) return false;
+      const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(code), "PBKDF2", false, ["deriveBits"]);
+      const bits = new Uint8Array(await crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt: new TextEncoder().encode("viajes-app/panel"), iterations: PANEL_ITER }, base, 384));
+      const hx = (a) => Array.from(a, (b) => b.toString(16).padStart(2, "0")).join("");
+      const pid = hx(bits.slice(0, 16));
+      const r = await fetch(`data/panel/${pid}.json`, { cache: "no-cache" });
+      if (!r.ok) return false;
+      const box = await r.json().catch(() => null); // sin internet, el service worker puede devolver otra cosa
+      if (!box || !box.ct || !box.iv) return false;
+      store.set("pid", pid); store.set("pk", hx(bits.slice(16)));
+      store.set("code", code);
+      stopTimer(); closeSheet(true);
+      location.replace("data/pages/panel.html");
+      return true;
+    } catch (e) { return false; }
   }
 
   // ---------- caducidad del código ----------
