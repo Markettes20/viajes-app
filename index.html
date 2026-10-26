@@ -399,6 +399,17 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; margin: 0; text
 .topbar.on-photo [data-act="big"][aria-pressed="true"] { background: var(--accent); color: #1A1204; }
 .login-tools { position: absolute; top: max(16px, env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); z-index: 3; display: flex; gap: 8px; align-items: center; }
 .login-tools .icon-btn { width: 44px; height: 44px; background: rgba(255,255,255,.18); color: #fff; box-shadow: none; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+/* Menú de 3 rayas (idioma, letra, modo) */
+.menu-wrap { position: relative; }
+.menu-btn[aria-expanded="true"] { background: var(--accent) !important; color: #1A1204 !important; }
+.menu-panel { position: fixed; z-index: 60; width: min(320px, calc(100vw - 32px)); background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 12px 40px rgba(6,18,28,.28); padding: 14px; display: grid; gap: 14px; animation: menuIn .18s ease both; text-align: left; }
+@keyframes menuIn { from { opacity: 0; transform: translateY(-6px); } }
+.mp-row { display: grid; gap: 8px; }
+.mp-l { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; }
+.mp-l .ic { color: var(--sea); width: 20px; height: 20px; }
+.mp-l .aa { color: var(--sea); }
+.menu-panel .segbtn { display: grid; grid-template-columns: 1fr 1fr; }
+.menu-panel .segbtn button { min-height: 44px; }
 .langsw { display: inline-flex; border-radius: 99px; padding: 3px; background: var(--surface-2); }
 .langsw.dark { background: rgba(255,255,255,.18); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .langsw button { border: 0; background: none; border-radius: 99px; padding: 8px 12px; font-weight: 800; font-size: 13px; letter-spacing: .06em; cursor: pointer; color: inherit; }
@@ -511,6 +522,8 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
 .map-svg.wide .sea-label { font-size: 26px; letter-spacing: .35em; opacity: .75; }
 .map-svg.wide .country-label { font: 400 60px var(--font-display); letter-spacing: .45em; fill: var(--sea); opacity: .16; }
 .map-svg.wide .from text { font: 700 26px var(--font-body); fill: var(--muted); paint-order: stroke; stroke: var(--map-sea); stroke-width: 8px; stroke-linejoin: round; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .segbtn button.on { background: var(--accent); color: #1A1204; } }
+:root[data-theme="dark"] .segbtn button.on { background: var(--accent); color: #1A1204; }
 
 </style>
 </head>
@@ -580,7 +593,7 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
       "Tu agencia": "Your agency", "Salir de este viaje": "Leave this trip",
       "Mis notas": "My notes", "Apunta lo que quieras: el número de habitación, el wifi, un restaurante que te recomienden…": "Write anything: your room number, the Wi-Fi, a restaurant someone recommended…",
       "Se guardan solo en este móvil.": "Saved only on this phone.", "Guardado": "Saved",
-      "Ajustes": "Settings", "Idioma": "Language", "Tamaño de letra": "Text size", "Normal": "Normal", "Grande": "Large",
+      "Ajustes": "Settings", "Idioma": "Language", "Tamaño de letra": "Text size", "Normal": "Normal", "Grande": "Large", "Mediana": "Medium", "Menú": "Menu", "Modo": "Mode", "Claro": "Light", "Oscuro": "Dark", "Modo oscuro": "Dark mode", "Modo claro": "Light mode", "Cerrar menú": "Close menu",
       "Letra grande activada": "Large text on", "Letra normal": "Normal text",
       "WhatsApp con {n}": "WhatsApp {n}", "Escribir por WhatsApp": "Message on WhatsApp", "Email": "Email",
       "Hola {a}, soy {b} (reserva {c}). ": "Hi {a}, this is {b} (booking {c}). ",
@@ -693,6 +706,45 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
     document.querySelectorAll("[data-act=big]").forEach((b) => b.setAttribute("aria-pressed", v));
     document.querySelectorAll("[data-size]").forEach((b) => b.classList.toggle("on", (b.dataset.size === "big") === v));
   }
+  // Modo claro / oscuro: "light" o "dark" si la persona lo elige; si no, sigue al móvil.
+  const sysDark = () => { try { return window.matchMedia("(prefers-color-scheme: dark)").matches; } catch (e) { return false; } };
+  const curTheme = () => { const t = store.get("theme", null); return t === "dark" || t === "light" ? t : (sysDark() ? "dark" : "light"); };
+  function applyTheme() {
+    const t = store.get("theme", null);
+    if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+    else document.documentElement.removeAttribute("data-theme");
+  }
+  function setTheme(t) {
+    store.set("theme", t); applyTheme();
+    document.querySelectorAll("[data-theme-opt]").forEach((b) => { const on = b.dataset.themeOpt === t; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
+  }
+  // Menú de las 3 rayas: idioma, tamaño de letra y modo claro/oscuro.
+  const burger = () => `<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>`;
+  function menuPanelHTML() {
+    const big = !!store.get("big", false), th = curTheme();
+    const seg = (attr, items, cur) => `<div class="segbtn">${items.map(([v, l]) => `<button type="button" ${attr}="${v}" class="${v === cur ? "on" : ""}" aria-pressed="${v === cur}">${l}</button>`).join("")}</div>`;
+    return `<div class="menu-panel" id="menuPanel" role="dialog" aria-label="${L("Menú")}">
+      <div class="mp-row"><span class="mp-l">${ic("globe")} ${L("Idioma")}</span>${seg("data-lang", Object.keys(LANGS).map((k) => [k, LANGS[k]]), LANG)}</div>
+      <div class="mp-row"><span class="mp-l">${aa()} ${L("Tamaño de letra")}</span>${seg("data-size", [["normal", L("Mediana")], ["big", L("Grande")]], big ? "big" : "normal")}</div>
+      <div class="mp-row"><span class="mp-l"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg> ${L("Modo")}</span>${seg("data-theme-opt", [["light", L("Claro")], ["dark", L("Oscuro")]], th)}</div>
+    </div>`;
+  }
+  function menuHTML() {
+    return `<div class="menu-wrap"><button class="icon-btn menu-btn" type="button" data-act="menu" aria-expanded="${!!S.menu}" aria-label="${L("Menú")}">${burger()}</button></div>`;
+  }
+  // El panel va fuera de la pantalla (en <body>) para que ninguna foto ni tarjeta lo tape o lo corte.
+  function toggleMenu(open) {
+    S.menu = open == null ? !S.menu : open;
+    const old = document.getElementById("menuPanel"); if (old) old.remove();
+    document.querySelectorAll(".menu-btn").forEach((b) => b.setAttribute("aria-expanded", S.menu));
+    if (!S.menu) return;
+    const btn = Array.from(document.querySelectorAll(".menu-btn")).find((b) => b.getClientRects().length);
+    if (!btn || btn.getBoundingClientRect().bottom < 0) { S.menu = false; document.querySelectorAll(".menu-btn").forEach((b) => b.setAttribute("aria-expanded", false)); return; }
+    document.body.insertAdjacentHTML("beforeend", menuPanelHTML());
+    const bar = (btn.closest(".tb-actions, .login-tools") || btn).getBoundingClientRect(), r = btn.getBoundingClientRect(), p = document.getElementById("menuPanel");
+    p.style.top = Math.round(r.bottom + 10) + "px";
+    p.style.right = Math.max(16, Math.round(document.documentElement.clientWidth - bar.right)) + "px";
+  }
   function setLang(l) {
     if (!LANGS[l] || l === LANG) return;
     LANG = l; store.set("lang", l);
@@ -701,6 +753,7 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
     if (S.tripBase) { S.trip = localized(S.tripBase); const y = window.scrollY; renderApp(); window.scrollTo({ top: y }); }
     else if (S.expired) renderExpired();
     else renderLogin();
+    if (S.menu) toggleMenu(true);
   }
 
   // ---------- marca ----------
@@ -721,7 +774,7 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
 
   // ---------- arranque ----------
   async function boot() {
-    applyBig();
+    applyBig(); applyTheme();
     document.documentElement.lang = LANG;
     try { S.agencyBase = await getJSON("data/agency.json"); }
     catch (e) { document.getElementById("app").innerHTML = `<div class="wrap" style="padding-block:40px">${L("No se ha podido cargar la app. Comprueba la conexión y vuelve a abrirla.")}</div>`; return; }
@@ -734,6 +787,8 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
     window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); S.deferredPrompt = e; });
     // Un solo listener para toda la app (antes se añadía uno por pestaña y los toques se repetían).
     document.addEventListener("click", onClick);
+    window.addEventListener("scroll", () => { if (S.menu) toggleMenu(true); }, { passive: true });
+    window.addEventListener("resize", () => { if (S.menu) toggleMenu(true); });
     document.addEventListener("input", onInput);
     // Entrada desde la web de la agencia: ?codigo=ANI-XXXXX abre el viaje directamente.
     let urlCode = null;
@@ -833,7 +888,7 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
       <section class="login">
         <div class="login-photo" style="background-image:url('${esc(a.loginImage || "")}')"></div>
         <div class="login-top wrap">${logo("stacked")}</div>
-        <div class="login-tools">${langSwitch(true)}</div>
+        <div class="login-tools">${menuHTML()}</div>
         <div class="login-card wrap">
           <h1>${L("Este viaje ha terminado")}</h1>
           <p>${L("Por privacidad, los datos de este viaje ya no están disponibles en la app.")}</p>
@@ -871,7 +926,7 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
       <section class="login">
         <div class="login-photo" style="background-image:url('${esc(a.loginImage || "")}')"></div>
         <div class="login-top wrap">${logo("stacked")}</div>
-        <div class="login-tools">${langSwitch(true)}<button class="icon-btn" type="button" data-act="big" aria-pressed="${!!store.get("big", false)}" aria-label="${L("Letra grande")}">${aa()}</button></div>
+        <div class="login-tools">${menuHTML()}</div>
         <form class="login-card wrap" id="loginForm" autocomplete="off" novalidate>
           <h1>${L("Todo tu viaje,<br>en un solo lugar")}</h1>
           <p>${L("Escribe el código de reserva que te ha dado tu agencia.")}</p>
@@ -982,7 +1037,7 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
   }
   function topbar(onPhoto) {
     return `<div class="topbar wrap ${onPhoto ? "on-photo" : ""}">${logo("sm")}<div class="tb-actions">
-      <button class="icon-btn" type="button" data-act="big" aria-pressed="${!!store.get("big", false)}" aria-label="${L("Letra grande")}">${aa()}</button>
+      ${menuHTML()}
       <button class="icon-btn" type="button" data-act="contact" aria-label="${L("Contactar con la agencia")}">${ic("wa")}</button></div></div>`;
   }
 
@@ -1317,7 +1372,8 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
         <div class="section-title"><h2>${L("Ajustes")}</h2></div>
         <div class="card settings">
           <div class="set-row"><span>${ic("globe")} ${L("Idioma")}</span><div class="segbtn">${Object.keys(LANGS).map((k) => `<button type="button" data-lang="${k}" class="${k === LANG ? "on" : ""}" aria-pressed="${k === LANG}">${LANGS[k]}</button>`).join("")}</div></div>
-          <div class="set-row"><span>${aa()} ${L("Tamaño de letra")}</span><div class="segbtn"><button type="button" data-size="normal" class="${big ? "" : "on"}">${L("Normal")}</button><button type="button" data-size="big" class="${big ? "on" : ""}">${L("Grande")}</button></div></div>
+          <div class="set-row"><span>${aa()} ${L("Tamaño de letra")}</span><div class="segbtn"><button type="button" data-size="normal" class="${big ? "" : "on"}">${L("Mediana")}</button><button type="button" data-size="big" class="${big ? "on" : ""}">${L("Grande")}</button></div></div>
+          <div class="set-row"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg> ${L("Modo")}</span><div class="segbtn">${[["light", L("Claro")], ["dark", L("Oscuro")]].map(([v, l]) => `<button type="button" data-theme-opt="${v}" class="${curTheme() === v ? "on" : ""}" aria-pressed="${curTheme() === v}">${l}</button>`).join("")}</div></div>
         </div>
         ${footHTML(`<button type="button" data-act="logout">${L("Salir de este viaje")}</button>`)}
       </div>`;
@@ -1383,11 +1439,14 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
   function onClick(e) {
     const tabBtn = e.target.closest(".nav [data-tab]");
     if (tabBtn) return go(tabBtn.dataset.tab);
-    const el = e.target.closest("[data-act],[data-go],[data-jump],[data-city],[data-speak],[data-lang],[data-size]");
+    if (S.menu && !e.target.closest(".menu-wrap, .menu-panel")) toggleMenu(false); // tocar fuera cierra el menú
+    const el = e.target.closest("[data-act],[data-go],[data-jump],[data-city],[data-speak],[data-lang],[data-size],[data-theme-opt]");
     if (!el) return;
+    if (el.dataset.act === "menu") return toggleMenu();
+    if (el.dataset.themeOpt) return setTheme(el.dataset.themeOpt);
     if (el.closest(".sheet") && e.target.closest("[data-close]")) return;
     if (el.dataset.lang) return setLang(el.dataset.lang);
-    if (el.dataset.size) { if ((el.dataset.size === "big") !== !!store.get("big", false)) toggleBig(); return; }
+    if (el.dataset.size) { if ((el.dataset.size === "big") !== !!store.get("big", false)) toggleBig(); if (S.menu) toggleMenu(true); return; }
     if (!S.trip && el.dataset.act !== "big") return;
     if (el.dataset.go) { closeSheet(true); return go(el.dataset.go); }
     if (el.dataset.jump) { const t = document.getElementById(el.dataset.jump); if (t) t.scrollIntoView({ behavior: "smooth", block: "start" }); return; }
@@ -1450,7 +1509,7 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
     scrim.classList.remove("open"); sh.classList.remove("open");
     setTimeout(() => { scrim.remove(); sh.remove(); }, 320);
   }
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") { closeSheet(); $(".taxi")?.remove(); } });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") { if (S.menu) toggleMenu(false); closeSheet(); $(".taxi")?.remove(); } });
 
   function placeSheet(p) {
     const c = city(p.city);
