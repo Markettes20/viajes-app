@@ -501,6 +501,17 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
 .page-frame { position: absolute; left: 0; right: 0; top: 0; height: calc(100% - env(safe-area-inset-bottom, 0px)); width: 100%; border: 0; display: block; background: #fff; }
 @media (prefers-color-scheme: dark) { .page-shell { --page-foot: #0E1D2A; } }
 
+/* Mapa a país completo: trazos y textos en la escala del mapa ancho */
+.map-svg.wide .land { stroke: none; }
+.map-svg.wide .tr { stroke-width: 2.6; stroke-linejoin: round; }
+.map-svg.wide .rt { stroke-width: 6; stroke-dasharray: 3 14; }
+.map-svg.wide .pin text { font-size: 46px; stroke-width: 10px; }
+.map-svg.wide .pin text.sub { font-size: 24px; stroke-width: 8px; }
+.map-svg.wide .pin circle.dot { stroke-width: 5; }
+.map-svg.wide .sea-label { font-size: 26px; letter-spacing: .35em; opacity: .75; }
+.map-svg.wide .country-label { font: 400 60px var(--font-display); letter-spacing: .45em; fill: var(--sea); opacity: .16; }
+.map-svg.wide .from text { font: 700 26px var(--font-body); fill: var(--muted); paint-order: stroke; stroke: var(--map-sea); stroke-width: 8px; stroke-linejoin: round; }
+
 </style>
 </head>
 <body>
@@ -1122,31 +1133,35 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
       const home = t.cities.find((c) => c.home);
       const pts = {}; pins.forEach((c) => (pts[c.id] = proj(c.lat, c.lng)));
       const order = (t.routeIds || []).map((id) => city(id));
-      let routes = "";
+      const V = m.view || [0, 20, 520, 430];
+      const F = m.from || [V[0], V[1] + V[3] / 2];
+      // Un solo trazo por tramo (ida y vuelta comparten línea) para que el mapa se lea limpio.
+      let routes = ""; const seen = {};
       for (let i = 0; i < order.length - 1; i++) {
         const a = order[i], b = order[i + 1];
         if (!a || !b) continue;
-        const A = a.home ? [-10, proj(a.lat, Math.max(a.lng, m.proj.lon0))[1] + 30] : pts[a.id];
-        const B = b.home ? [-10, proj(b.lat, Math.max(b.lng, m.proj.lon0))[1] + 70] : pts[b.id];
+        const key = [a.id, b.id].sort().join("-"); if (seen[key]) continue; seen[key] = 1;
+        const A = a.home ? F : pts[a.id], B = b.home ? F : pts[b.id];
         const mx = (A[0] + B[0]) / 2, my = (A[1] + B[1]) / 2;
-        const dx = B[0] - A[0], dy = B[1] - A[1], Ln = Math.hypot(dx, dy) || 1, bend = (i % 2 ? -1 : 1) * Math.min(90, Ln * 0.35);
-        routes += `<path class="rt" d="M${A[0]} ${A[1]} Q${mx - (dy / Ln) * bend} ${my + (dx / Ln) * bend} ${B[0]} ${B[1]}"/>`;
+        const dx = B[0] - A[0], dy = B[1] - A[1], Ln = Math.hypot(dx, dy) || 1, bend = Math.min(70, Ln * 0.22);
+        routes += `<path class="rt" d="M${A[0]} ${A[1]} Q${mx + (dy / Ln) * bend} ${my - (dx / Ln) * bend} ${B[0]} ${B[1]}"/>`;
       }
-      const hy = home ? proj(home.lat, m.proj.lon0)[1] : 200;
       const lb = (m.labels && (m.labels[LANG] || m.labels.es)) || [];
-      svg = `<svg class="map-svg" viewBox="${(m.view || [0, 20, 520, 430]).join(" ")}" role="img" aria-label="${L("Mapa de {d} con las paradas del viaje", { d: esc(t.destination) })}">
-        <rect x="-50" y="-50" width="${m.W + 100}" height="${m.H + 100}" class="sea"/>
+      const ct = m.country && (m.country[LANG] || m.country.es);
+      svg = `<svg class="map-svg wide" viewBox="${V.join(" ")}" role="img" aria-label="${L("Mapa de {d} con las paradas del viaje", { d: esc(t.destination) })}">
+        <rect x="${V[0] - 50}" y="${V[1] - 50}" width="${V[2] + 100}" height="${V[3] + 100}" class="sea"/>
         <path class="land" d="${m.oth}"/>
         <path class="tr" d="${m.tr}"/>
-        ${lb.map((x) => `<text class="sea-label" x="${x[1]}" y="${x[2]}" ${x[3] ? `style="letter-spacing:${x[3]}"` : ""}>${esc(x[0])}</text>`).join("")}
+        ${ct ? `<text class="country-label" x="${ct[1]}" y="${ct[2]}" text-anchor="middle">${esc(ct[0])}</text>` : ""}
+        ${lb.map((x) => `<text class="sea-label" x="${x[1]}" y="${x[2]}">${esc(x[0])}</text>`).join("")}
         ${routes}
-        ${home ? `<g class="from"><text x="14" y="${hy + 58}">${L("Desde {c}", { c: esc(home.name) })}</text></g>` : ""}
+        ${home ? `<g class="from"><text x="${F[0] + 14}" y="${F[1] - 16}">✈ ${L("Desde {c}", { c: esc(home.name) })}</text></g>` : ""}
         ${pins.map((c) => { const [x, y] = pts[c.id]; return `
           <g class="pin ${c.id === sel ? "on" : ""}" data-city="${esc(c.id)}" tabindex="0" role="button" aria-label="${esc(c.name)}">
-            <circle class="halo" cx="${x}" cy="${y}" r="22"/><circle class="dot" cx="${x}" cy="${y}" r="13"/>
-            <text x="${x + 22}" y="${y + 10}">${esc(c.name)}</text>
-            <text class="sub" x="${x + 22}" y="${y + 32}">${c.nights ? c.nights + " " + L("NOCHES") : ""}</text>
-            <circle cx="${x}" cy="${y}" r="40" fill="transparent"/>
+            <circle class="halo" cx="${x}" cy="${y}" r="30"/><circle class="dot" cx="${x}" cy="${y}" r="17"/>
+            <text x="${x + 30}" y="${y + 6}">${esc(c.name)}</text>
+            <text class="sub" x="${x + 30}" y="${y + 38}">${c.nights ? c.nights + " " + L("NOCHES") : ""}</text>
+            <circle cx="${x}" cy="${y}" r="55" fill="transparent"/>
           </g>`; }).join("")}
       </svg>`;
     }
