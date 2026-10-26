@@ -735,9 +735,21 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
     // Un solo listener para toda la app (antes se añadía uno por pestaña y los toques se repetían).
     document.addEventListener("click", onClick);
     document.addEventListener("input", onInput);
+    // Entrada desde la web de la agencia: ?codigo=ANI-XXXXX abre el viaje directamente.
+    let urlCode = null;
+    try { urlCode = new URLSearchParams(location.search).get("codigo"); } catch (e) {}
+    if (urlCode) {
+      try { history.replaceState(null, "", location.pathname); } catch (e) {}
+      if (await openTrip(urlCode, false)) return;
+    }
     const code = store.get("code", null);
     if (code) { const ok = await openTrip(code, true); if (ok) return; }
     renderLogin();
+    if (urlCode) {
+      const inp = document.getElementById("code"), err = document.getElementById("loginErr");
+      if (inp) inp.value = normCode(urlCode);
+      if (err) err.textContent = L("No encontramos ese código. Revísalo o pregúntale a tu agencia.");
+    }
   }
 
   function normCode(v) {
