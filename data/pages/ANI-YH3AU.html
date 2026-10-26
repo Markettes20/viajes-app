@@ -450,6 +450,14 @@ body:has(#v-inicio:not(.on))::before{content:"";position:fixed;left:0;right:0;to
   function back(){ location.replace("../../index.html"); }
   if (Date.now() >= END) { back(); return; }
   setInterval(function(){ if (Date.now() >= END) back(); }, 30000);
+  // Actualización automática también desde el crucero
+  if ("serviceWorker" in navigator) {
+    var had = !!navigator.serviceWorker.controller, rl = false;
+    navigator.serviceWorker.addEventListener("controllerchange", function(){ if (had && !rl) { rl = true; location.reload(); } });
+    var chk = function(){ navigator.serviceWorker.getRegistration("../../").then(function(r){ if (r) r.update().catch(function(){}); }).catch(function(){}); };
+    document.addEventListener("visibilitychange", function(){ if (document.visibilityState === "visible") chk(); });
+    setInterval(chk, 1800000);
+  }
   document.addEventListener("DOMContentLoaded", function(){
     var b = document.createElement("button");
     b.type = "button"; b.className = "va-out"; b.textContent = "Salir · usar otro código";

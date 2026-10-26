@@ -1499,7 +1499,15 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
 
   // ---------- PWA ----------
   if (IS_PWA_BUILD && "serviceWorker" in navigator) {
-    window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+    // Actualización automática: al volver a la app se busca versión nueva y, si la hay, se recarga sola.
+    const hadController = !!navigator.serviceWorker.controller;
+    let reloading = false;
+    navigator.serviceWorker.addEventListener("controllerchange", () => { if (hadController && !reloading) { reloading = true; location.reload(); } });
+    window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").then((reg) => {
+      const check = () => reg.update().catch(() => {});
+      document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") check(); });
+      setInterval(check, 30 * 60 * 1000);
+    }).catch(() => {}));
   }
 
   boot();
