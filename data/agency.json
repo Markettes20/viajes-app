@@ -1,0 +1,40 @@
+{
+  "id": "anillo-travel",
+  "name": "Anillo Travel",
+  "shortName": "Anillo",
+  "tagline": "Viaja sin límites",
+  "logo": {
+    "inline": "img/logo-inline.svg",
+    "stacked": "img/logo-stacked.svg"
+  },
+  "colors": {
+    "brand": "#0A2A43",
+    "brandDark": "#061A2B",
+    "accent": "#C9973A",
+    "sea": "#14898F"
+  },
+  "agent": {
+    "name": "Zulinet Cristina Morales Anillo",
+    "firstName": "Cristina",
+    "role": "Tu agente de viajes"
+  },
+  "contact": {
+    "whatsapp": "+34610806011",
+    "phone": "+34 610 806 011",
+    "email": "info@anillotravel.com",
+    "address": "Calle María Zambrano 5, 9 · 46930 Valencia",
+    "hours": ""
+  },
+  "codePrefix": "ANI",
+  "demoCode": "ANI-7K4P9",
+  "reviewUrl": "https://www.google.com/search?q=Anillo+Travel+Valencia+rese%C3%B1as",
+  "loginImage": "img/antalya.jpg",
+  "i18n": {
+    "en": {
+      "tagline": "Travel without limits",
+      "agent": {
+        "role": "Your travel agent"
+      }
+    }
+  }
+}

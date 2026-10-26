@@ -1,0 +1,1239 @@
+{
+  "code": "ANI-7K4P9",
+  "traveler": {
+    "firstName": "Cristina",
+    "fullName": "Zulinet Cristina Morales Anillo",
+    "group": "Grupo Fam Trip España"
+  },
+  "title": "Fam Trip Turquía",
+  "subtitle": "Antalya y Estambul",
+  "destination": "Turquía",
+  "map": "turkiye",
+  "tz": "+03:00",
+  "start": "2026-10-27",
+  "end": "2026-10-31",
+  "cover": "img/cuerno-de-oro.jpg",
+  "organizer": {
+    "name": "Yuppi Travel · pax2night",
+    "note": "Organizador local en Turquía"
+  },
+  "route": [
+    "Valencia",
+    "Estambul",
+    "Antalya",
+    "Estambul",
+    "Valencia"
+  ],
+  "cities": [
+    {
+      "id": "vlc",
+      "name": "Valencia",
+      "country": "España",
+      "lat": 39.4699,
+      "lng": -0.3763,
+      "home": true
+    },
+    {
+      "id": "ist",
+      "name": "Estambul",
+      "local": "İstanbul",
+      "lat": 41.0082,
+      "lng": 28.9784,
+      "image": "img/cuerno-de-oro.jpg",
+      "nights": 2
+    },
+    {
+      "id": "ayt",
+      "name": "Antalya",
+      "local": "Antalya",
+      "lat": 36.8969,
+      "lng": 30.7133,
+      "image": "img/antalya.jpg",
+      "nights": 2
+    }
+  ],
+  "places": [
+    {
+      "id": "kaleici",
+      "city": "ayt",
+      "name": "Kaleiçi",
+      "es": "Casco antiguo",
+      "desc": "El barrio histórico amurallado: calles empedradas, casas otomanas y vistas al puerto.",
+      "query": "Kaleiçi Antalya"
+    },
+    {
+      "id": "adriano",
+      "city": "ayt",
+      "name": "Puerta de Adriano",
+      "local": "Hadrian Kapısı",
+      "desc": "Arco romano del año 130 d. C., construido para la visita del emperador Adriano.",
+      "query": "Hadrian Kapısı Antalya"
+    },
+    {
+      "id": "yivli",
+      "city": "ayt",
+      "name": "Minarete Yivli",
+      "local": "Yivli Minare",
+      "desc": "El minarete acanalado del siglo XIII, símbolo de la ciudad.",
+      "query": "Yivli Minare Antalya"
+    },
+    {
+      "id": "marina",
+      "city": "ayt",
+      "name": "Puerto deportivo",
+      "local": "Kaleiçi Yat Limanı",
+      "desc": "El puerto romano, hoy lleno de goletas y terrazas junto al mar.",
+      "query": "Kaleiçi Yat Limanı Antalya"
+    },
+    {
+      "id": "duden",
+      "city": "ayt",
+      "name": "Cascadas de Düden",
+      "local": "Düden Şelalesi",
+      "desc": "Cascadas que caen directamente al Mediterráneo desde el acantilado.",
+      "query": "Düden Şelalesi Antalya"
+    },
+    {
+      "id": "regnum",
+      "city": "ayt",
+      "name": "Regnum Carya",
+      "desc": "Visita de inspección hotelera en Belek.",
+      "query": "Regnum Carya Belek",
+      "tag": "Hotel",
+      "kind": "hotel"
+    },
+    {
+      "id": "maxx",
+      "city": "ayt",
+      "name": "Maxx Royal Belek Golf Resort",
+      "desc": "Visita de inspección hotelera en Belek.",
+      "query": "Maxx Royal Belek Golf Resort",
+      "tag": "Hotel",
+      "kind": "hotel"
+    },
+    {
+      "id": "cullinan",
+      "city": "ayt",
+      "name": "Cullinan Belek",
+      "desc": "Visita de inspección hotelera en Belek.",
+      "query": "Cullinan Belek",
+      "tag": "Hotel",
+      "kind": "hotel"
+    },
+    {
+      "id": "sofia",
+      "city": "ist",
+      "name": "Santa Sofía",
+      "local": "Ayasofya",
+      "desc": "Basílica, mezquita y museo: 1.500 años de historia bajo una cúpula única.",
+      "query": "Ayasofya İstanbul"
+    },
+    {
+      "id": "azul",
+      "city": "ist",
+      "name": "Mezquita Azul",
+      "local": "Sultanahmet Camii",
+      "desc": "Seis minaretes y más de 20.000 azulejos de İznik en su interior.",
+      "query": "Sultanahmet Camii İstanbul"
+    },
+    {
+      "id": "cisterna",
+      "city": "ist",
+      "name": "Cisterna Basílica",
+      "local": "Yerebatan Sarnıcı",
+      "desc": "Un bosque de 336 columnas bajo la ciudad, con las famosas cabezas de Medusa.",
+      "query": "Yerebatan Sarnıcı İstanbul"
+    },
+    {
+      "id": "topkapi",
+      "city": "ist",
+      "name": "Palacio de Topkapı",
+      "local": "Topkapı Sarayı",
+      "desc": "La residencia de los sultanes otomanos durante casi 400 años.",
+      "query": "Topkapı Sarayı İstanbul"
+    },
+    {
+      "id": "sultanahmet",
+      "city": "ist",
+      "name": "Sultanahmet",
+      "es": "Península histórica",
+      "desc": "El corazón histórico de Estambul, entre el Bósforo y el Cuerno de Oro.",
+      "query": "Sultanahmet Meydanı İstanbul"
+    },
+    {
+      "id": "halic",
+      "city": "ist",
+      "name": "Cuerno de Oro",
+      "local": "Haliç",
+      "desc": "El estuario que abraza el casco antiguo. Paseo privado en barco.",
+      "query": "Haliç İstanbul"
+    }
+  ],
+  "flights": [
+    {
+      "id": "f1",
+      "date": "2026-10-27",
+      "airline": "Turkish Airlines",
+      "number": "TK1302",
+      "from": {
+        "code": "VLC",
+        "city": "Valencia",
+        "airport": "Aeropuerto de Valencia",
+        "time": "11:55",
+        "tz": "+01:00"
+      },
+      "to": {
+        "code": "IST",
+        "city": "Estambul",
+        "airport": "Aeropuerto de Estambul",
+        "local": "İstanbul Havalimanı",
+        "time": "17:50",
+        "tz": "+03:00"
+      },
+      "locator": "",
+      "note": "Conexión en Estambul con el vuelo a Antalya."
+    },
+    {
+      "id": "f2",
+      "date": "2026-10-27",
+      "airline": "Turkish Airlines",
+      "number": "TK2428",
+      "from": {
+        "code": "IST",
+        "city": "Estambul",
+        "airport": "Aeropuerto de Estambul",
+        "time": "19:25",
+        "tz": "+03:00"
+      },
+      "to": {
+        "code": "AYT",
+        "city": "Antalya",
+        "airport": "Aeropuerto de Antalya",
+        "local": "Antalya Havalimanı",
+        "time": "20:45",
+        "tz": "+03:00"
+      },
+      "locator": "",
+      "note": ""
+    },
+    {
+      "id": "f3",
+      "date": "2026-10-29",
+      "airline": "Turkish Airlines",
+      "number": "TK2421",
+      "from": {
+        "code": "AYT",
+        "city": "Antalya",
+        "airport": "Aeropuerto de Antalya",
+        "time": "16:55",
+        "tz": "+03:00"
+      },
+      "to": {
+        "code": "IST",
+        "city": "Estambul",
+        "airport": "Aeropuerto de Estambul",
+        "local": "İstanbul Havalimanı",
+        "time": "18:35",
+        "tz": "+03:00"
+      },
+      "locator": "",
+      "note": ""
+    },
+    {
+      "id": "f4",
+      "date": "2026-10-31",
+      "airline": "Turkish Airlines",
+      "number": "TK1313",
+      "from": {
+        "code": "IST",
+        "city": "Estambul",
+        "airport": "Aeropuerto de Estambul",
+        "time": "15:30",
+        "tz": "+03:00"
+      },
+      "to": {
+        "code": "VLC",
+        "city": "Valencia",
+        "airport": "Aeropuerto de Valencia",
+        "time": "17:30",
+        "tz": "+01:00"
+      },
+      "locator": "",
+      "note": "Vuelta a casa."
+    }
+  ],
+  "hotels": [
+    {
+      "id": "lara",
+      "city": "ayt",
+      "name": "Hotel 5★ en la zona de Lara",
+      "pending": true,
+      "checkIn": "2026-10-27",
+      "checkOut": "2026-10-29",
+      "nights": 2,
+      "stars": 5,
+      "image": "img/antalya.jpg",
+      "address": "Lara, Muratpaşa, Antalya",
+      "addressLocal": "Lara, Muratpaşa / Antalya",
+      "query": "Lara Antalya",
+      "note": "Tu agencia te confirmará el nombre exacto del hotel.",
+      "short": "Zona de Lara",
+      "nameLocal": "Lara'da 5 yıldızlı otel"
+    },
+    {
+      "id": "rixos",
+      "city": "ist",
+      "name": "Rixos Tersane Istanbul",
+      "checkIn": "2026-10-29",
+      "checkOut": "2026-10-31",
+      "nights": 2,
+      "stars": 5,
+      "image": "img/rixos-tersane.jpg",
+      "address": "Tersane Istanbul, Beyoğlu, Estambul (a orillas del Cuerno de Oro)",
+      "addressLocal": "Rixos Tersane İstanbul, Tersane İstanbul, Beyoğlu / İstanbul",
+      "query": "Rixos Tersane Istanbul",
+      "note": "Cena de bienvenida y de despedida en sus restaurantes.",
+      "short": "Rixos Tersane",
+      "nameLocal": "Rixos Tersane İstanbul"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "t1",
+      "date": "2026-10-27",
+      "time": "Al aterrizar",
+      "title": "Traslado VIP al hotel",
+      "from": "Aeropuerto de Antalya",
+      "to": "Hotel 5★ en Lara",
+      "kind": "VIP"
+    },
+    {
+      "id": "t2",
+      "date": "2026-10-29",
+      "time": "Tarde",
+      "title": "Traslado al aeropuerto",
+      "from": "Hotel en Lara",
+      "to": "Aeropuerto de Antalya",
+      "kind": "Privado"
+    },
+    {
+      "id": "t3",
+      "date": "2026-10-29",
+      "time": "Al aterrizar",
+      "title": "Traslado al hotel",
+      "from": "Aeropuerto de Estambul",
+      "to": "Rixos Tersane Istanbul",
+      "kind": "Privado"
+    },
+    {
+      "id": "t4",
+      "date": "2026-10-31",
+      "time": "Tras la comida",
+      "title": "Traslado al aeropuerto",
+      "from": "Rixos Tersane Istanbul",
+      "to": "Aeropuerto de Estambul",
+      "kind": "Privado"
+    }
+  ],
+  "days": [
+    {
+      "date": "2026-10-27",
+      "city": "ayt",
+      "title": "Rumbo a Turquía",
+      "subtitle": "Valencia → Estambul → Antalya",
+      "image": "img/ventanilla.jpg",
+      "blocks": [
+        {
+          "part": "Mediodía",
+          "icon": "plane",
+          "title": "Vuelo a Estambul",
+          "flight": "f1"
+        },
+        {
+          "part": "Tarde",
+          "icon": "plane",
+          "title": "Conexión a Antalya",
+          "flight": "f2"
+        },
+        {
+          "part": "Noche",
+          "icon": "car",
+          "title": "Llegada a Antalya",
+          "items": [
+            "Traslado VIP desde el aeropuerto.",
+            "Check-in en tu hotel de 5★ en la zona de Lara.",
+            "Tiempo libre para descansar y disfrutar del resort."
+          ]
+        }
+      ],
+      "stay": "lara",
+      "contacts": [
+        "ayt"
+      ]
+    },
+    {
+      "date": "2026-10-28",
+      "city": "ayt",
+      "title": "Antalya",
+      "subtitle": "Descubriendo el destino",
+      "image": "img/antalya.jpg",
+      "blocks": [
+        {
+          "part": "Mañana",
+          "icon": "sun",
+          "title": "Tour por la ciudad",
+          "places": [
+            "kaleici",
+            "adriano",
+            "yivli",
+            "marina",
+            "duden"
+          ]
+        },
+        {
+          "part": "Tarde",
+          "icon": "hotel",
+          "title": "Visitas de inspección hotelera",
+          "text": "Algunos de los resorts de lujo más singulares de Antalya.",
+          "places": [
+            "regnum",
+            "maxx",
+            "cullinan"
+          ]
+        },
+        {
+          "part": "Noche",
+          "icon": "dinner",
+          "title": "Cena de networking",
+          "items": [
+            "Con profesionales del turismo turco, representantes hoteleros y socios."
+          ]
+        }
+      ],
+      "stay": "lara"
+    },
+    {
+      "date": "2026-10-29",
+      "city": "ist",
+      "title": "De Antalya a Estambul",
+      "subtitle": "Mar Mediterráneo → Cuerno de Oro",
+      "image": "img/aeropuerto.jpg",
+      "tip": "Hoy es la Fiesta de la República (Cumhuriyet Bayramı): verás banderas por todas partes y, por la noche, fuegos artificiales en el Bósforo.",
+      "blocks": [
+        {
+          "part": "Mañana",
+          "icon": "sun",
+          "title": "Mañana libre",
+          "items": [
+            "Tiempo libre en el resort.",
+            "Visitas opcionales a hoteles o reuniones individuales."
+          ]
+        },
+        {
+          "part": "Tarde",
+          "icon": "plane",
+          "title": "Vuelo a Estambul",
+          "items": [
+            "Traslado al aeropuerto de Antalya."
+          ],
+          "flight": "f3"
+        },
+        {
+          "part": "Noche",
+          "icon": "dinner",
+          "title": "Bienvenida en Estambul",
+          "items": [
+            "Check-in en el Rixos Tersane Istanbul.",
+            "Cena de bienvenida en uno de los restaurantes del hotel."
+          ]
+        }
+      ],
+      "stay": "rixos",
+      "contacts": [
+        "ayt",
+        "ist"
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "city": "ist",
+      "title": "Estambul",
+      "subtitle": "La ciudad entre dos continentes",
+      "image": "img/rixos-tersane.jpg",
+      "tip": "Para entrar en las mezquitas: hombros y rodillas cubiertos, y las mujeres con un pañuelo en la cabeza. Hay que descalzarse. Los viernes la Mezquita Azul cierra a las visitas durante el rezo del mediodía.",
+      "blocks": [
+        {
+          "part": "Mañana",
+          "icon": "sun",
+          "title": "Tour por Estambul",
+          "text": "La herencia histórica y cultural de la ciudad.",
+          "places": [
+            "sofia",
+            "azul",
+            "cisterna",
+            "topkapi",
+            "sultanahmet"
+          ]
+        },
+        {
+          "part": "Tarde",
+          "icon": "work",
+          "title": "Workshop: destino Türkiye",
+          "items": [
+            "Breve sesión en el Rixos Tersane Istanbul sobre Turquía como destino, sus productos turísticos y las oportunidades de negocio."
+          ]
+        },
+        {
+          "part": "Noche",
+          "icon": "dinner",
+          "title": "Cena en el hotel",
+          "items": [
+            "En uno de los restaurantes de autor del Rixos Tersane Istanbul."
+          ]
+        }
+      ],
+      "stay": "rixos"
+    },
+    {
+      "date": "2026-10-31",
+      "city": "ist",
+      "title": "Cuerno de Oro y regreso",
+      "subtitle": "Estambul desde el agua",
+      "image": "img/cuerno-de-oro.jpg",
+      "blocks": [
+        {
+          "part": "Mañana",
+          "icon": "boat",
+          "title": "Paseo privado en barco",
+          "text": "El perfil histórico de Estambul visto desde el mar.",
+          "places": [
+            "halic"
+          ]
+        },
+        {
+          "part": "Mediodía",
+          "icon": "dinner",
+          "title": "Comida de despedida",
+          "items": [
+            "Junto al agua, a orillas del Cuerno de Oro."
+          ]
+        },
+        {
+          "part": "Tarde",
+          "icon": "plane",
+          "title": "Vuelta a casa",
+          "items": [
+            "Traslado al aeropuerto de Estambul y facturación."
+          ],
+          "flight": "f4"
+        }
+      ]
+    }
+  ],
+  "documents": [
+    {
+      "title": "Programa del viaje",
+      "detail": "PDF original del Fam Trip",
+      "file": "docs/programa-famtrip-turquia.pdf",
+      "icon": "doc"
+    },
+    {
+      "title": "Billetes de avión",
+      "detail": "Turkish Airlines · 4 vuelos",
+      "pending": true,
+      "icon": "ticket"
+    },
+    {
+      "title": "Seguro de viaje",
+      "detail": "Póliza y teléfono de asistencia",
+      "pending": true,
+      "icon": "shield"
+    },
+    {
+      "title": "DNI o pasaporte",
+      "detail": "En vigor. Los españoles no necesitan visado.",
+      "icon": "id"
+    }
+  ],
+  "checklist": [
+    "DNI o pasaporte en vigor",
+    "Tarjeta de crédito y algo de efectivo",
+    "Ropa cómoda y calzado para caminar",
+    "Bañador: el mar en Antalya está a unos 23 °C",
+    "Chaqueta ligera para las noches de Estambul",
+    "Pañuelo para entrar en las mezquitas",
+    "Cargador y batería externa",
+    "Tarjetas de visita para el networking"
+  ],
+  "info": {
+    "timeDiff": "+2 h",
+    "timeDiffText": "En Turquía son 2 horas más que en España.",
+    "currency": {
+      "name": "Lira turca",
+      "symbol": "₺",
+      "code": "TRY",
+      "text": "Se paga con tarjeta casi en todas partes. Lleva algo de efectivo para propinas y bazares. Cambia en una casa de cambio (döviz) del centro, no en el aeropuerto.",
+      "rate": 50,
+      "rateNote": "Cambio aproximado. Compruébalo en tu banco o en una casa de cambio.",
+      "quick": [
+        5,
+        10,
+        20,
+        50,
+        100
+      ]
+    },
+    "weather": [
+      {
+        "city": "Antalya",
+        "min": 17,
+        "max": 25,
+        "text": "Soleado y templado. Mar a 23 °C."
+      },
+      {
+        "city": "Estambul",
+        "min": 11,
+        "max": 18,
+        "text": "Fresco, puede llover. Lleva chaqueta."
+      }
+    ],
+    "plugs": "Enchufes tipo C y F, 230 V. Los mismos que en España: no necesitas adaptador.",
+    "tips": [
+      {
+        "icon": "water",
+        "title": "Agua",
+        "text": "Bebe agua embotellada."
+      },
+      {
+        "icon": "coin",
+        "title": "Propinas",
+        "text": "Entre el 5 y el 10 % en restaurantes."
+      },
+      {
+        "icon": "mosque",
+        "title": "Mezquitas",
+        "text": "Hombros y rodillas cubiertos, pañuelo y sin zapatos."
+      },
+      {
+        "icon": "wifi",
+        "title": "Internet",
+        "text": "Wifi gratis en hoteles. Revisa la tarifa de datos: Turquía no está en la UE."
+      },
+      {
+        "icon": "coin",
+        "title": "Paga en liras",
+        "text": "Si el datáfono o el cajero te ofrece cobrar en euros, elige liras: sale más barato."
+      }
+    ],
+    "emergencies": [
+      {
+        "title": "Emergencias",
+        "detail": "Policía, ambulancia y bomberos",
+        "phone": "112",
+        "big": true
+      },
+      {
+        "title": "Yuppi Travel · Estambul",
+        "detail": "Organizador local del viaje",
+        "phone": "+90 212 230 26 27"
+      },
+      {
+        "title": "Yuppi Travel · Antalya",
+        "detail": "Oficina en Antalya",
+        "phone": "+90 242 323 12 12"
+      }
+    ],
+    "consulateUrl": "https://www.exteriores.gob.es/Embajadas/ankara/es/Paginas/index.aspx"
+  },
+  "phrases": [
+    {
+      "es": "Hola",
+      "tr": "Merhaba",
+      "say": "mer-ja-BA"
+    },
+    {
+      "es": "Gracias",
+      "tr": "Teşekkür ederim",
+      "say": "te-shek-KÚR e-de-RIM"
+    },
+    {
+      "es": "Por favor",
+      "tr": "Lütfen",
+      "say": "LÚT-fen"
+    },
+    {
+      "es": "Sí / No",
+      "tr": "Evet / Hayır",
+      "say": "e-VET / JA-yir"
+    },
+    {
+      "es": "Buenos días",
+      "tr": "Günaydın",
+      "say": "giu-nai-DIN"
+    },
+    {
+      "es": "Perdone",
+      "tr": "Affedersiniz",
+      "say": "a-fe-DER-si-nis"
+    },
+    {
+      "es": "¿Cuánto cuesta?",
+      "tr": "Ne kadar?",
+      "say": "ne ka-DAR"
+    },
+    {
+      "es": "La cuenta, por favor",
+      "tr": "Hesap, lütfen",
+      "say": "je-SAP, LÚT-fen"
+    },
+    {
+      "es": "¿Dónde está el baño?",
+      "tr": "Tuvalet nerede?",
+      "say": "tu-va-LET ne-re-DE"
+    },
+    {
+      "es": "Agua",
+      "tr": "Su",
+      "say": "su"
+    },
+    {
+      "es": "¡Ayuda!",
+      "tr": "Yardım edin!",
+      "say": "yar-DIM e-DIN"
+    },
+    {
+      "es": "Adiós",
+      "tr": "Güle güle",
+      "say": "giu-LE giu-LE"
+    }
+  ],
+  "taxiPhrase": {
+    "tr": "Lütfen beni bu adrese götürür müsünüz?",
+    "es": "¿Me puede llevar a esta dirección, por favor?"
+  },
+  "included": [
+    {
+      "icon": "plane",
+      "title": "4 vuelos con Turkish Airlines",
+      "text": "Valencia – Estambul – Antalya y vuelta por Estambul."
+    },
+    {
+      "icon": "car",
+      "title": "Traslados",
+      "text": "Traslado VIP a la llegada a Antalya y traslados privados al aeropuerto."
+    },
+    {
+      "icon": "hotel",
+      "title": "4 noches en hoteles de 5★",
+      "text": "2 noches en la zona de Lara (Antalya) y 2 en el Rixos Tersane Istanbul."
+    },
+    {
+      "icon": "sun",
+      "title": "Tours guiados",
+      "text": "Antalya (Kaleiçi, Puerta de Adriano, Düden) y Estambul (Santa Sofía, Mezquita Azul, Topkapı)."
+    },
+    {
+      "icon": "boat",
+      "title": "Paseo privado en barco",
+      "text": "Por el Cuerno de Oro, con comida de despedida junto al agua."
+    },
+    {
+      "icon": "dinner",
+      "title": "Cenas",
+      "text": "Cena de networking en Antalya, cena de bienvenida y cena en el Rixos Tersane."
+    },
+    {
+      "icon": "work",
+      "title": "Visitas y workshop",
+      "text": "Inspección de 3 resorts de lujo en Belek y workshop sobre el destino Türkiye."
+    }
+  ],
+  "scheduleNote": "Los horarios pueden cambiar por motivos operativos. Si hay cambios, tu agencia te avisará.",
+  "routeIds": [
+    "vlc",
+    "ist",
+    "ayt",
+    "ist",
+    "vlc"
+  ],
+  "localContacts": [
+    {
+      "city": "ayt",
+      "name": "Yuppi Travel · Antalya",
+      "phone": "+90 242 323 12 12",
+      "detail": "Organizador local"
+    },
+    {
+      "city": "ist",
+      "name": "Yuppi Travel · Estambul",
+      "phone": "+90 212 230 26 27",
+      "detail": "Organizador local"
+    }
+  ],
+  "i18n": {
+    "en": {
+      "title": "Turkey Fam Trip",
+      "subtitle": "Antalya and Istanbul",
+      "destination": "Türkiye",
+      "traveler": {
+        "group": "Spain Fam Trip group"
+      },
+      "route": [
+        "Valencia",
+        "Istanbul",
+        "Antalya",
+        "Istanbul",
+        "Valencia"
+      ],
+      "cities": [
+        {
+          "country": "Spain"
+        },
+        {
+          "name": "Istanbul"
+        },
+        {}
+      ],
+      "places": [
+        {
+          "es": "Old town",
+          "desc": "The walled historic quarter: cobbled lanes, Ottoman houses and views over the harbour."
+        },
+        {
+          "name": "Hadrian's Gate",
+          "desc": "A Roman triumphal arch from AD 130, built for Emperor Hadrian's visit."
+        },
+        {
+          "name": "Yivli Minaret",
+          "desc": "The fluted 13th-century minaret, the city's symbol."
+        },
+        {
+          "name": "Old harbour",
+          "desc": "The Roman harbour, now full of wooden gulets and seaside terraces."
+        },
+        {
+          "name": "Düden Waterfalls",
+          "desc": "Waterfalls that plunge straight from the cliffs into the Mediterranean."
+        },
+        {
+          "desc": "Hotel site inspection in Belek."
+        },
+        {
+          "desc": "Hotel site inspection in Belek."
+        },
+        {
+          "desc": "Hotel site inspection in Belek."
+        },
+        {
+          "name": "Hagia Sophia",
+          "desc": "Basilica, mosque and museum: 1,500 years of history under a unique dome."
+        },
+        {
+          "name": "Blue Mosque",
+          "desc": "Six minarets and more than 20,000 İznik tiles inside."
+        },
+        {
+          "name": "Basilica Cistern",
+          "desc": "A forest of 336 columns beneath the city, with the famous Medusa heads."
+        },
+        {
+          "name": "Topkapı Palace",
+          "desc": "Home of the Ottoman sultans for almost 400 years."
+        },
+        {
+          "es": "Historic peninsula",
+          "desc": "The historic heart of Istanbul, between the Bosphorus and the Golden Horn."
+        },
+        {
+          "name": "Golden Horn",
+          "desc": "The estuary that wraps around the old city. Private boat tour."
+        }
+      ],
+      "flights": [
+        {
+          "from": {
+            "city": "Valencia",
+            "airport": "Valencia Airport"
+          },
+          "to": {
+            "city": "Istanbul",
+            "airport": "Istanbul Airport"
+          },
+          "note": "Connection in Istanbul to the Antalya flight."
+        },
+        {
+          "from": {
+            "city": "Istanbul",
+            "airport": "Istanbul Airport"
+          },
+          "to": {
+            "city": "Antalya",
+            "airport": "Antalya Airport"
+          }
+        },
+        {
+          "from": {
+            "city": "Antalya",
+            "airport": "Antalya Airport"
+          },
+          "to": {
+            "city": "Istanbul",
+            "airport": "Istanbul Airport"
+          }
+        },
+        {
+          "from": {
+            "city": "Istanbul",
+            "airport": "Istanbul Airport"
+          },
+          "to": {
+            "city": "Valencia",
+            "airport": "Valencia Airport"
+          },
+          "note": "Flight home."
+        }
+      ],
+      "hotels": [
+        {
+          "name": "5★ hotel in the Lara area",
+          "short": "Lara area",
+          "address": "Lara, Muratpaşa, Antalya",
+          "note": "Your agency will confirm the exact hotel name."
+        },
+        {
+          "address": "Tersane Istanbul, Beyoğlu, Istanbul (on the Golden Horn)",
+          "note": "Welcome and farewell dinners in its restaurants."
+        }
+      ],
+      "transfers": [
+        {
+          "time": "On arrival",
+          "title": "VIP transfer to the hotel",
+          "from": "Antalya Airport",
+          "to": "5★ hotel in Lara"
+        },
+        {
+          "time": "Afternoon",
+          "title": "Transfer to the airport",
+          "from": "Hotel in Lara",
+          "to": "Antalya Airport",
+          "kind": "Private"
+        },
+        {
+          "time": "On arrival",
+          "title": "Transfer to the hotel",
+          "from": "Istanbul Airport",
+          "kind": "Private"
+        },
+        {
+          "time": "After lunch",
+          "title": "Transfer to the airport",
+          "to": "Istanbul Airport",
+          "kind": "Private"
+        }
+      ],
+      "days": [
+        {
+          "title": "Off to Türkiye",
+          "subtitle": "Valencia → Istanbul → Antalya",
+          "blocks": [
+            {
+              "part": "Midday",
+              "title": "Flight to Istanbul"
+            },
+            {
+              "part": "Afternoon",
+              "title": "Connection to Antalya"
+            },
+            {
+              "part": "Evening",
+              "title": "Arrival in Antalya",
+              "items": [
+                "VIP transfer from the airport.",
+                "Check-in at your 5★ hotel in the Lara area.",
+                "Free time to rest and enjoy the resort."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Antalya",
+          "subtitle": "Discovering the destination",
+          "blocks": [
+            {
+              "part": "Morning",
+              "title": "City tour"
+            },
+            {
+              "part": "Afternoon",
+              "title": "Hotel site inspections",
+              "text": "Some of Antalya's most unique luxury resorts."
+            },
+            {
+              "part": "Evening",
+              "title": "Networking dinner",
+              "items": [
+                "With Turkish tourism professionals, hotel representatives and partners."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "From Antalya to Istanbul",
+          "subtitle": "Mediterranean → Golden Horn",
+          "tip": "Today is Republic Day (Cumhuriyet Bayramı): you'll see flags everywhere and fireworks over the Bosphorus at night.",
+          "blocks": [
+            {
+              "part": "Morning",
+              "title": "Free morning",
+              "items": [
+                "Free time at the resort.",
+                "Optional hotel visits or one-to-one meetings."
+              ]
+            },
+            {
+              "part": "Afternoon",
+              "title": "Flight to Istanbul",
+              "items": [
+                "Transfer to Antalya Airport."
+              ]
+            },
+            {
+              "part": "Evening",
+              "title": "Welcome to Istanbul",
+              "items": [
+                "Check-in at Rixos Tersane Istanbul.",
+                "Welcome dinner at one of the hotel's restaurants."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Istanbul",
+          "subtitle": "The city between two continents",
+          "tip": "To enter mosques: shoulders and knees covered, and women with a headscarf. Shoes off. On Fridays the Blue Mosque closes to visitors during midday prayers.",
+          "blocks": [
+            {
+              "part": "Morning",
+              "title": "Istanbul city tour",
+              "text": "The city's historical and cultural heritage."
+            },
+            {
+              "part": "Afternoon",
+              "title": "Workshop: destination Türkiye",
+              "items": [
+                "A short session at Rixos Tersane Istanbul on Türkiye as a destination, its tourism products and business opportunities."
+              ]
+            },
+            {
+              "part": "Evening",
+              "title": "Dinner at the hotel",
+              "items": [
+                "At one of the signature restaurants of Rixos Tersane Istanbul."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Golden Horn and home",
+          "subtitle": "Istanbul from the water",
+          "blocks": [
+            {
+              "part": "Morning",
+              "title": "Private boat tour",
+              "text": "Istanbul's historic skyline seen from the sea."
+            },
+            {
+              "part": "Midday",
+              "title": "Farewell lunch",
+              "items": [
+                "By the water, on the Golden Horn."
+              ]
+            },
+            {
+              "part": "Afternoon",
+              "title": "Flight home",
+              "items": [
+                "Transfer to Istanbul Airport and check-in."
+              ]
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "title": "Trip programme",
+          "detail": "Original Fam Trip PDF"
+        },
+        {
+          "title": "Flight tickets",
+          "detail": "Turkish Airlines · 4 flights"
+        },
+        {
+          "title": "Travel insurance",
+          "detail": "Policy and assistance phone number"
+        },
+        {
+          "title": "ID card or passport",
+          "detail": "Valid. Spanish citizens don't need a visa."
+        }
+      ],
+      "checklist": [
+        "Valid ID card or passport",
+        "Credit card and some cash",
+        "Comfortable clothes and walking shoes",
+        "Swimsuit: the sea in Antalya is around 23 °C",
+        "Light jacket for Istanbul evenings",
+        "Headscarf for visiting mosques",
+        "Charger and power bank",
+        "Business cards for networking"
+      ],
+      "included": [
+        {
+          "title": "4 flights with Turkish Airlines",
+          "text": "Valencia – Istanbul – Antalya and back via Istanbul."
+        },
+        {
+          "title": "Transfers",
+          "text": "VIP transfer on arrival in Antalya and private airport transfers."
+        },
+        {
+          "title": "4 nights in 5★ hotels",
+          "text": "2 nights in the Lara area (Antalya) and 2 at Rixos Tersane Istanbul."
+        },
+        {
+          "title": "Guided tours",
+          "text": "Antalya (Kaleiçi, Hadrian's Gate, Düden) and Istanbul (Hagia Sophia, Blue Mosque, Topkapı)."
+        },
+        {
+          "title": "Private boat tour",
+          "text": "On the Golden Horn, with a farewell lunch by the water."
+        },
+        {
+          "title": "Dinners",
+          "text": "Networking dinner in Antalya, welcome dinner and dinner at Rixos Tersane."
+        },
+        {
+          "title": "Visits and workshop",
+          "text": "Inspection of 3 luxury resorts in Belek and a workshop on destination Türkiye."
+        }
+      ],
+      "scheduleNote": "Times may change for operational reasons. Your agency will let you know if they do.",
+      "info": {
+        "timeDiffText": "Türkiye is 2 hours ahead of Spain.",
+        "currency": {
+          "name": "Turkish lira",
+          "text": "Cards are accepted almost everywhere. Carry some cash for tips and bazaars. Change money at an exchange office (döviz) in town, not at the airport.",
+          "rateNote": "Approximate rate. Check with your bank or an exchange office."
+        },
+        "weather": [
+          {
+            "text": "Sunny and mild. Sea at 23 °C."
+          },
+          {
+            "city": "Istanbul",
+            "text": "Cool, may rain. Bring a jacket."
+          }
+        ],
+        "plugs": "Type C and F plugs, 230 V. Same as Spain: no adapter needed.",
+        "tips": [
+          {
+            "title": "Water",
+            "text": "Drink bottled water."
+          },
+          {
+            "title": "Tipping",
+            "text": "5–10% in restaurants."
+          },
+          {
+            "title": "Mosques",
+            "text": "Cover shoulders and knees, wear a headscarf, take off your shoes."
+          },
+          {
+            "title": "Internet",
+            "text": "Free Wi-Fi in hotels. Check your data plan: Türkiye is not in the EU."
+          },
+          {
+            "title": "Pay in lira",
+            "text": "If a card machine or ATM offers to charge you in euros, choose lira: it's cheaper."
+          }
+        ],
+        "emergencies": [
+          {
+            "title": "Emergencies",
+            "detail": "Police, ambulance and fire brigade"
+          },
+          {
+            "title": "Yuppi Travel · Istanbul",
+            "detail": "Local trip organiser"
+          },
+          {
+            "detail": "Antalya office"
+          }
+        ]
+      },
+      "phrases": [
+        {
+          "es": "Hello",
+          "say": "mer-ha-BAH"
+        },
+        {
+          "es": "Thank you",
+          "say": "teh-shek-KYUR eh-deh-RIM"
+        },
+        {
+          "es": "Please",
+          "say": "LYUT-fen"
+        },
+        {
+          "es": "Yes / No",
+          "say": "eh-VET / HAI-uhr"
+        },
+        {
+          "es": "Good morning",
+          "say": "gyoo-nai-DUHN"
+        },
+        {
+          "es": "Excuse me",
+          "say": "ahf-feh-DEHR-see-niz"
+        },
+        {
+          "es": "How much is it?",
+          "say": "neh kah-DAHR"
+        },
+        {
+          "es": "The bill, please",
+          "say": "heh-SAHP, LYUT-fen"
+        },
+        {
+          "es": "Where is the toilet?",
+          "say": "too-vah-LET neh-reh-DEH"
+        },
+        {
+          "es": "Water",
+          "say": "soo"
+        },
+        {
+          "es": "Help!",
+          "say": "yahr-DUHM eh-DIN"
+        },
+        {
+          "es": "Goodbye",
+          "say": "gyoo-LEH gyoo-LEH"
+        }
+      ],
+      "taxiPhrase": {
+        "es": "Could you take me to this address, please?"
+      },
+      "localContacts": [
+        {
+          "detail": "Local organiser"
+        },
+        {
+          "name": "Yuppi Travel · Istanbul",
+          "detail": "Local organiser"
+        }
+      ]
+    }
+  }
+}
