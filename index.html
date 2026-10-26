@@ -853,7 +853,7 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
           <p>${L("Escribe el código de reserva que te ha dado tu agencia.")}</p>
           <div class="code-field">
             <label for="code">${L("Código de reserva")}</label>
-            <input class="code-input" id="code" name="code" inputmode="text" autocapitalize="characters" spellcheck="false" maxlength="9" placeholder="${esc(a.codePrefix || "ABC")}-XXXXX" aria-describedby="loginErr">
+            <input class="code-input" id="code" name="code" inputmode="text" autocapitalize="characters" spellcheck="false" maxlength="9" placeholder="AAA-XXXXX" aria-describedby="loginErr">
           </div>
           <div class="login-error" id="loginErr" role="alert"></div>
           <button class="btn btn-primary btn-block" type="submit" id="go">${L("Ver mi viaje")} ${ic("chev")}</button>
@@ -865,7 +865,7 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
     $("#loginForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const v = normCode(inp.value);
-      if (!/^[A-Z0-9]{3}-[A-Z0-9]{5}$/.test(v)) { err.textContent = L("El código tiene 3 letras y 5 caracteres, por ejemplo {c}.", { c: (a.codePrefix || "ABC") + "-XXXXX" }); return; }
+      if (!/^[A-Z0-9]{3}-[A-Z0-9]{5}$/.test(v)) { err.textContent = L("El código tiene 3 letras y 5 caracteres, por ejemplo {c}.", { c: "AAA-XXXXX" }); return; }
       $("#go").disabled = true; $("#go").innerHTML = L("Abriendo tu viaje…");
       const ok = await openTrip(v, false);
       if (!ok) { $("#go").disabled = false; $("#go").innerHTML = `${L("Ver mi viaje")} ${ic("chev")}`; err.textContent = L("No encontramos ese código. Revísalo o pregúntale a tu agencia."); }
