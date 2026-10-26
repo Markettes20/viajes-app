@@ -537,7 +537,7 @@ html.big .toast { font-size: 18px; }
       "¡Buen viaje!": "Have a great trip!", "¡Hoy sales de viaje!": "You leave today!", "¡Mañana empieza tu viaje!": "Your trip starts tomorrow!",
       "Faltan {n} días para tu viaje": "{n} days to go", "días": "days", "horas": "hours", "min": "min", "seg": "sec",
       "Ver cómo será durante el viaje": "Preview the app during the trip",
-      "Hoy · día {a} de {b}": "Today · day {a} of {b}", "Viaje terminado": "Trip completed", "¡Bienvenida a casa!": "Welcome home!",
+      "Hoy · día {a} de {b}": "Today · day {a} of {b}", "Viaje terminado": "Trip completed", "Este viaje ha terminado": "This trip has ended", "Por privacidad, los datos de este viaje ya no están disponibles en la app.": "For privacy, the details of this trip are no longer available in the app.", "Gracias por viajar con {a}. ¿Preparamos el siguiente?": "Thank you for travelling with {a}. Shall we plan the next one?", "Introducir otro código": "Enter another code", "Quiero preparar mi próximo viaje": "I want to plan my next trip", "¡Bienvenida a casa!": "Welcome home!",
       "Gracias por viajar con {a}. Cuando quieras, preparamos el siguiente.": "Thank you for travelling with {a}. Whenever you like, we'll plan the next one.",
       "Dejar una reseña": "Leave a review", "Tu próximo vuelo": "Your next flight", "Ver todos": "See all", "Ver todo": "See all",
       "¡Hola, {n}!": "Hi, {n}!", "{d} días": "{d} days", "{n} noches": "{n} nights",
@@ -682,6 +682,7 @@ html.big .toast { font-size: 18px; }
     document.documentElement.lang = l;
     S.agency = localized(S.agencyBase);
     if (S.tripBase) { S.trip = localized(S.tripBase); const y = window.scrollY; renderApp(); window.scrollTo({ top: y }); }
+    else if (S.expired) renderExpired();
     else renderLogin();
   }
 
@@ -731,8 +732,12 @@ html.big .toast { font-size: 18px; }
   async function openTrip(code, silent) {
     code = normCode(code);
     if (!/^[A-Z0-9]{3}-[A-Z0-9]{5}$/.test(code)) return false;
+    if (!isDemo(code) && store.get("gone", []).includes(code)) { renderExpired(); return true; }
     try {
       const trip = await getJSON(`data/trips/${code}.json`);
+      const lockAt = isDemo(code) || trip.neverExpires ? Infinity : accessEndMs(trip);
+      if (Date.now() >= lockAt) { purgeTrip(code, trip); renderExpired(); return true; }
+      S.code = code; S.lockAt = lockAt;
       S.tripBase = trip; S.trip = localized(trip);
       try { S.map = trip.map ? await getJSON(`data/maps/${trip.map}.json`) : null; } catch (e) { S.map = null; }
       store.set("code", code);
@@ -744,13 +749,56 @@ html.big .toast { font-size: 18px; }
     }
   }
 
+  // ---------- caducidad del código ----------
+  // El código deja de funcionar a las 00:00 del día siguiente a la vuelta (hora de salida),
+  // o del día siguiente a "accessUntil" si el viaje lo indica. El código de demo no caduca.
+  const isDemo = (code) => !!(S.agencyBase && S.agencyBase.demoCode && normCode(S.agencyBase.demoCode) === code);
+  function accessEndMs(trip) {
+    const hz = (trip.flights && trip.flights[0] && trip.flights[0].from.tz) || trip.tz || "+01:00";
+    const last = trip.accessUntil || trip.end;
+    const next = new Date(Date.parse(last + "T12:00:00Z") + 864e5).toISOString().slice(0, 10);
+    return at(next, "00:00", hz);
+  }
+  function purgeTrip(code, trip) {
+    // Borra todo lo guardado en el móvil de ese viaje y lo marca como cerrado para siempre.
+    const gone = store.get("gone", []); if (!gone.includes(code)) { gone.push(code); store.set("gone", gone); }
+    store.del("code"); store.del("tab");
+    try { Object.keys(localStorage).forEach((k) => { if (k.startsWith("va:") && k.includes(code)) localStorage.removeItem(k); }); } catch (e) {}
+    const files = [`data/trips/${code}.json`].concat(((trip && trip.documents) || []).map((d) => d.file).filter(Boolean));
+    try {
+      if (window.caches) caches.keys().then((ks) => ks.forEach((k) => caches.open(k).then((c) => c.keys().then((reqs) => reqs.forEach((r) => { if (files.some((f) => r.url.includes(f))) c.delete(r); })))));
+    } catch (e) {}
+    S.trip = S.tripBase = S.map = null; S.code = null; S.lockAt = null; S.sim = null;
+  }
+  function renderExpired() {
+    stopTimer(); closeSheet(true); S.expired = true;
+    const a = S.agency, c = a.contact || {};
+    const wa = String(c.whatsapp || "").replace(/[^0-9]/g, "");
+    const msg = encodeURIComponent(L("Quiero preparar mi próximo viaje"));
+    document.getElementById("app").innerHTML = `
+      <section class="login">
+        <div class="login-photo" style="background-image:url('${esc(a.loginImage || "")}')"></div>
+        <div class="login-top wrap">${logo("stacked")}</div>
+        <div class="login-tools">${langSwitch(true)}</div>
+        <div class="login-card wrap">
+          <h1>${L("Este viaje ha terminado")}</h1>
+          <p>${L("Por privacidad, los datos de este viaje ya no están disponibles en la app.")}</p>
+          <p>${L("Gracias por viajar con {a}. ¿Preparamos el siguiente?", { a: esc(a.name) })}</p>
+          ${wa ? `<a class="btn btn-wa btn-block" href="https://wa.me/${wa}?text=${msg}" target="_blank" rel="noopener">${ic("wa")} ${L("WhatsApp con {n}", { n: esc(a.agent.firstName) })}</a>` : ""}
+          ${a.reviewUrl ? `<a class="btn btn-primary btn-block" style="margin-top:10px" href="${esc(a.reviewUrl)}" target="_blank" rel="noopener">${ic("star")} ${L("Dejar una reseña")}</a>` : ""}
+          <button class="demo-link" type="button" id="otherCode">${L("Introducir otro código")}</button>
+        </div>
+      </section>`;
+    $("#otherCode").addEventListener("click", renderLogin);
+  }
+
   function langSwitch(onDark) {
     return `<div class="langsw ${onDark ? "dark" : ""}" role="group" aria-label="Idioma / Language">${Object.keys(LANGS).map((k) => `<button type="button" data-lang="${k}" class="${k === LANG ? "on" : ""}" aria-pressed="${k === LANG}">${k.toUpperCase()}</button>`).join("")}</div>`;
   }
 
   // ---------- login ----------
   function renderLogin() {
-    stopTimer();
+    stopTimer(); S.expired = false;
     const a = S.agency;
     document.getElementById("app").innerHTML = `
       <section class="login">
@@ -1409,6 +1457,7 @@ html.big .toast { font-size: 18px; }
   // ---------- relojes ----------
   function tick() {
     if (!S.trip) return;
+    if (S.lockAt && Date.now() >= S.lockAt) { purgeTrip(S.code, S.tripBase); renderExpired(); return; }
     if (S.sim != null) S.sim += 1000;
     const cd = $("#cd");
     if (cd) { const ph = tripPhase(); if (ph.phase === "before" || ph.phase === "departure") { cd.innerHTML = cdHTML(ph.startMs - now()); const tt = $("#cdTitle"); if (tt) tt.textContent = cdTitle(ph); } }
