@@ -447,6 +447,9 @@ const ic = (n, cls = "") => `<svg class="ic ${cls}" aria-hidden="true"><use href
 const norm = s => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 const all = () => DATA.trips;
 const find = code => all().find(t => t.code === code);
+// Los viajes de Pedro y Cristina solo salen en «Nuestros viajes», no en Clientes.
+const famCodes = () => new Set(["juntos", "pedro", "cristina"].flatMap(k => (DATA.family || {})[k] || []));
+const clients = () => { const f = famCodes(); return all().filter(t => !f.has(t.code)); };
 
 function whenRange() {
   const T = todayISO(), y = T.slice(0, 4), m = T.slice(0, 7);
@@ -461,7 +464,7 @@ function whenRange() {
 }
 function list() {
   const q = norm(S.q.trim()), r = whenRange();
-  const out = all().filter(t => {
+  const out = clients().filter(t => {
     const i = info(t);
     if (S.status !== "all" && (S.status === "new" ? !i.isNew : i.st !== S.status)) return false;
     if (S.type !== "all" && t.type !== S.type) return false;
@@ -479,7 +482,7 @@ function list() {
 const app = document.getElementById("app");
 function renderPanel() {
   if (S.mode === "fam") return renderFam();
-  const items = all(), infos = items.map(info);
+  const items = clients(), infos = items.map(info);
   const c = { curso: 0, prox: 0, fin: 0, new: 0 }; infos.forEach(i => { c[i.st]++; if (i.isNew) c.new++; });
   const rank = t => { const i = info(t); return i.st === "curso" ? "0" + t.end : "1" + t.start; };
   const nextT = items.filter((t, k) => infos[k].st !== "fin").sort((a, b) => rank(a).localeCompare(rank(b)))[0];
