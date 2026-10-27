@@ -417,8 +417,10 @@ const fRange = (a, b) => a.slice(0, 4) === b.slice(0, 4) ? `${fd(a, false)} – 
 function info(t) {
   const T = todayISO(), len = days(t.start, t.end) + 1;
   let st, label, pct = 0;
-  if (T < t.start) { const n = days(T, t.start); st = "prox"; label = n === 1 ? "Sale mañana" : `Sale en ${n} días`; }
-  else if (T <= t.end) { const n = days(t.start, T) + 1; st = "curso"; label = n === 1 && t.start === T ? "Sale hoy" : `En viaje · día ${n} de ${len}`; pct = Math.round(n / len * 100); }
+  // El día de salida: «Sale hoy» hasta la hora del primer vuelo; después ya está en curso.
+  const notYet = T === t.start && t.depAt && Date.now() < t.depAt;
+  if (T < t.start || notYet) { const n = days(T, t.start); st = "prox"; label = n === 0 ? "Sale hoy" : n === 1 ? "Sale mañana" : `Sale en ${n} días`; }
+  else if (T <= t.end) { const n = days(t.start, T) + 1; st = "curso"; label = `En curso · día ${n} de ${len}`; pct = Math.round(n / len * 100); }
   else { st = "fin"; label = "Terminado"; pct = 100; }
   const expires = t.forever ? null : addDays(t.last || t.end, 1); // el código se bloquea a las 00:00 del día siguiente a la vuelta
   const expIn = expires ? days(T, expires) : null;
@@ -544,7 +546,7 @@ const header = () => `<header class="top"><div class="wrap">
   </div></header>`;
 function memory(t) {
   const i = info(t), place = t.country || t.dest;
-  const status = i.st === "prox" ? i.label : i.st === "curso" ? i.label : "Recuerdo";
+  const status = i.st === "prox" ? i.label : i.st === "curso" ? "En curso" : "Recuerdo";
   return `<article class="memory">
     <button type="button" class="ph" data-open="${t.code}" style="background-image:url('${esc(img(t))}')" aria-label="Ver la ficha de ${esc(t.title)}">
       <span class="pill ${i.st}">${esc(status)}</span>
