@@ -1,5 +1,5 @@
 /* Service worker: guarda la app y el viaje para usarlos sin internet. */
-const VERSION = "20261027113247";
+const VERSION = "20261027114622";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "data/agency.json", "data/maps/turkiye.json", "data/panel/fbd3e0805cf28949ad684b29fc003018.json", "icons/apple-touch-icon.png", "icons/favicon-32.png", "icons/icon-192.png", "icons/icon-512.png", "icons/maskable-512.png", "img/aeropuerto.jpg", "img/antalya.jpg", "img/crucero-mar.jpg", "img/cuerno-de-oro.jpg", "img/logo-original.jpg", "img/portada-viaje.jpg", "img/rixos-tersane.jpg", "img/ventanilla.jpg"];
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open("core-" + VERSION).then((c) => c.addAll(CORE)).then(() => self.skipWaiting()));
