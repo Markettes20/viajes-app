@@ -315,8 +315,10 @@ function info(t) {
   return { st, label, pct, len, nights: len - 1, expires, expIn, isNew: !!seen && !seen.includes(t.code) };
 }
 // Saludo según la hora del móvil: días hasta las 14:00, tardes hasta las 21:00, noches el resto.
-const greet = () => { const h = new Date().getHours(); return h >= 6 && h < 14 ? "Buenos días" : h >= 14 && h < 21 ? "Buenas tardes" : "Buenas noches"; };
-setInterval(() => { const el = document.getElementById("hello"); if (el && el.textContent !== greet()) el.textContent = greet(); }, 60000);
+const greet = () => { const h = new Date().getHours(); return (h >= 6 && h < 14 ? "Buenos días" : h >= 14 && h < 21 ? "Buenas tardes" : "Buenas noches") + ", Pedro"; };
+const hello = () => { const el = document.getElementById("hello"); if (el && el.textContent !== greet()) el.textContent = greet(); };
+setInterval(hello, 30000);
+["visibilitychange", "pageshow", "focus"].forEach(ev => (ev === "visibilitychange" ? document : window).addEventListener(ev, hello));
 const ST = { prox: "Próximo", curso: "En curso", fin: "Terminado" };
 const link = t => `${APP}?codigo=${t.code}`;
 const img = t => "../../" + t.img;
@@ -352,7 +354,7 @@ function list() {
     if (S.status !== "all" && (S.status === "new" ? !i.isNew : i.st !== S.status)) return false;
     if (S.type !== "all" && t.type !== S.type) return false;
     if (r && (t.end < r[0] || t.start > r[1])) return false; // el viaje se solapa con el periodo
-    if (q && !norm([t.code, t.client, t.group, t.title, t.dest, t.buyer, t.buyerPhone, telDigits(t.buyerPhone), t.loc].join(" ")).includes(q)) return false;
+    if (q && !norm([t.code, t.client, t.group, t.title, t.dest, t.buyer, t.buyerPhone, telDigits(t.buyerPhone), t.loc, t.airline].join(" ")).includes(q)) return false;
     return true;
   });
   const k = S.sort.k, dir = S.sort.dir;
@@ -484,6 +486,8 @@ function sheet(code) {
         <div><dt>Teléfono del comprador</dt><dd class="num">${t.buyerPhone ? `<a class="phone" href="${telURL(t.buyerPhone)}">${esc(t.buyerPhone)}</a>` : `<span class="muted">Por asignar</span>`}</dd></div>
         ${t.loc ? `<div><dt>Localizador</dt><dd class="mono">${esc(t.loc)}</dd></div>` : ""}
         <div><dt>Fechas</dt><dd class="num">${fRange(t.start, t.end)}<small>${i.len} ${i.len === 1 ? "día" : "días"} · ${i.nights} ${i.nights === 1 ? "noche" : "noches"}</small></dd></div>
+        ${t.type === "FLY" ? `<div><dt>Aerolínea</dt><dd>${esc(t.airline) || `<span class="muted">Por asignar</span>`}</dd></div>
+        <div><dt>Tipo de vuelo</dt><dd>${esc(t.tripKind) || `<span class="muted">Por asignar</span>`}</dd></div>` : ""}
         <div><dt>Estado</dt><dd><span class="pill ${i.st}">${ST[i.st]}</span></dd></div>
         ${hasApp(t) ? `<div><dt>El código caduca</dt><dd class="num">${i.expires ? `${fd(i.expires)} a las 00:00<small>${i.expIn > 0 ? `dentro de ${i.expIn} ${i.expIn === 1 ? "día" : "días"}` : "ya no funciona"}</small>` : "Nunca<small>es el viaje de demostración</small>"}</dd></div>
         <div><dt>Enlace directo</dt><dd style="font-size:13px;font-weight:500">${esc(link(t).replace(/^https?:\/\//, ""))}</dd></div>` : `<div><dt>App</dt><dd>No tiene<small>solo seguimiento en este panel</small></dd></div>`}
