@@ -25,6 +25,7 @@
  "end": "2026-11-23",
  "cover": "img/tz/portada.jpg",
  "previewDay": 2,
+ "neverExpires": true,
  "organizer": {
   "name": "Safari Avventura",
   "note": "Organizador local en Tanzania"
