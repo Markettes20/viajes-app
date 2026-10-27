@@ -207,6 +207,15 @@ td.nowrap { white-space: nowrap; }
 .facts dd { margin: 2px 0 0; font-weight: 600; overflow-wrap: anywhere; }
 .facts dd small { display: block; font-weight: 500; color: var(--muted); font-size: 13px; }
 .timeline { display: grid; gap: 6px; }
+.flights { display: grid; gap: 8px; }
+.flights h3 { font-family: inherit; font-size: 12px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 700; }
+.fl { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; align-items: baseline; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.fl .d { font-size: 13px; color: var(--muted); font-weight: 600; white-space: nowrap; min-width: 46px; }
+.fl .r { font-weight: 700; }
+.fl .r small { font-weight: 500; color: var(--muted); font-size: 12px; }
+.fl .n { grid-column: 2; font-size: 13px; color: var(--muted); }
+.fl-sep { font-size: 12px; color: var(--muted); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-top: 4px; }
+.hero .hi { font-size: 15px; color: rgba(255,255,255,.72); margin-bottom: 4px; }
 .timeline .track { height: 8px; border-radius: 8px; background: var(--surface-2); position: relative; overflow: hidden; }
 .timeline .track i { position: absolute; inset: 0 auto 0 0; background: var(--ok); border-radius: 8px; }
 .timeline .ends { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); }
@@ -305,6 +314,9 @@ function info(t) {
   const expIn = expires ? days(T, expires) : null;
   return { st, label, pct, len, nights: len - 1, expires, expIn, isNew: !!seen && !seen.includes(t.code) };
 }
+// Saludo según la hora del móvil: días hasta las 14:00, tardes hasta las 21:00, noches el resto.
+const greet = () => { const h = new Date().getHours(); return h >= 6 && h < 14 ? "Buenos días" : h >= 14 && h < 21 ? "Buenas tardes" : "Buenas noches"; };
+setInterval(() => { const el = document.getElementById("hello"); if (el && el.textContent !== greet()) el.textContent = greet(); }, 60000);
 const ST = { prox: "Próximo", curso: "En curso", fin: "Terminado" };
 const link = t => `${APP}?codigo=${t.code}`;
 const img = t => "../../" + t.img;
@@ -340,7 +352,7 @@ function list() {
     if (S.status !== "all" && (S.status === "new" ? !i.isNew : i.st !== S.status)) return false;
     if (S.type !== "all" && t.type !== S.type) return false;
     if (r && (t.end < r[0] || t.start > r[1])) return false; // el viaje se solapa con el periodo
-    if (q && !norm([t.code, t.client, t.group, t.title, t.dest, t.buyer, t.buyerPhone, telDigits(t.buyerPhone)].join(" ")).includes(q)) return false;
+    if (q && !norm([t.code, t.client, t.group, t.title, t.dest, t.buyer, t.buyerPhone, telDigits(t.buyerPhone), t.loc].join(" ")).includes(q)) return false;
     return true;
   });
   const k = S.sort.k, dir = S.sort.dir;
@@ -375,7 +387,7 @@ function renderPanel() {
     <button class="icon-btn" type="button" id="out" aria-label="Salir del panel" title="Salir">${ic("out")}</button>
   </div></header>
   <section class="hero"><div class="wrap">
-    <div><h1>Todos los viajes</h1><div class="sub">${items.length} ${items.length === 1 ? "viaje" : "viajes"} con código · hoy ${fd(todayISO())}</div></div>
+    <div><h1 id="hello">${greet()}</h1><div class="sub">${items.length} ${items.length === 1 ? "viaje" : "viajes"} en el panel · hoy ${fd(todayISO())}</div></div>
     ${newOnes.length ? `<div class="newbar"><span class="tag new">NUEVO</span><span class="nt">${newOnes.length === 1 ? `Hay un código nuevo: <span class="mono">${newOnes[0].code}</span> (${esc(newOnes[0].client.split(" ").slice(0, 2).join(" "))})` : `Hay ${newOnes.length} códigos nuevos desde tu última visita`}</span><button type="button" id="seeNew">Ver</button></div>` : ""}
     <div class="stats">
       ${statBtn("curso", "En curso", "var(--ok)")}${statBtn("prox", "Próximos", "var(--sea)")}${statBtn("fin", "Terminados", "#98AAB7")}${statBtn("new", "Nuevos", "var(--accent)")}
@@ -417,15 +429,15 @@ function table(rows) {
       <td><span class="codecell">${t.code}<button type="button" class="mini" data-copy="${t.code}" title="Copiar código" aria-label="Copiar código ${t.code}">${ic("copy")}</button></span></td>
       <td><div class="c-main"><span class="type ${t.type}" title="${t.type === "FLY" ? "Solo vuelos" : "Viaje completo"}">${ic(t.type === "FLY" ? "plane" : "bag")}</span><div style="min-width:0"><div class="t">${esc(t.client)}${tags(t, i)}</div><div class="s">${esc(t.title)}</div></div></div></td>
       <td>${esc(t.dest)}</td>
-      <td>${t.buyer || t.buyerPhone ? `<div class="t">${esc(t.buyer) || "—"}</div>${t.buyerPhone ? `<a class="phone num" href="${telURL(t.buyerPhone)}">${esc(t.buyerPhone)}</a>` : ""}` : `<span class="muted">Sin datos</span>`}</td>
-      <td class="nowrap num">${fRange(t.start, t.end)}<div class="muted" style="font-size:13px">${i.len} días</div></td>
+      <td>${t.buyer || t.buyerPhone ? `<div class="t">${esc(t.buyer) || "—"}</div>${t.buyerPhone ? `<a class="phone num" href="${telURL(t.buyerPhone)}">${esc(t.buyerPhone)}</a>` : `<div class="muted" style="font-size:13px">Teléfono por asignar</div>`}` : `<span class="muted">Por asignar</span>`}</td>
+      <td class="nowrap num">${fRange(t.start, t.end)}<div class="muted" style="font-size:13px">${i.len} ${i.len === 1 ? "día" : "días"}</div></td>
       <td><span class="pill ${i.st}">${ST[i.st]}</span><div class="muted" style="font-size:13px;margin-top:3px">${i.st === "fin" ? "" : i.label}</div></td>
       <td class="nowrap num">${hasApp(t) ? expTxt(i) : `<span class="muted">Sin app</span>`}</td>
       <td><div class="acts">${hasApp(t) ? `<a class="mini" href="${waURL(t)}" target="_blank" rel="noopener" title="Enviar por WhatsApp" aria-label="Enviar por WhatsApp">${ic("wa", "fill")}</a><button type="button" class="mini" data-link="${t.code}" title="Copiar enlace" aria-label="Copiar enlace">${ic("link")}</button><a class="mini" href="${link(t)}" target="_blank" rel="noopener" title="Abrir el viaje como el cliente" aria-label="Abrir viaje">${ic("open")}</a>` : (t.buyerPhone ? `<a class="mini" href="${waBuyerURL(t)}" target="_blank" rel="noopener" title="WhatsApp al comprador" aria-label="WhatsApp al comprador">${ic("wa", "fill")}</a><a class="mini" href="${telURL(t.buyerPhone)}" title="Llamar al comprador" aria-label="Llamar al comprador">${ic("phone")}</a>` : "")}</div></td>
     </tr>`; }).join("");
   const mrows = rows.map(t => { const i = info(t); return `<button type="button" class="mrow" data-open="${t.code}">
       <span class="type ${t.type}">${ic(t.type === "FLY" ? "plane" : "bag")}</span>
-      <span class="mid"><span class="l1"><b>${esc(t.client)}</b>${tags(t, i)}</span><span class="l2">${esc(t.dest)} · ${fRange(t.start, t.end)}</span><span class="l3"><span class="mono">${t.code}</span> · ${hasApp(t) ? (i.expires ? (i.expIn <= 0 ? "caducó " : "caduca ") + fd(i.expires) : "nunca caduca") : "sin app"}${t.buyerPhone ? ` · <span class="num">${esc(t.buyerPhone)}</span>` : ""}</span></span>
+      <span class="mid"><span class="l1"><b>${esc(t.client)}</b>${tags(t, i)}</span><span class="l2">${esc(t.dest)} · ${fRange(t.start, t.end)}</span><span class="l3"><span class="mono">${t.code}</span> · ${hasApp(t) ? (i.expires ? (i.expIn <= 0 ? "caducó " : "caduca ") + fd(i.expires) : "nunca caduca") : "sin app"}${t.buyerPhone ? ` · <span class="num">${esc(t.buyerPhone)}</span>` : " · teléfono por asignar"}</span></span>
       <span class="right"><span class="pill ${i.st}">${ST[i.st]}</span></span>
     </button>`; }).join("");
   return `<div class="table-wrap"><table><thead><tr>${th("code", "Código")}${th("client", "Cliente y viaje")}${th("dest", "Destino")}${th("buyer", "Comprador")}${th("start", "Fechas")}${th("status", "Estado")}${th("exp", "Caduca")}<th><span class="sr">Acciones</span></th></tr></thead><tbody>${tr}</tbody></table></div><div class="mlist">${mrows}</div>`;
@@ -436,6 +448,15 @@ function grid(rows) {
     <span class="ph" style="background-image:url('${esc(img(t))}')"><span class="typ">${ic(t.type === "FLY" ? "plane" : "bag")}${t.type}</span><span class="tg">${tags(t, i)}</span><span class="pill ${i.st}" style="background:var(--surface)">${i.st === "fin" ? "Terminado" : i.label}</span></span>
     <span class="bd"><span class="cd">${t.code}</span><span class="nm">${esc(t.client)}</span><span class="ds">${esc(t.dest)}</span><span class="dt num">${fRange(t.start, t.end)}</span>${i.st === "curso" ? `<span class="bar"><i style="width:${i.pct}%"></i></span>` : ""}</span>
   </button>`; }).join("")}</div>`;
+}
+
+// Vuelos del billete. La vuelta empieza en el primer vuelo que sale más de 2 días después del anterior.
+function flights(t) {
+  const f = t.flights || []; if (!f.length) return "";
+  const back = f.findIndex((x, k) => k > 0 && x.date > addDays(f[k - 1].date, 2));
+  const row = x => `<div class="fl"><span class="d">${fd(x.date, false)}</span><span class="r">${esc(x.from)} ${esc(x.dep)} → ${esc(x.to)} ${esc(x.arr)}${x.plus ? ` <small>(+${x.plus})</small>` : ""}</span><span class="n">${esc(x.no)} · ${esc(x.airline)}</span></div>`;
+  const ida = back > 0 ? f.slice(0, back) : f, vuelta = back > 0 ? f.slice(back) : [];
+  return `<div class="flights"><h3>${f.length === 1 ? "Vuelo" : "Vuelos"}</h3>${vuelta.length ? `<div class="fl-sep">Ida</div>` : ""}${ida.map(row).join("")}${vuelta.length ? `<div class="fl-sep">Vuelta</div>${vuelta.map(row).join("")}` : ""}</div>`;
 }
 
 let lastFocus = null, scrollY0 = 0;
@@ -459,14 +480,16 @@ function sheet(code) {
       <dl class="facts">
         <div><dt>Cliente</dt><dd>${esc(t.client) || "—"}${t.group ? `<small>${esc(t.group)}</small>` : ""}</dd></div>
         <div><dt>Destino</dt><dd>${esc(t.dest) || "—"}</dd></div>
-        <div><dt>Comprador</dt><dd>${esc(t.buyer) || `<span class="muted">Sin datos</span>`}</dd></div>
-        <div><dt>Teléfono del comprador</dt><dd class="num">${t.buyerPhone ? `<a class="phone" href="${telURL(t.buyerPhone)}">${esc(t.buyerPhone)}</a>` : `<span class="muted">Sin datos</span>`}</dd></div>
+        <div><dt>Comprador</dt><dd>${esc(t.buyer) || `<span class="muted">Por asignar</span>`}</dd></div>
+        <div><dt>Teléfono del comprador</dt><dd class="num">${t.buyerPhone ? `<a class="phone" href="${telURL(t.buyerPhone)}">${esc(t.buyerPhone)}</a>` : `<span class="muted">Por asignar</span>`}</dd></div>
+        ${t.loc ? `<div><dt>Localizador</dt><dd class="mono">${esc(t.loc)}</dd></div>` : ""}
         <div><dt>Fechas</dt><dd class="num">${fRange(t.start, t.end)}<small>${i.len} ${i.len === 1 ? "día" : "días"} · ${i.nights} ${i.nights === 1 ? "noche" : "noches"}</small></dd></div>
         <div><dt>Estado</dt><dd><span class="pill ${i.st}">${ST[i.st]}</span></dd></div>
         ${hasApp(t) ? `<div><dt>El código caduca</dt><dd class="num">${i.expires ? `${fd(i.expires)} a las 00:00<small>${i.expIn > 0 ? `dentro de ${i.expIn} ${i.expIn === 1 ? "día" : "días"}` : "ya no funciona"}</small>` : "Nunca<small>es el viaje de demostración</small>"}</dd></div>
         <div><dt>Enlace directo</dt><dd style="font-size:13px;font-weight:500">${esc(link(t).replace(/^https?:\/\//, ""))}</dd></div>` : `<div><dt>App</dt><dd>No tiene<small>solo seguimiento en este panel</small></dd></div>`}
       </dl>
       ${tl}
+      ${flights(t)}
       ${t.buyerPhone ? `<div class="btns">
         <a class="btn" href="${telURL(t.buyerPhone)}">${ic("phone")} Llamar</a>
         <a class="btn wa" href="${waBuyerURL(t)}" target="_blank" rel="noopener">${ic("wa", "fill")} WhatsApp</a>
