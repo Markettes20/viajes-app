@@ -356,6 +356,120 @@ a.mini { text-decoration: none; }
 .wa-h { display: flex; align-items: center; } .wa-h h2 { font-size: 24px; } .wa-h .icon-btn { margin-left: auto; background: var(--surface); color: var(--ink); border-color: var(--line); }
 .wa-list { overflow: auto; display: grid; gap: 8px; align-content: start; overscroll-behavior: contain; }
 .wa-row { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; display: grid; gap: 8px; }
+/* ---------- Subir viajes desde el panel ---------- */
+.up-btn { height: 42px; border-radius: 12px; border: 0; background: var(--accent); color: #1B1406; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; gap: 6px; padding: 0 14px 0 11px; cursor: pointer; flex: none; }
+.up-btn .ic { stroke-width: 2.4; }
+@media (max-width: 560px) { .up-btn span { display: none; } .up-btn { width: 42px; padding: 0; justify-content: center; } }
+
+.up-sheet { width: min(680px, 100%); }
+.up-head { background: var(--brand-deep); color: #fff; padding: 20px 18px 18px; position: relative; }
+.up-head h2 { font-size: 26px; line-height: 1.15; padding-right: 50px; }
+.up-head p { margin: 6px 0 0; color: rgba(255,255,255,.75); font-size: 15px; }
+.up-head .x { position: absolute; right: 12px; top: 12px; }
+.up-body { padding: 18px; display: grid; gap: 22px; }
+.step { display: grid; gap: 10px; }
+.step > h3 { font-family: var(--font-body); font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.step > h3 i { font-style: normal; width: 26px; height: 26px; border-radius: 50%; background: var(--brand); color: #fff; display: grid; place-items: center; font-size: 14px; flex: none; }
+.step > h3 small { font-weight: 500; color: var(--muted); font-size: 14px; }
+.kinds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.kind { text-align: left; border: 2px solid var(--line); background: var(--surface); border-radius: 16px; padding: 14px; cursor: pointer; display: grid; gap: 4px; align-content: start; }
+.kind b { font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.kind span { color: var(--muted); font-size: 14px; line-height: 1.35; }
+.kind .tag { font-family: var(--font-mono); font-size: 12px; color: var(--accent-ink); font-weight: 700; }
+.kind[aria-pressed="true"] { border-color: var(--sea); background: var(--sea-soft); }
+.fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 520px) { .fields, .kinds { grid-template-columns: 1fr; } }
+.fld { display: grid; gap: 5px; font-size: 14px; font-weight: 600; }
+.fld input, .fld textarea { height: 46px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); padding: 0 12px; font-weight: 500; font-size: 16px; width: 100%; }
+.fld textarea { height: 92px; padding: 10px 12px; resize: vertical; line-height: 1.4; }
+.drop { border: 2px dashed var(--line); border-radius: 18px; padding: 26px 16px; display: grid; justify-items: center; gap: 8px; text-align: center; background: var(--surface-2); cursor: pointer; transition: border-color .15s, background .15s; }
+.drop.over { border-color: var(--sea); background: var(--sea-soft); }
+.drop .big { width: 52px; height: 52px; border-radius: 16px; background: var(--brand); color: #fff; display: grid; place-items: center; }
+.drop .big .ic { width: 26px; height: 26px; }
+.drop b { font-size: 17px; }
+.drop span { color: var(--muted); font-size: 14px; }
+.drop .btn { margin-top: 4px; }
+.files { display: grid; gap: 8px; }
+.file { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 12px; padding: 8px 8px 8px 10px; background: var(--surface); }
+.file .ext { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; font-size: 11px; font-weight: 800; color: #fff; background: var(--brand); flex: none; text-transform: uppercase; }
+.file .ext.pdf { background: #C2412D; } .file .ext.img { background: var(--sea); } .file .ext.doc { background: #2B62B8; }
+.file .nm { min-width: 0; flex: 1; }
+.file .nm b { display: block; font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.file .nm small { color: var(--muted); font-size: 13px; }
+.file button { width: 34px; height: 34px; border-radius: 10px; border: 0; background: transparent; color: var(--muted); cursor: pointer; display: grid; place-items: center; }
+.need { border-radius: 14px; background: var(--surface-2); padding: 12px 14px; display: grid; gap: 6px; font-size: 14px; }
+.need > b { font-size: 14px; }
+.need ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+.need li { display: flex; gap: 8px; align-items: baseline; }
+.need li::before { content: "•"; color: var(--sea); font-weight: 800; }
+.need li em { font-style: normal; font-size: 12px; font-weight: 700; color: var(--accent-ink); }
+.warnbox { border-radius: 14px; background: var(--warn-soft); color: var(--ink); padding: 10px 14px; font-size: 14px; display: flex; gap: 10px; align-items: flex-start; }
+.warnbox b { color: var(--warn); }
+.send { display: grid; gap: 8px; }
+.send .btn { height: 52px; font-size: 16px; }
+.send .btn[disabled] { opacity: .45; cursor: not-allowed; }
+.send small { color: var(--muted); font-size: 13px; text-align: center; }
+.prog { height: 10px; border-radius: 99px; background: var(--surface-2); overflow: hidden; }
+.prog i { display: block; height: 100%; width: 0; background: var(--sea); border-radius: inherit; transition: width .2s linear; }
+.done { text-align: center; display: grid; gap: 10px; justify-items: center; padding: 10px 0 4px; }
+.done .ok { width: 68px; height: 68px; border-radius: 50%; background: var(--ok-soft); color: var(--ok); display: grid; place-items: center; }
+.done .ok svg { width: 34px; height: 34px; }
+.done h3 { font-size: 26px; }
+.done p { margin: 0; color: var(--muted); max-width: 420px; }
+.done ol { text-align: left; margin: 6px 0 0; padding-left: 20px; display: grid; gap: 6px; font-size: 15px; }
+.done .btns { width: 100%; margin-top: 6px; }
+
+.pending { margin: 18px 0; display: grid; gap: 10px; }
+.pending > h2 { font-family: var(--font-body); font-size: 15px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.pcard { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 16px; padding: 14px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; box-shadow: var(--shadow); }
+.pcard.ready { border-left-color: var(--ok); }
+.pcard .spin { width: 40px; height: 40px; border-radius: 50%; border: 4px solid var(--surface-2); border-top-color: var(--accent); animation: spin 1s linear infinite; flex: none; }
+.pcard.ready .spin { animation: none; border-color: var(--ok); background: var(--ok); color: #fff; display: grid; place-items: center; }
+.pcard.ready .spin svg { width: 22px; height: 22px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.pcard .tx { flex: 1; min-width: 200px; display: grid; gap: 2px; }
+.pcard .tx b { font-size: 16px; }
+.pcard .tx span { color: var(--muted); font-size: 14px; }
+.pcard .tx .code { font-family: var(--font-mono); font-weight: 700; color: var(--ok); font-size: 15px; }
+.pcard .acts { display: flex; gap: 8px; flex-wrap: wrap; }
+.pcard .btn { height: 40px; font-size: 14px; padding: 0 12px; }
+.pcard .sim { background: none; border: 0; color: var(--muted); font-size: 13px; text-decoration: underline; cursor: pointer; padding: 4px; }
+.hint { color: var(--muted); font-size: 13px; }
+.fields .fld:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: calc(50% - 5px); }
+@media (max-width: 520px) { .fields .fld:last-child:nth-child(odd) { max-width: none; } }
+.pcard.review { border-left-color: var(--sea); }
+.pcard.review .spin { animation: none; border-color: var(--sea); background: var(--sea-soft); color: var(--sea); display: grid; place-items: center; }
+.pcard.warn { border-left-color: var(--warn); }
+.pcard.warn .spin { animation: none; border-color: var(--warn); background: var(--warn-soft); color: var(--warn); display: grid; place-items: center; font-weight: 800; font-size: 18px; }
+.pcard .tx .miss { color: var(--warn); font-weight: 600; }
+.need.warn { background: var(--warn-soft); }
+.need.warn li::before { color: var(--warn); }
+.addbox { display: grid; gap: 10px; }
+.pill.review { background: var(--warn-soft); color: var(--warn); }
+.ok-btn { background: var(--ok); border-color: var(--ok); color: #fff; height: 54px !important; font-size: 16px; }
+.ok-btn svg { width: 22px; height: 22px; }
+.rev { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 18px; align-items: start; }
+@media (max-width: 560px) { .rev { grid-template-columns: 1fr; justify-items: center; } .rev-side { width: 100%; } }
+.rev-side { display: grid; gap: 12px; }
+.bigcode { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14px; }
+.checks li { display: flex; gap: 10px; align-items: flex-start; }
+.checks li > span:first-child { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; flex: none; font-weight: 800; font-size: 13px; }
+.checks li > span:first-child svg { width: 14px; height: 14px; }
+.checks li.ok > span:first-child { background: var(--ok-soft); color: var(--ok); }
+.checks li.no > span:first-child { background: var(--warn-soft); color: var(--warn); }
+.checks li.no { color: var(--warn); font-weight: 600; }
+.fld textarea { font-family: var(--font-body); color: var(--ink); }
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.file .okf { width: 34px; height: 34px; display: grid; place-items: center; color: var(--ok); }
+.file .okf svg { width: 18px; height: 18px; }
+.mockphone { width: 250px; height: 500px; border-radius: 34px; padding: 9px; background: #0A1016; box-shadow: var(--shadow); overflow: hidden; flex: none; }
+.mockphone iframe { display: block; width: 390px; height: 810px; border: 0; border-radius: 40px; background: var(--surface); transform: scale(.595); transform-origin: 0 0; }
+.rev.fly { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.rev-fly { margin: 0; }
+@media (max-width: 560px) { .rev.fly { grid-template-columns: 1fr; } }
+.send .btn.ok-btn[disabled], .send .btn[disabled] { opacity: .5; cursor: progress; }
 </style>
 </head>
 <body>
@@ -449,7 +563,8 @@ const all = () => DATA.trips;
 const find = code => all().find(t => t.code === code);
 // Los viajes de Pedro y Cristina solo salen en «Nuestros viajes», no en Clientes.
 const famCodes = () => new Set(["juntos", "pedro", "cristina"].flatMap(k => (DATA.family || {})[k] || []));
-const clients = () => { const f = famCodes(); return all().filter(t => !f.has(t.code)); };
+// Los viajes subidos que aún esperan el OK no salen en la lista: van arriba, en «Subidos por ti».
+const clients = () => { const f = famCodes(); return all().filter(t => !f.has(t.code) && !t.review); };
 
 function whenRange() {
   const T = todayISO(), y = T.slice(0, 4), m = T.slice(0, 7);
@@ -528,6 +643,7 @@ function renderPanel() {
   </div></div>
   <main class="wrap">${rows.length ? (S.view === "grid" ? grid(rows) : table(rows)) : `<div class="empty"><b>${items.length ? "Ningún viaje con estos filtros" : "Todavía no hay viajes con código"}</b><span>${items.length ? "Prueba con otra fecha o quita los filtros." : "Cuando se cree un código nuevo aparecerá aquí."}</span>${items.length ? `<button type="button" class="btn" id="clear2">Quitar filtros</button>` : ""}</div>`}</main>`;
   bind();
+  addPending();
 }
 
 // ---------- Nuestros viajes: los de Pedro, los de Cristina y los que hacen juntos ----------
@@ -544,7 +660,7 @@ const header = () => `<header class="top"><div class="wrap">
 </svg>
 </span>
     <div class="who"><b>Panel del organizador</b>${esc(AGENCY)}</div>
-    <div class="top-acts"><button class="icon-btn map-btn" type="button" id="world" aria-label="Nuestro mapa del mundo" title="Nuestro mapa del mundo">${TREASURE}</button>
+    <div class="top-acts">${UPL() ? `<button class="up-btn" type="button" id="upload" aria-label="Subir viaje nuevo" title="Subir viaje nuevo">${ic("plus")}<span>Subir viaje</span></button>` : ""}<button class="icon-btn map-btn" type="button" id="world" aria-label="Nuestro mapa del mundo" title="Nuestro mapa del mundo">${TREASURE}</button>
     <button class="icon-btn" type="button" id="out" aria-label="Salir del panel" title="Salir">${ic("out")}</button></div>
   </div></header>`;
 function memory(t) {
@@ -798,6 +914,7 @@ function sheet(code) {
   el.querySelector("#note").addEventListener("input", e => { const n = store.get("panel:notes", {}); n[code] = e.target.value; store.set("panel:notes", n); });
   bindActions(el);
   try { el.querySelector("#close").focus({ preventScroll: true }); } catch (e) {}
+  addToSheet(code);
 }
 function closeSheet() {
   const el = document.getElementById("scrim"); if (el) el.remove();
@@ -806,7 +923,8 @@ function closeSheet() {
   const back = lastFocus && lastFocus.dataset && lastFocus.dataset.open ? document.querySelector(`[data-open="${lastFocus.dataset.open}"]`) : null;
   if (back) try { back.focus({ preventScroll: true }); } catch (e) {}
 }
-document.addEventListener("keydown", e => { if (e.key === "Escape" && S.open) closeSheet(); });
+document.addEventListener("keydown", e => { if (e.key !== "Escape") return; if (S.up) { if (!upBusy()) closeUpload(); } else if (S.open) closeSheet(); });
+document.addEventListener("click", e => { if (e.target.closest && e.target.closest("#upload")) openUpload(); });
 
 function toast(msg) { const el = document.getElementById("toast"); el.textContent = msg; el.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => { el.hidden = true; }, 1800); }
 function copy(text, msg) {
@@ -853,6 +971,311 @@ function refreshList() {
   window.scrollTo(0, y);
 }
 
+// ---------- Subir viajes desde el panel ----------
+// Los archivos van a una carpeta de Google Drive (pieza de Apps Script, tools/subidas/Code.gs). Claude la revisa cada hora:
+// crea el viaje «por revisar», y cuando el organizador da el OK lo activa. Solo sale si el panel trae DATA.upload.
+const UPL = () => DATA.upload && DATA.upload.url && DATA.upload.key ? DATA.upload : null;
+let REMOTE = [];      // lo que la carpeta de Drive tiene todavía sin procesar
+let REMOTE_AT = 0;
+const UP = { kind: "ANI", buyer: "", phone: "", start: "", end: "", pax: "", notes: "", files: [], id: null, sent: 0, busy: false, done: false, err: "" };
+const ADD = { code: null, files: [], notes: "", id: null, sent: 0, busy: false, done: false, err: "" };
+const MAX_MB = 25;
+const NEED = {
+  ANI: [["Billetes de avión, tren o barco", true], ["Bonos o reservas de cada hotel", true], ["Itinerario día a día (vale el PDF del proveedor)", true],
+    ["Traslados: horas y punto de recogida", false], ["Excursiones y actividades contratadas", false], ["Qué incluye y qué no", false], ["Contacto en destino (guía o agencia local)", false]],
+  FLY: [["Billete o localizador de ida y vuelta", true]],
+};
+const OKI = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>`;
+const UPI = `<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>`;
+const EYE = `<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>`;
+const kb = n => n > 1048576 ? (n / 1048576).toFixed(1).replace(".", ",") + " MB" : Math.max(1, Math.round(n / 1024)) + " KB";
+const extOf = f => { const e = (f.name.split(".").pop() || "").toLowerCase(); return { e: e.slice(0, 4), c: e === "pdf" ? "pdf" : /^(jpe?g|png|heic|heif|webp|gif)$/.test(e) ? "img" : /^(docx?|txt|odt|rtf)$/.test(e) ? "doc" : "" }; };
+const hhmm = iso => { try { const d = new Date(iso); return d.toLocaleString("es-ES", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZone: "Europe/Madrid" }); } catch (e) { return ""; } };
+const nArch = n => `${n} ${n === 1 ? "archivo" : "archivos"}`;
+const NET = "No se ha podido enviar. Comprueba la conexión a internet y vuelve a intentarlo.";
+
+async function api(body) {
+  const u = UPL(); if (!u) throw new Error("off");
+  // Cuerpo en texto plano: así el navegador no hace la consulta previa (CORS) que Google no contesta.
+  const r = await fetch(u.url, { method: "POST", body: JSON.stringify(Object.assign({}, body, { key: u.key })) });
+  const j = await r.json();
+  if (!j || !j.ok) throw new Error((j && j.error) || "error");
+  return j;
+}
+async function loadRemote() {
+  if (!UPL()) return;
+  try { const j = await api({ action: "status" }); REMOTE = Array.isArray(j.items) ? j.items : []; REMOTE_AT = Date.now(); } catch (e) {}
+}
+const b64file = f => new Promise((ok, ko) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(",")[1] || ""); r.onerror = () => ko(r.error); r.readAsDataURL(f); });
+// Sube los archivos que falten de uno en uno (si se corta internet, al reintentar sigue por donde iba).
+async function sendFiles(st, onStep) {
+  for (let i = st.sent; i < st.files.length; i++) {
+    onStep(i);
+    const f = st.files[i];
+    await api({ action: "file", id: st.id, name: f.name, type: f.type || "", b64: await b64file(f) });
+    st.sent = i + 1;
+  }
+  onStep(st.files.length);
+}
+
+// ---------- Piezas comunes ----------
+function dropZone(st) {
+  return `<label class="drop" id="u-drop" tabindex="0"><span class="big">${UPI}</span><b>Arrastra aquí los archivos</b><span>Billetes, bonos, itinerario… Valen fotos hechas con el móvil.</span><span class="btn">Elegir archivos</span>
+      <input type="file" id="u-file" multiple accept=".pdf,image/*,.doc,.docx,.txt,.odt,.rtf" hidden></label>
+    ${st.files.length ? `<div class="files">${st.files.map((f, i) => { const x = extOf(f); return `<div class="file"><span class="ext ${x.c}">${esc(x.e || "?")}</span><span class="nm"><b>${esc(f.name)}</b><small>${kb(f.size)}</small></span>${i < st.sent ? `<span class="okf" title="Subido">${OKI}</span>` : `<button type="button" data-rm="${i}" aria-label="Quitar ${esc(f.name)}">${ic("x")}</button>`}</div>`; }).join("")}</div>` : ""}`;
+}
+function bindDrop(root, st, repaint) {
+  const drop = root.querySelector("#u-drop"), inp = root.querySelector("#u-file");
+  const add = list => {
+    const big = [];
+    Array.from(list).forEach(f => { if (f.size > MAX_MB * 1048576) big.push(f.name); else if (!st.files.some(g => g.name === f.name && g.size === f.size)) st.files.push(f); });
+    st.err = big.length ? `${big.length === 1 ? "Este archivo es demasiado grande" : "Estos archivos son demasiado grandes"} (máximo ${MAX_MB} MB): ${big.join(", ")}` : "";
+    repaint();
+  };
+  inp.onchange = () => { add(inp.files); inp.value = ""; };
+  drop.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); inp.click(); } });
+  ["dragenter", "dragover"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add("over"); }));
+  ["dragleave", "drop"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove("over"); }));
+  drop.addEventListener("drop", e => { if (e.dataTransfer && e.dataTransfer.files.length) add(e.dataTransfer.files); });
+  root.querySelectorAll("[data-rm]").forEach(x => x.onclick = e => { e.preventDefault(); st.files.splice(+x.dataset.rm, 1); repaint(); });
+}
+function progressHTML(title, sub, pct) { return `<div class="done"><h3>${title}</h3><p>${sub}</p></div><div class="prog"><i style="width:${pct}%"></i></div>`; }
+// Mientras sube o envía, no se cierra la ventana sin querer (tocar fuera o Escape).
+const upBusy = () => UP.busy || ADD.busy;
+function modal(label, head, sub) {
+  const old = document.getElementById("scrim"); if (old) old.remove();
+  if (!S.open && !S.up) { lastFocus = document.activeElement; scrollY0 = window.scrollY; }
+  S.open = null; S.up = true;
+  const el = document.createElement("div"); el.className = "scrim"; el.id = "scrim";
+  el.innerHTML = `<div class="sheet up-sheet" role="dialog" aria-modal="true" aria-label="${esc(label)}">
+    <div class="up-head"><h2>${head}</h2><p>${sub}</p><button type="button" class="icon-btn x" id="u-x" aria-label="Cerrar">${ic("x")}</button></div>
+    <div class="up-body" id="u-body"></div></div>`;
+  document.body.appendChild(el); document.documentElement.classList.add("lock");
+  el.addEventListener("click", e => { if (upBusy()) return; if (e.target === el || e.target.closest("#u-x") || e.target.closest("[data-closeup]")) closeUpload(); });
+  try { el.querySelector("#u-x").focus({ preventScroll: true }); } catch (e) {}
+  return el.querySelector("#u-body");
+}
+function closeUpload() {
+  const el = document.getElementById("scrim"); if (el) el.remove();
+  document.documentElement.classList.remove("lock"); S.up = false;
+  if (UP.done) resetUp();
+  renderPanel(); window.scrollTo(0, scrollY0);
+}
+const resetUp = () => Object.assign(UP, { buyer: "", phone: "", start: "", end: "", pax: "", notes: "", files: [], id: null, sent: 0, busy: false, done: false, err: "" });
+
+// ---------- 1) Subir un viaje nuevo ----------
+const upReady = () => UP.buyer.trim() && UP.files.length && !(UP.start && UP.end && UP.end < UP.start);
+const sendTx = () => UP.start && UP.end && UP.end < UP.start ? "La vuelta no puede ser antes que la salida."
+  : upReady() ? `Se enviarán ${nArch(UP.files.length)}. En menos de una hora te llega para revisarlo.` : "Falta el nombre del comprador y al menos un archivo.";
+function upForm() {
+  return `<div class="step"><h3><i>1</i>¿Qué tipo de viaje es?</h3>
+      <div class="kinds">
+        <button type="button" class="kind" data-kind="ANI" aria-pressed="${UP.kind === "ANI"}"><span class="tag">ANI-XXXXX</span><b>${ic("bag")} Viaje completo</b><span>El cliente tiene su app: itinerario, mapa, hoteles, excursiones…</span></button>
+        <button type="button" class="kind" data-kind="FLY" aria-pressed="${UP.kind === "FLY"}"><span class="tag">FLY-XXXXX</span><b>${ic("plane")} Solo vuelo</b><span>Ida y vuelta. Sin app, solo seguimiento en este panel.</span></button>
+      </div></div>
+    <div class="step"><h3><i>2</i>Datos del viaje</h3>
+      <div class="fields">
+        <label class="fld">Nombre del comprador<input id="u-buyer" autocomplete="off" maxlength="80" placeholder="Ej.: Ana García" value="${esc(UP.buyer)}"></label>
+        <label class="fld">Teléfono<input id="u-phone" type="tel" autocomplete="off" maxlength="40" placeholder="Ej.: 612 345 678" value="${esc(UP.phone)}"></label>
+        <label class="fld">Salida<input id="u-start" type="date" value="${esc(UP.start)}"></label>
+        <label class="fld">Vuelta<input id="u-end" type="date" value="${esc(UP.end)}"></label>
+        <label class="fld">Nº de viajeros<input id="u-pax" type="number" min="1" max="99" inputmode="numeric" placeholder="Ej.: 2" value="${esc(UP.pax)}"></label>
+      </div>
+      <small class="hint">Las fechas y los viajeros sirven para comprobar que lo que se lee en los billetes cuadra.</small></div>
+    <div class="step"><h3><i>3</i>Archivos del viaje <small>· fotos o PDF</small></h3>
+      ${dropZone(UP)}
+      ${UP.err ? `<div class="warnbox"><span>⚠️</span><span>${esc(UP.err)}</span></div>` : ""}
+      <div class="need"><b>${UP.kind === "FLY" ? "Para un solo vuelo basta con:" : "Lo que suele hacer falta:"}</b><ul>${NEED[UP.kind].map(([t, m]) => `<li>${t}${m ? " <em>IMPRESCINDIBLE</em>" : ""}</li>`).join("")}</ul></div>
+      <div class="warnbox"><span>⚠️</span><span><b>No subas</b> pasaportes, DNI ni datos de tarjeta. No van en la app.</span></div>
+    </div>
+    <div class="step"><h3><i>4</i>¿Algo más? <small>· opcional</small></h3>
+      <label class="fld" style="font-weight:500"><span class="sr">Notas</span><textarea id="u-notes" maxlength="4000" placeholder="Ej.: es su luna de miel; el guía en destino es Ahmed, +90 532 000 00 00; tiene excursión en globo el día 3…">${esc(UP.notes)}</textarea></label></div>
+    <div class="send"><button type="button" class="btn primary" id="u-send" ${upReady() ? "" : "disabled"}>${UPI} Enviar para crear el viaje</button>
+      <small id="u-sendtx">${sendTx()}</small></div>`;
+}
+function upDone() {
+  return `<div class="done"><span class="ok">${OKI}</span><h3>¡Recibido!</h3>
+    <p>El viaje de <b>${esc(UP.buyer)}</b> ya está en camino. Mientras, puedes seguir usando el panel.</p>
+    <ol><li>Se leen los billetes y bonos y se monta ${UP.kind === "FLY" ? "la ficha del vuelo" : "la app del viaje"}.</li><li>En menos de una hora te aparece arriba como <b>«Listo para revisar»</b>.</li><li>Lo miras y das el OK. Hasta entonces el código no funciona y el cliente no ve nada.</li></ol>
+    <div class="btns"><button type="button" class="btn" id="u-again">${ic("plus")} Subir otro viaje</button><button type="button" class="btn primary" data-closeup>Volver al panel</button></div></div>`;
+}
+function openUpload() { if (!UPL()) return; modal("Subir viaje nuevo", "Subir un viaje nuevo", "Mete los datos y los archivos. El viaje se crea solo y te llega para revisarlo antes de mandárselo al cliente."); paintUp(); }
+function paintUp() {
+  const b = document.getElementById("u-body"); if (!b) return;
+  if (UP.done) { b.innerHTML = upDone(); document.getElementById("u-again").onclick = () => { resetUp(); paintUp(); }; return; }
+  b.innerHTML = upForm();
+  b.querySelectorAll("[data-kind]").forEach(k => k.onclick = () => { UP.kind = k.dataset.kind; paintUp(); });
+  const live = () => { document.getElementById("u-send").disabled = !upReady(); document.getElementById("u-sendtx").textContent = sendTx(); };
+  [["u-buyer", "buyer"], ["u-phone", "phone"], ["u-start", "start"], ["u-end", "end"], ["u-pax", "pax"], ["u-notes", "notes"]].forEach(([id, k]) => document.getElementById(id).oninput = e => { UP[k] = e.target.value; live(); });
+  bindDrop(b, UP, paintUp);
+  document.getElementById("u-send").onclick = async () => {
+    if (!upReady() || UP.busy) return;
+    UP.busy = true; UP.err = "";
+    const total = UP.files.length;
+    const step = i => { b.innerHTML = progressHTML("Subiendo archivos…", `${i < total ? `Archivo ${i + 1} de ${total}` : "Terminando"} · viaje de ${esc(UP.buyer)}. No cierres esta ventana.`, Math.round((i / total) * 100)); };
+    step(UP.sent);
+    try {
+      if (!UP.id) UP.id = (await api({ action: "new", kind: UP.kind, buyer: UP.buyer.trim(), phone: UP.phone.trim(), start: UP.start, end: UP.end, pax: UP.pax, notes: UP.notes.trim() })).id;
+      await sendFiles(UP, step);
+      UP.done = true; UP.busy = false;
+      loadRemote().then(() => { if (!S.up) renderPanel(); });
+    } catch (e) { UP.busy = false; UP.err = NET; }
+    paintUp();
+  };
+}
+
+// ---------- 2) Revisar antes de mandárselo al cliente ----------
+const appLink = t => `../../index.html?codigo=${encodeURIComponent(t.code)}&revisar=1`;
+function checksOf(t) {
+  const a = t.asked || {}, miss = t.missing || [], out = [];
+  if (a.start || a.end) out.push([(!a.start || a.start === t.start) && (!a.end || a.end === t.end), `Fechas: ${fRange(t.start, t.end)} <span class="muted">· ${(!a.start || a.start === t.start) && (!a.end || a.end === t.end) ? "coinciden con lo que pusiste" : `pusiste ${a.start && a.end ? fRange(a.start, a.end) : fd(a.start || a.end)}`}</span>`]);
+  else out.push([true, `Fechas leídas de los billetes: ${fRange(t.start, t.end)}`]);
+  if (t.pax) out.push([!a.pax || +a.pax === t.pax, `${t.pax} ${t.pax === 1 ? "viajero" : "viajeros"} <span class="muted">· ${!a.pax ? "leídos de los billetes" : +a.pax === t.pax ? "coincide con lo que pusiste" : `pusiste ${a.pax}`}</span>`]);
+  out.push([!miss.length, miss.length ? `Falta: ${miss.map(esc).join(" · ")}` : "No falta nada"]);
+  return out;
+}
+function openReview(code) {
+  const t = find(code); if (!t) return;
+  const fly = t.type === "FLY";
+  const b = modal("Revisar el viaje", `Revisar el viaje de ${esc(t.buyer || t.client)}`, fly ? "Mira que los datos del vuelo estén bien y da el OK." : "Así lo verá el cliente. Mira que todo esté bien y da el OK. Hasta entonces el código no funciona.");
+  const paint = mode => {
+    const miss = t.missing || [];
+    const left = fly ? `<dl class="facts rev-fly">
+        <div><dt>Cliente</dt><dd>${esc(t.client) || "—"}</dd></div><div><dt>Destino</dt><dd>${esc(t.dest) || "—"}</dd></div>
+        <div><dt>Fechas</dt><dd class="num">${fRange(t.start, t.end)}</dd></div>${t.loc ? `<div><dt>Localizador</dt><dd class="mono">${esc(t.loc)}</dd></div>` : ""}
+        ${t.airline ? `<div><dt>Aerolínea</dt><dd>${esc(t.airline)}</dd></div>` : ""}</dl>${flights(t)}`
+      : `<div class="mockphone" aria-label="Vista previa de la app"><iframe src="${appLink(t)}" title="App del cliente" loading="lazy"></iframe></div>`;
+    b.innerHTML = `<div class="rev ${fly ? "fly" : ""}">
+      ${left}
+      <div class="rev-side">
+        <div class="bigcode"><div><div class="l">${fly ? "Código del vuelo" : "Código del cliente"}</div><div class="mono">${t.code}</div></div><span class="pill review">Sin activar</span></div>
+        <ul class="checks">${checksOf(t).map(([ok, tx]) => `<li class="${ok ? "ok" : "no"}"><span>${ok ? OKI : "!"}</span><span>${tx}</span></li>`).join("")}</ul>
+        ${fly ? "" : `<a class="btn" href="${appLink(t)}" target="_blank" rel="noopener">${EYE} Abrir la app completa</a>`}
+      </div></div>
+      ${mode === "fix" ? `<div class="step"><h3>¿Qué hay que cambiar?</h3>
+        <label class="fld" style="font-weight:500"><span class="sr">Qué hay que cambiar</span><textarea id="r-fix" maxlength="4000" placeholder="Ej.: el hotel de Marrakech es el Riad Yasmine, no el Riad Kniza; la excursión al Atlas es el día 4…"></textarea></label>
+        ${ADD.err ? `<div class="warnbox"><span>⚠️</span><span>${esc(ADD.err)}</span></div>` : ""}
+        <div class="btns"><button type="button" class="btn" id="r-back">Cancelar</button><button type="button" class="btn primary" id="r-sendfix" disabled>Enviar corrección</button></div></div>`
+      : `<div class="send">
+        ${ADD.err ? `<div class="warnbox"><span>⚠️</span><span>${esc(ADD.err)}</span></div>` : ""}
+        ${miss.length ? `<div class="warnbox"><span>⚠️</span><span>Puedes dar el OK aunque falte algo: ${fly ? "se queda apuntado" : "en la app saldrá como <b>«Pendiente»</b>"} y lo podrás subir después.</span></div>` : ""}
+        <button type="button" class="btn ok-btn" id="r-ok">${OKI} Está bien, dar el OK</button>
+        <div class="btns"><button type="button" class="btn" id="r-fixbtn">Algo está mal</button><button type="button" class="btn" id="r-add">${UPI} ${miss.length ? "Subir lo que falta" : "Añadir archivos"}</button></div></div>`}`;
+    const q = s => b.querySelector(s);
+    if (mode === "fix") {
+      const ta = q("#r-fix"); ta.oninput = () => { q("#r-sendfix").disabled = !ta.value.trim(); };
+      q("#r-back").onclick = () => { ADD.err = ""; paint(); };
+      q("#r-sendfix").onclick = async () => {
+        if (ADD.busy) return; ADD.busy = true; q("#r-sendfix").disabled = true; q("#r-sendfix").textContent = "Enviando…";
+        try { await api({ action: "fix", code: t.code, notes: ta.value.trim() }); ADD.busy = false; ADD.err = ""; await loadRemote(); closeUpload(); toast("Corrección enviada"); }
+        catch (e) { ADD.busy = false; ADD.err = NET; const v = ta.value; paint("fix"); q("#r-fix").value = v; q("#r-sendfix").disabled = !v.trim(); }
+      };
+      return;
+    }
+    q("#r-fixbtn").onclick = () => { ADD.err = ""; paint("fix"); };
+    q("#r-add").onclick = () => openAdd(t.code);
+    q("#r-ok").onclick = async () => {
+      if (ADD.busy) return; ADD.busy = true; q("#r-ok").disabled = true; q("#r-ok").innerHTML = "Enviando…";
+      try {
+        await api({ action: "ok", code: t.code }); ADD.busy = false; ADD.err = ""; loadRemote().then(() => { if (!S.up) renderPanel(); });
+        b.innerHTML = `<div class="done"><span class="ok">${OKI}</span><h3>¡OK recibido!</h3>
+          <p>En menos de una hora ${fly ? "el vuelo pasa a tu lista" : `el código <b class="mono">${t.code}</b> empieza a funcionar y el viaje pasa a tu lista`}. Te avisará la tarjeta de arriba${fly ? "" : ", y desde ahí ya se lo podrás mandar por WhatsApp"}.</p>
+          <div class="btns"><button type="button" class="btn primary full" data-closeup>Volver al panel</button></div></div>`;
+      } catch (e) { ADD.busy = false; ADD.err = NET; paint(); }
+    };
+  };
+  ADD.err = ""; paint();
+}
+
+// ---------- 3) Añadir archivos o cambios a un viaje que ya existe ----------
+function openAdd(code) {
+  const t = find(code); if (!t || !UPL()) return;
+  Object.assign(ADD, { code, files: [], notes: "", id: null, sent: 0, busy: false, done: false, err: "" });
+  const miss = t.missing || [];
+  const b = modal("Añadir al viaje", "Añadir archivos o cambios", `${esc(t.buyer || t.client)} · <span class="mono">${t.code}</span>. ${t.type === "FLY" ? "" : "El cliente verá los cambios solo, sin hacer nada."}`);
+  const can = () => ADD.files.length || ADD.notes.trim();
+  const paint = () => {
+    if (ADD.done) return;
+    b.innerHTML = `${miss.length ? `<div class="need warn"><b>Falta en este viaje:</b><ul>${miss.map(m => `<li>${esc(m)}</li>`).join("")}</ul></div>` : ""}
+      <div class="step"><h3><i>1</i>Archivos nuevos <small>· opcional</small></h3>${dropZone(ADD)}</div>
+      <div class="step"><h3><i>2</i>¿Qué ha cambiado? <small>· opcional</small></h3>
+        <label class="fld" style="font-weight:500"><span class="sr">Qué ha cambiado</span><textarea id="a-notes" maxlength="4000" placeholder="Ej.: el vuelo de vuelta ahora sale a las 18:40; la recogida es a las 07:30 en el hotel…">${esc(ADD.notes)}</textarea></label></div>
+      ${ADD.err ? `<div class="warnbox"><span>⚠️</span><span>${esc(ADD.err)}</span></div>` : ""}
+      <div class="send"><button type="button" class="btn primary" id="a-send" ${can() ? "" : "disabled"}>${UPI} Enviar cambios</button>
+        <small>Se actualiza en menos de una hora. Si cambia algo importante, te llega para revisarlo otra vez.</small></div>`;
+    bindDrop(b, ADD, paint);
+    b.querySelector("#a-notes").oninput = e => { ADD.notes = e.target.value; b.querySelector("#a-send").disabled = !can(); };
+    b.querySelector("#a-send").onclick = async () => {
+      if (!can() || ADD.busy) return;
+      ADD.busy = true; ADD.err = "";
+      const total = ADD.files.length;
+      const step = i => { b.innerHTML = progressHTML("Enviando cambios…", total ? `${i < total ? `Archivo ${i + 1} de ${total}` : "Terminando"}. No cierres esta ventana.` : "Un momento…", total ? Math.round((i / total) * 100) : 60); };
+      step(ADD.sent);
+      try {
+        if (!ADD.id) ADD.id = (await api({ action: "change", code, notes: ADD.notes.trim() })).id;
+        await sendFiles(ADD, step);
+        ADD.done = true; ADD.busy = false;
+        loadRemote().then(() => { if (!S.up) renderPanel(); });
+        b.innerHTML = `<div class="done"><span class="ok">${OKI}</span><h3>¡Recibido!</h3><p>En menos de una hora el viaje se actualiza. Lo verás arriba, en «Subidos por ti».</p>
+          <div class="btns"><button type="button" class="btn primary full" data-closeup>Volver al panel</button></div></div>`;
+      } catch (e) { ADD.busy = false; ADD.err = NET; paint(); }
+    };
+  };
+  paint();
+}
+
+// ---------- Tarjetas de arriba: «Subidos por ti» ----------
+function pendingCards() {
+  if (!UPL()) return [];
+  const byCode = (type, code) => REMOTE.find(r => r.type === type && r.code === code);
+  const hidden = store.get("panel:hideMiss", {});
+  const cards = [];
+  REMOTE.filter(r => r.type === "new").sort((a, b) => String(b.at).localeCompare(String(a.at))).forEach(r => cards.push({ k: "wait", who: r.buyer, kind: r.kind, tx: `Creándose… · ${nArch(r.files || 0)} · enviado el ${hhmm(r.at)}` }));
+  all().filter(t => t.review).forEach(t => {
+    const who = t.buyer || t.client, kind = t.type;
+    if (byCode("ok", t.code)) cards.push({ k: "wait", who, kind, code: t.code, tx: `Activándose… · ${t.code} · en menos de una hora ${t.type === "FLY" ? "pasa a tu lista" : "el código funciona"}` });
+    else if (byCode("fix", t.code)) cards.push({ k: "wait", who, kind, code: t.code, tx: `Corrigiéndose… · ${t.code} · enviado el ${hhmm(byCode("fix", t.code).at)}` });
+    else if (byCode("change", t.code)) cards.push({ k: "wait", who, kind, code: t.code, tx: `Actualizándose… · ${t.code}` });
+    else cards.push({ k: "review", who, kind, code: t.code, miss: t.missing || [] });
+  });
+  REMOTE.filter(r => r.type === "change").forEach(r => { const t = find(r.code); if (t && !t.review) cards.push({ k: "wait", who: t.buyer || t.client, kind: t.type, code: t.code, tx: `Actualizándose… · ${t.code} · enviado el ${hhmm(r.at)}` }); });
+  all().filter(t => !t.review && (t.missing || []).length && hidden[t.code] !== t.missing.join("|") && !byCode("change", t.code))
+    .forEach(t => cards.push({ k: "miss", who: t.buyer || t.client, kind: t.type, code: t.code, miss: t.missing }));
+  return cards;
+}
+function cardHTML(c) {
+  const kind = c.kind === "FLY" ? "Solo vuelo" : "Viaje completo";
+  if (c.k === "wait") return `<div class="pcard"><span class="spin" aria-hidden="true"></span><div class="tx"><b>${esc(c.who)} · ${kind}</b><span>${esc(c.tx)}</span></div></div>`;
+  if (c.k === "review") return `<div class="pcard review"><span class="spin" aria-hidden="true">${EYE}</span>
+      <div class="tx"><b>${esc(c.who)} · ${kind}</b><span>Listo para revisar · código <span class="code">${c.code}</span> sin activar</span>
+        ${c.miss.length ? `<span class="miss">Falta: ${c.miss.map(esc).join(" · ")}</span>` : ""}</div>
+      <div class="acts"><button type="button" class="btn primary" data-rev="${c.code}">${EYE} Revisar y dar el OK</button></div></div>`;
+  return `<div class="pcard warn"><span class="spin" aria-hidden="true">!</span>
+      <div class="tx"><b>${esc(c.who)} · <span class="code">${c.code}</span></b><span class="miss">Falta: ${c.miss.map(esc).join(" · ")}</span>${c.kind === "FLY" ? "" : "<span>En la app sale como «Pendiente».</span>"}</div>
+      <div class="acts"><button type="button" class="btn primary" data-add="${c.code}">${UPI} Subir lo que falta</button><button type="button" class="btn" data-hidemiss="${c.code}" aria-label="Quitar aviso">${ic("x")}</button></div></div>`;
+}
+function addPending() {
+  if (S.mode === "fam") return;
+  const cards = pendingCards(); if (!cards.length) return;
+  const main = app.querySelector("main"); if (!main) return;
+  const box = document.createElement("section"); box.className = "pending"; box.setAttribute("aria-label", "Subidos por ti");
+  box.innerHTML = `<h2>Subidos por ti</h2>` + cards.map(cardHTML).join("");
+  main.prepend(box);
+  box.querySelectorAll("[data-rev]").forEach(s => s.onclick = () => openReview(s.dataset.rev));
+  box.querySelectorAll("[data-add]").forEach(s => s.onclick = () => openAdd(s.dataset.add));
+  box.querySelectorAll("[data-hidemiss]").forEach(s => s.onclick = () => { const t = find(s.dataset.hidemiss); const h = store.get("panel:hideMiss", {}); if (t) h[t.code] = (t.missing || []).join("|"); store.set("panel:hideMiss", h); renderPanel(); });
+}
+// En la ficha de cada viaje: lo que falta y el botón «Añadir archivos o cambios».
+function addToSheet(code) {
+  const t = find(code), inn = document.querySelector("#scrim .sheet .in"); if (!t || !inn || !UPL()) return;
+  const miss = t.missing || [];
+  const box = document.createElement("div"); box.className = "addbox";
+  box.innerHTML = `${miss.length ? `<div class="need warn"><b>Falta en este viaje:</b><ul>${miss.map(m => `<li>${esc(m)}</li>`).join("")}</ul></div>` : ""}
+    <button type="button" class="btn full ${miss.length ? "primary" : ""}" data-add="${code}">${UPI} ${miss.length ? "Subir lo que falta" : "Añadir archivos o cambios"}</button>`;
+  const notes = inn.querySelector(".note"); inn.insertBefore(box, notes || null);
+  box.querySelector("[data-add]").onclick = () => openAdd(code);
+}
+
 // ---------- Cargar y descifrar ----------
 const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 const hex = s => new Uint8Array(s.match(/../g).map(h => parseInt(h, 16)));
@@ -870,10 +1293,12 @@ async function load() {
 async function refresh(first) {
   try {
     const d = await load();
-    const sig = JSON.stringify(d.trips);
-    if (!first && sig === JSON.stringify(DATA.trips)) return;
-    DATA = d;
-    if (!seen) { seen = d.trips.map(t => t.code); store.set("panel:seen", seen); } // primera vez: nada sale como nuevo
+    const sig = JSON.stringify(d.trips) + JSON.stringify(d.upload);
+    // Lo que está subiendo el organizador (carpeta de Drive): se pide aparte y no frena la carga del panel.
+    const remote = () => { if (d.upload) loadRemote().then(() => { if (!S.open && !S.up) refreshList(); }); };
+    if (!first && sig === JSON.stringify(DATA.trips) + JSON.stringify(DATA.upload)) { remote(); return; }
+    DATA = d; remote();
+    if (!seen) { seen = d.trips.filter(t => !t.review).map(t => t.code); store.set("panel:seen", seen); } // primera vez: nada sale como nuevo
     if (S.open && find(S.open)) sheet(S.open); else { if (S.open) closeSheet(); else renderPanel(); }
   } catch (e) {
     if (e.gone || e.name === "OperationError") { exit(); return; } // código del panel cambiado o retirado
@@ -886,6 +1311,8 @@ refresh(true);
 // Al volver a la app y cada 10 minutos, mira si hay viajes nuevos.
 document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") { refresh(false); if (!S.open) renderPanel(); } });
 setInterval(() => refresh(false), 600000);
+// Mientras haya algo subiéndose o por activar, se mira cada 2 minutos si ya está listo.
+setInterval(() => { if (document.visibilityState === "visible" && REMOTE.length) refresh(false); }, 120000);
 // Actualización de la app (igual que en las otras páginas).
 if ("serviceWorker" in navigator) {
   const had = !!navigator.serviceWorker.controller; let rl = false;

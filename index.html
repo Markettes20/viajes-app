@@ -194,6 +194,8 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; margin: 0; text
 /* Preview banner */
 .sim-banner { position: fixed; left: 0; right: 0; top: 0; z-index: 30; display: flex; justify-content: center; padding-top: env(safe-area-inset-top, 0px); pointer-events: none; }
 .sim-banner div { pointer-events: auto; margin-top: 8px; background: var(--accent); color: #1A1204; font-weight: 700; font-size: 14px; border-radius: 99px; padding: 8px 8px 8px 14px; display: flex; gap: 10px; align-items: center; box-shadow: var(--shadow); }
+.review-banner div { background: #14898F; color: #fff; padding: 8px 14px; }
+#simBanner:not(:empty) + .review-banner { display: none; }
 .sim-banner button { border: 0; background: rgba(0,0,0,.14); border-radius: 99px; padding: 6px 12px; font-weight: 700; cursor: pointer; }
 
 /* ---------- Itinerary ---------- */
@@ -871,6 +873,8 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
     // Entrada desde la web de la agencia: ?codigo=ANI-XXXXX abre el viaje directamente.
     let urlCode = null;
     try { urlCode = new URLSearchParams(location.search).get("codigo"); } catch (e) {}
+    // ?revisar=1: el organizador abre desde su panel un viaje que todavía no tiene su OK (solo en un móvil u ordenador que ya abrió el panel).
+    try { S.preview = new URLSearchParams(location.search).get("revisar") === "1" && !!store.get("pk", null); } catch (e) { S.preview = false; }
     if (urlCode) {
       try { history.replaceState(null, "", location.pathname); } catch (e) {}
       if (await openTrip(urlCode, false)) return;
@@ -881,10 +885,11 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
     if (urlCode) {
       const inp = document.getElementById("code"), err = document.getElementById("loginErr");
       if (inp) inp.value = normCode(urlCode);
-      if (err) err.textContent = L("No encontramos ese código. Revísalo o pregúntale a tu agencia.");
+      if (err) err.textContent = notFoundMsg();
     }
   }
 
+  const notFoundMsg = () => S.notReady ? L("Tu viaje todavía se está preparando. Tu agencia te avisará en cuanto esté listo.") : L("No encontramos ese código. Revísalo o pregúntale a tu agencia.");
   function normCode(v) {
     let s = String(v || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
     if (s.length > 3) s = s.slice(0, 3) + "-" + s.slice(3, 8);
@@ -892,22 +897,26 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
   }
 
   async function openTrip(code, silent) {
-    code = normCode(code);
+    code = normCode(code); S.notReady = false;
     if (!/^[A-Z0-9]{3}-[A-Z0-9]{5}$/.test(code)) return false;
     // Los viajes FLY (solo vuelos) ya no tienen app para el cliente: solo se siguen desde el panel del organizador.
     if (code.startsWith("FLY-")) { if (silent) store.del("code"); return false; }
     if (!isDemo(code) && store.get("gone", []).includes(code)) { renderExpired(); return true; }
     try {
       const trip = await getJSON(`data/trips/${code}.json`);
+      // Viaje subido desde el panel que el organizador aún no ha revisado: el código todavía no funciona para el cliente.
+      if (trip.review && !S.preview) { S.notReady = true; if (silent) store.del("code"); return false; }
+      const keep = !(trip.review && S.preview); // la vista previa no cambia el código guardado en este dispositivo
       const lockAt = isDemo(code) || trip.neverExpires ? Infinity : accessEndMs(trip);
       if (Date.now() >= lockAt) { purgeTrip(code, trip); renderExpired(); return true; }
       S.code = code; S.lockAt = lockAt;
-      if (trip.page) { S.tripBase = S.trip = trip; S.map = null; store.set("code", code); renderPage(); return true; }
+      if (trip.page) { S.tripBase = S.trip = trip; S.map = null; if (keep) store.set("code", code); renderPage(); return true; }
       // Un viaje puede ir solo en algunos idiomas (p. ej. solo español): se usa ese idioma sin cambiar la preferencia guardada.
       if (trip.langs && trip.langs.length && !trip.langs.includes(LANG)) { LANG = trip.langs[0]; document.documentElement.lang = LANG; S.agency = localized(S.agencyBase); }
       S.tripBase = trip; S.trip = localized(trip);
       try { S.map = trip.map ? await getJSON(`data/maps/${trip.map}.json`) : null; } catch (e) { S.map = null; }
-      store.set("code", code);
+      if (keep) store.set("code", code);
+      S.isPreview = !keep;
       renderApp();
       return true;
     } catch (e) {
@@ -1030,7 +1039,7 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
       if (!/^[A-Z0-9]{3}-[A-Z0-9]{5}$/.test(v)) { err.textContent = L("El código tiene 3 letras y 5 caracteres, por ejemplo {c}.", { c: "AAA-XXXXX" }); return; }
       $("#go").disabled = true; $("#go").innerHTML = L("Abriendo tu viaje…");
       const ok = await openTrip(v, false);
-      if (!ok) { $("#go").disabled = false; $("#go").innerHTML = `${L("Ver mi viaje")} ${ic("chev")}`; err.textContent = L("No encontramos ese código. Revísalo o pregúntale a tu agencia."); }
+      if (!ok) { $("#go").disabled = false; $("#go").innerHTML = `${L("Ver mi viaje")} ${ic("chev")}`; err.textContent = notFoundMsg(); }
     });
     bindInstall();
   }
@@ -1106,6 +1115,7 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
     document.getElementById("app").innerHTML = `
       <main id="view"></main>
       <div id="simBanner"></div>
+      ${S.isPreview ? `<div class="sim-banner review-banner"><div>${L("Revisión · el cliente todavía no puede entrar")}</div></div>` : ""}
       <nav class="nav" aria-label="${L("Secciones")}"><div class="in" style="grid-template-columns:repeat(${TABS().length},1fr)">
         ${TABS().map((t) => `<button type="button" data-tab="${t.id}">${ic(t.icon)}<span>${t.label}</span></button>`).join("")}
       </div></nav>`;
