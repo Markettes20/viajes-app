@@ -1464,10 +1464,11 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
           <span class="muted" style="font-size:13.5px">${L("Se guardan solo en este móvil.")} <span class="saved" id="savedMark" hidden>· ${ic("check", "", "width:15px;height:15px;vertical-align:-3px")} ${L("Guardado")}</span></span>
         </div>
 
-        <div class="section-title"><h2>${L("Frases en {l}", { l: langName() })}</h2><span class="muted" style="font-size:14px">${L("Toca {i} para oírla", { i: ic("speaker", "", "width:16px;height:16px;vertical-align:-3px") })}</span></div>
+        ${(t.phrases || []).length ? `<div class="section-title"><h2>${L("Frases en {l}", { l: langName() })}</h2><span class="muted" style="font-size:14px">${L("Toca {i} para oírla", { i: ic("speaker", "", "width:16px;height:16px;vertical-align:-3px") })}</span></div>
         <div class="list">${(t.phrases || []).map((p, k) => `
           <div class="phrase"><span class="pt"><small>${esc(p.es)}</small><b>${esc(p.local || p.tr)}</b><i>${esc(p.say)}</i></span><button class="speak" type="button" data-speak="${k}" aria-label="${L("Escuchar {p}", { p: esc(p.local || p.tr) })}">${ic("speaker")}</button></div>`).join("")}
         </div>
+        ` : ""}
 
         <div class="section-title"><h2>${L("Emergencias")}</h2></div>
         <div class="stack">
