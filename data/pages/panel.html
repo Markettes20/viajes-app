@@ -1066,7 +1066,7 @@ const resetUp = () => Object.assign(UP, { buyer: "", phone: "", start: "", end: 
 // ---------- 1) Subir un viaje nuevo ----------
 const upReady = () => UP.buyer.trim() && UP.files.length && !(UP.start && UP.end && UP.end < UP.start);
 const sendTx = () => UP.start && UP.end && UP.end < UP.start ? "La vuelta no puede ser antes que la salida."
-  : upReady() ? `Se enviarán ${nArch(UP.files.length)}. En menos de una hora te llega para revisarlo.` : "Falta el nombre del comprador y al menos un archivo.";
+  : upReady() ? `Se enviarán ${nArch(UP.files.length)}. Te llega para revisarlo en menos de una hora (de 9:00 a 21:00).` : "Falta el nombre del comprador y al menos un archivo.";
 function upForm() {
   return `<div class="step"><h3><i>1</i>¿Qué tipo de viaje es?</h3>
       <div class="kinds">
@@ -1096,7 +1096,7 @@ function upForm() {
 function upDone() {
   return `<div class="done"><span class="ok">${OKI}</span><h3>¡Recibido!</h3>
     <p>El viaje de <b>${esc(UP.buyer)}</b> ya está en camino. Mientras, puedes seguir usando el panel.</p>
-    <ol><li>Se leen los billetes y bonos y se monta ${UP.kind === "FLY" ? "la ficha del vuelo" : "la app del viaje"}.</li><li>En menos de una hora te aparece arriba como <b>«Listo para revisar»</b>.</li><li>Lo miras y das el OK. Hasta entonces el código no funciona y el cliente no ve nada.</li></ol>
+    <ol><li>Se leen los billetes y bonos y se monta ${UP.kind === "FLY" ? "la ficha del vuelo" : "la app del viaje"}.</li><li>En menos de una hora te aparece arriba como <b>«Listo para revisar»</b>. Se revisa de 9:00 a 21:00: lo que subas de noche estará a primera hora.</li><li>Lo miras y das el OK. Hasta entonces el código no funciona y el cliente no ve nada.</li></ol>
     <div class="btns"><button type="button" class="btn" id="u-again">${ic("plus")} Subir otro viaje</button><button type="button" class="btn primary" data-closeup>Volver al panel</button></div></div>`;
 }
 function openUpload() { if (!UPL()) return; modal("Subir viaje nuevo", "Subir un viaje nuevo", "Mete los datos y los archivos. El viaje se crea solo y te llega para revisarlo antes de mandárselo al cliente."); paintUp(); }
@@ -1202,7 +1202,7 @@ function openAdd(code) {
         <label class="fld" style="font-weight:500"><span class="sr">Qué ha cambiado</span><textarea id="a-notes" maxlength="4000" placeholder="Ej.: el vuelo de vuelta ahora sale a las 18:40; la recogida es a las 07:30 en el hotel…">${esc(ADD.notes)}</textarea></label></div>
       ${ADD.err ? `<div class="warnbox"><span>⚠️</span><span>${esc(ADD.err)}</span></div>` : ""}
       <div class="send"><button type="button" class="btn primary" id="a-send" ${can() ? "" : "disabled"}>${UPI} Enviar cambios</button>
-        <small>Se actualiza en menos de una hora. Si cambia algo importante, te llega para revisarlo otra vez.</small></div>`;
+        <small>Se actualiza en menos de una hora (de 9:00 a 21:00). Si cambia algo importante, te llega para revisarlo otra vez.</small></div>`;
     bindDrop(b, ADD, paint);
     b.querySelector("#a-notes").oninput = e => { ADD.notes = e.target.value; b.querySelector("#a-send").disabled = !can(); };
     b.querySelector("#a-send").onclick = async () => {
