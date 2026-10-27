@@ -91,7 +91,7 @@
     if (REDUCE) return;
     var conn = navigator.connection || {};
     if (conn.saveData) return;
-    var big = (window.innerWidth * (window.devicePixelRatio || 1)) > 1500;
+    var big = (window.innerWidth * (window.devicePixelRatio || 1)) > 1000;
     function mk() {
       var v = d.createElement("video");
       v.muted = true; v.defaultMuted = true; v.playsInline = true; v.setAttribute("playsinline", ""); v.setAttribute("muted", "");
@@ -152,51 +152,85 @@
     fetch(el.getAttribute("data-land")).then(function (r) { return r.json(); }).then(function (topo) {
       land = d3.feature(topo, topo.objects.land); draw();
     }).catch(function () {});
+    var seed = 7, rnd = function () { return (seed = seed * 16807 % 2147483647) / 2147483647; };
+    var STARS = Array.from({ length: 170 }, function () { return [rnd(), rnd(), rnd() * 1.1 + .35, rnd() * 6.3]; });
+    var PLANE = new Path2D("M-12-1.6 3.5-1.8 9-9.2h3.3L8.9-1.9 14.6-2c2 0 3.4.8 3.4 2s-1.4 2-3.4 2L8.9 1.9l3.4 7.3H9L3.5 1.8-12 1.6l-1.5 3.6h-2.6L-15 0l-1.1-5.2h2.6Z");
+    var appear = 0, R = 0, flyT = 0;
     function resize() {
       var r = canvas.getBoundingClientRect(); dpr = Math.min(2, window.devicePixelRatio || 1);
       size = r.width; canvas.width = size * dpr; canvas.height = size * dpr;
-      proj.translate([size / 2, size / 2]).scale(size / 2 - 6); draw();
+      R = size * 0.4; proj.translate([size / 2, size / 2]).scale(R); draw();
     }
     function visible(ll) { return d3.geoDistance(ll, [-rot[0], -rot[1]]) < Math.PI / 2 - 0.05; }
     function on(p) { return filter === "all" || p.tags.indexOf(filter) >= 0; }
+    function label(txt, x, y, color, font, align) {
+      ctx.font = font; ctx.textAlign = align || "left"; ctx.lineJoin = "round";
+      ctx.lineWidth = 4; ctx.strokeStyle = "rgba(2,8,20,.8)"; ctx.strokeText(txt, x, y);
+      ctx.fillStyle = color; ctx.fillText(txt, x, y); ctx.textAlign = "left";
+    }
     function draw() {
       if (!size) return;
-      var now = performance.now();
+      var now = performance.now(), tm = now / 1e3, c = size / 2, g;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, size, size);
       proj.rotate(rot);
+      // estrellas que titilan
+      ctx.fillStyle = "#fff";
+      STARS.forEach(function (st) { ctx.globalAlpha = REDUCE ? .6 : .25 + .6 * Math.abs(Math.sin(tm * .7 + st[3])); ctx.beginPath(); ctx.arc(st[0] * size, st[1] * size, st[2] * .7, 0, 6.3); ctx.fill(); });
+      ctx.globalAlpha = 1;
+      // atmósfera
+      g = ctx.createRadialGradient(c, c, R * .96, c, c, R * 1.22);
+      g.addColorStop(0, "rgba(110,190,255,.5)"); g.addColorStop(1, "rgba(110,190,255,0)");
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(c, c, R * 1.22, 0, 6.3); ctx.fill();
       // océano
-      var g = ctx.createRadialGradient(size * .38, size * .32, size * .05, size / 2, size / 2, size / 2);
-      g.addColorStop(0, "#1E5479"); g.addColorStop(1, "#0B2E4A");
+      g = ctx.createRadialGradient(c - R * .35, c - R * .4, R * .05, c, c, R);
+      g.addColorStop(0, "#3a93d6"); g.addColorStop(.7, "#14508f"); g.addColorStop(1, "#0a2a55");
       ctx.beginPath(); path(sphere); ctx.fillStyle = g; ctx.fill();
-      ctx.beginPath(); path(grat); ctx.strokeStyle = "rgba(255,255,255,.07)"; ctx.lineWidth = 1; ctx.stroke();
-      if (land) { ctx.beginPath(); path(land); ctx.fillStyle = "#E8DCC8"; ctx.fill(); ctx.strokeStyle = "rgba(10,42,67,.35)"; ctx.lineWidth = .6; ctx.stroke(); }
-      // borde y brillo
-      ctx.beginPath(); path(sphere); ctx.strokeStyle = "rgba(230,194,126,.55)"; ctx.lineWidth = 1.2; ctx.stroke();
-      // vuelo desde Valencia hasta el destino elegido
+      ctx.beginPath(); path(grat); ctx.strokeStyle = "rgba(255,255,255,.09)"; ctx.lineWidth = .6; ctx.stroke();
+      if (land) { ctx.beginPath(); path(land); ctx.fillStyle = "#e9dcbd"; ctx.fill(); ctx.strokeStyle = "rgba(110,90,60,.45)"; ctx.lineWidth = .5; ctx.stroke(); }
+      // luz y sombra (volumen)
+      g = ctx.createRadialGradient(c - R * .4, c - R * .45, R * .1, c, c, R * 1.02);
+      g.addColorStop(0, "rgba(255,255,255,.14)"); g.addColorStop(.55, "rgba(0,0,0,0)"); g.addColorStop(1, "rgba(0,8,30,.55)");
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(c, c, R, 0, 6.3); ctx.fill();
+      // ruta desde Valencia hasta el destino elegido, con el avión volando
       var sel = active || hover;
       if (sel) {
-        ctx.beginPath(); path({ type: "LineString", coordinates: [VLC, [sel.ll[1], sel.ll[0]]] });
-        ctx.setLineDash([3, 5]); ctx.strokeStyle = "rgba(200,105,74,.95)"; ctx.lineWidth = 1.8; ctx.stroke(); ctx.setLineDash([]);
-      }
-      if (visible(VLC)) { var v = proj(VLC); ctx.beginPath(); ctx.arc(v[0], v[1], 3.2, 0, 7); ctx.fillStyle = "#fff"; ctx.fill(); ctx.font = "700 11px Figtree, sans-serif"; ctx.fillStyle = "rgba(255,255,255,.9)"; ctx.fillText("Valencia", v[0] + 6, v[1] + 4); }
-      // puntos de destino
-      var pulse = (Math.sin((now - t0) / 380) + 1) / 2;
-      data.forEach(function (p) {
+        var to = [sel.ll[1], sel.ll[0]], ip = d3.geoInterpolate(VLC, to);
+        ctx.beginPath(); path({ type: "LineString", coordinates: [VLC, to] });
+        ctx.setLineDash([5, 4]); ctx.strokeStyle = "#9fdcff"; ctx.lineWidth = 2; ctx.stroke(); ctx.setLineDash([]);
+        flyT = REDUCE ? 1 : Math.min(1, flyT + 0.006);
+        var pos = ip(flyT);
+        ctx.beginPath(); path({ type: "LineString", coordinates: [VLC, pos] }); ctx.strokeStyle = "#f4b740"; ctx.lineWidth = 3; ctx.stroke();
+        if (visible(pos)) {
+          var a1 = proj(ip(Math.max(0, flyT - .01))), a2 = proj(ip(Math.min(1, flyT + .01))), xy = proj(pos);
+          ctx.save(); ctx.translate(xy[0], xy[1]); ctx.rotate(Math.atan2(a2[1] - a1[1], a2[0] - a1[0])); ctx.shadowColor = "rgba(0,0,0,.6)"; ctx.shadowBlur = 6; ctx.fillStyle = "#fff"; ctx.fill(PLANE); ctx.restore();
+        }
+      } else flyT = 0;
+      if (visible(VLC)) { var v = proj(VLC); ctx.beginPath(); ctx.arc(v[0], v[1], 5, 0, 7); ctx.fillStyle = "#9fdcff"; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = "#fff"; ctx.stroke(); label("VALENCIA", v[0], v[1] - 12, "#fff", "800 11px Figtree, sans-serif", "center"); }
+      // puntos de destino: aparecen uno a uno y laten
+      var labels = [];
+      if (appear) data.forEach(function (p, i) {
+        var k = REDUCE ? 1 : Math.max(0, Math.min(1, (now - appear - i * 110) / 450)); if (!k) return;
         var ll = [p.ll[1], p.ll[0]]; if (!visible(ll)) return;
         var xy = proj(ll), ok = on(p), isA = p === active, isH = p === hover || p.slug === lit;
-        if (!ok) { ctx.beginPath(); ctx.arc(xy[0], xy[1], 3, 0, 7); ctx.fillStyle = "rgba(169,186,203,.45)"; ctx.fill(); return; }
-        var hi = filter !== "all";
-        var r = isA ? 7 : (isH ? 6.5 : 5);
-        ctx.beginPath(); ctx.arc(xy[0], xy[1], r + 5 + pulse * (hi || isA ? 7 : 4), 0, 7);
-        ctx.fillStyle = (isA || hi) ? "rgba(200,105,74," + (0.35 - pulse * 0.25) + ")" : "rgba(230,194,126," + (0.3 - pulse * 0.2) + ")"; ctx.fill();
-        ctx.beginPath(); ctx.arc(xy[0], xy[1], r, 0, 7);
-        ctx.fillStyle = (isA || hi) ? "#C8694A" : "#E6C27E"; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = "#fff"; ctx.stroke();
-        if (isA || isH || hi) {
-          ctx.font = "700 " + (isA ? 13 : 12) + "px Figtree, sans-serif";
-          var w = ctx.measureText(p.name).width + 14, x = xy[0] + 10, y = xy[1] - 22;
-          if (x + w > size) x = xy[0] - w - 10;
-          ctx.fillStyle = isA ? "#C8694A" : "rgba(6,26,43,.82)"; roundRect(x, y, w, 20, 6); ctx.fill();
-          ctx.fillStyle = "#fff"; ctx.fillText(p.name, x + 7, y + 14);
+        if (!ok) { ctx.beginPath(); ctx.arc(xy[0], xy[1], 3 * k, 0, 7); ctx.fillStyle = "rgba(200,210,220,.5)"; ctx.fill(); return; }
+        var pulse = (Math.sin(now / 380 + i) + 1) / 2, pop = k < 1 ? 1 + Math.sin(k * Math.PI) * .6 : 1;
+        var r = (isA ? 7.5 : isH ? 7 : 5.5) * k * pop;
+        ctx.beginPath(); ctx.arc(xy[0], xy[1], r + 4 + pulse * 9, 0, 7);
+        ctx.fillStyle = "rgba(244,183,64," + (0.45 - pulse * 0.4) * k + ")"; ctx.fill();
+        ctx.beginPath(); ctx.arc(xy[0], xy[1], r, 0, 7); ctx.fillStyle = isA ? "#C8694A" : "#f4b740"; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = "#fff"; ctx.stroke();
+        labels.push({ p: p, x: xy[0], y: xy[1], r: r, k: k, big: isA || isH });
+      });
+      // nombres: a la derecha, a la izquierda, arriba o abajo, sin pisarse ni salirse
+      var boxes = [];
+      labels.sort(function (a, b) { return b.big - a.big; }).forEach(function (L) {
+        var font = (L.big ? "800 13px" : "700 11.5px") + " Figtree, sans-serif"; ctx.font = font;
+        var w = ctx.measureText(L.p.name).width, h = 13, gap = L.r + 6;
+        var tries = [[L.x + gap, L.y + 4, "left"], [L.x - gap, L.y + 4, "right"], [L.x, L.y - gap - 2, "center"], [L.x, L.y + gap + 11, "center"]];
+        for (var i = 0; i < tries.length; i++) {
+          var t = tries[i], x0 = t[2] === "left" ? t[0] : t[2] === "right" ? t[0] - w : t[0] - w / 2, b = [x0 - 2, t[1] - h + 2, w + 4, h + 2];
+          if (b[0] < 2 || b[0] + b[2] > size - 2 || b[1] < 2 || b[1] + b[3] > size - 2) continue;
+          if (boxes.some(function (o) { return b[0] < o[0] + o[2] && o[0] < b[0] + b[2] && b[1] < o[1] + o[3] && o[1] < b[1] + b[3]; })) continue;
+          boxes.push(b); ctx.globalAlpha = L.k; label(L.p.name, t[0], t[1], L.big ? "#ffd27a" : "#fff", font, t[2]); ctx.globalAlpha = 1; break;
         }
       });
     }
@@ -212,7 +246,7 @@
       anim = function (now) { var k = Math.min(1, (now - start) / dur), e2 = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; rot = [from[0] + (to[0] - from[0]) * e2, from[1] + (to[1] - from[1]) * e2, 0]; if (k >= 1) anim = null; };
     }
     function show(p) {
-      active = p; idle = performance.now();
+      active = p; idle = performance.now(); flyT = 0;
       if (!p) { card.hidden = true; intro.hidden = false; return; }
       rotateTo(p);
       var facts = p.facts.map(function (f) { return "<div><small>" + esc(f[0]) + "</small><b>" + esc(f[1]) + "</b></div>"; }).join("");
@@ -254,7 +288,8 @@
     $$("[data-pick]", el).forEach(function (b) { b.addEventListener("click", function () { show(data.filter(function (p) { return p.slug === b.getAttribute("data-pick"); })[0]); }); });
     // bucle de dibujo (solo cuando el globo está en pantalla)
     var visibleOnScreen = true;
-    if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { visibleOnScreen = es[0].isIntersecting; }).observe(el);
+    if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { visibleOnScreen = es[0].isIntersecting; if (visibleOnScreen && !appear) appear = performance.now() + 300; }).observe(el);
+    else appear = 1;
     function loop(now) {
       if (visibleOnScreen && !d.hidden) {
         if (anim) anim(now);
