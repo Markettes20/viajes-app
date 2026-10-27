@@ -346,7 +346,7 @@ h3{font-size:20px}
 .hero{background:var(--deep);min-height:380px;display:flex;flex-direction:column;justify-content:flex-end}
 .hero-photo{position:absolute;inset:0;background-size:cover;background-position:center 55%}
 .hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,30,48,.6),rgba(10,30,48,.1) 35%,rgba(10,30,48,.35) 62%,rgba(10,30,48,.95))}
-.hero-top{position:absolute;left:0;right:0;top:0;padding:max(16px,env(safe-area-inset-top,0px)) 20px 0;z-index:1}
+.hero-top{position:absolute;left:0;right:0;top:0;padding:calc(env(safe-area-inset-top,0px) + 16px) 20px 0;z-index:1}
 .hlogo{display:inline-flex;color:#fff}
 .hlogo svg{height:42px;width:auto}
 .hero-body{position:relative;background:none;padding:96px 20px 56px}

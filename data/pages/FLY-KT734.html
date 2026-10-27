@@ -83,7 +83,7 @@ p { margin: 0; }
 .hero { position: relative; color: #fff; background: var(--brand-deep); overflow: hidden; }
 .hero-photo { position: absolute; inset: 0; background-size: cover; background-position: 70% 45%; }
 .hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,30,48,.7), rgba(10,30,48,.15) 38%, rgba(10,30,48,.45) 62%, rgba(10,30,48,.95)); }
-.topbar { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: max(14px, env(safe-area-inset-top, 0px)); }
+.topbar { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: calc(env(safe-area-inset-top, 0px) + 14px); }
 .topbar .logo { color: #fff; display: block; }
 .topbar .logo svg { height: 40px; width: auto; display: block; }
 .topbar .icon-btn { background: rgba(255,255,255,.18); color: #fff; box-shadow: none; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
@@ -338,7 +338,7 @@ p { margin: 0; }
 
   <!-- VUELOS -->
   <section class="view" id="v-vuelos" data-tab="vuelos" hidden>
-    <div class="wrap stack" style="padding-top:max(14px, env(safe-area-inset-top, 0px))">
+    <div class="wrap stack" style="padding-top:calc(env(safe-area-inset-top, 0px) + 14px)">
       <div class="sec-title" style="margin-top:6px"><span class="badge"><svg class="ic"><use href="#i-ticket"/></svg></span><h2>Tus billetes</h2></div>
       <div id="passes" class="stack"></div>
 
@@ -368,7 +368,7 @@ p { margin: 0; }
 
   <!-- MAPA -->
   <section class="view" id="v-mapa" data-tab="mapa" hidden>
-    <div class="wrap stack" style="padding-top:max(14px, env(safe-area-inset-top, 0px))">
+    <div class="wrap stack" style="padding-top:calc(env(safe-area-inset-top, 0px) + 14px)">
       <div class="sec-title" style="margin-top:6px"><span class="badge"><svg class="ic"><use href="#i-globe"/></svg></span><h2>Tu ruta</h2></div>
       <div class="mapbox" id="mapbox">
         <canvas id="globe" role="img" aria-label="Globo terráqueo con la ruta Madrid – Caracas"></canvas>
@@ -432,7 +432,7 @@ p { margin: 0; }
 
   <!-- PREPARAR -->
   <section class="view" id="v-preparar" data-tab="preparar" hidden>
-    <div class="wrap stack" style="padding-top:max(14px, env(safe-area-inset-top, 0px))">
+    <div class="wrap stack" style="padding-top:calc(env(safe-area-inset-top, 0px) + 14px)">
       <div class="sec-title" style="margin-top:6px"><span class="badge"><svg class="ic"><use href="#i-check"/></svg></span><h2>Antes de volar</h2></div>
       <div class="card">
         <div class="card-head" style="margin-bottom:4px"><span class="eyebrow" id="chk-count">0 de 7 hecho</span><span class="muted" style="font-size:13px">Se guarda en tu móvil</span></div>
@@ -470,7 +470,7 @@ p { margin: 0; }
 
   <!-- AGENCIA -->
   <section class="view" id="v-agencia" data-tab="agencia" hidden>
-    <div class="wrap stack" style="padding-top:max(14px, env(safe-area-inset-top, 0px))">
+    <div class="wrap stack" style="padding-top:calc(env(safe-area-inset-top, 0px) + 14px)">
       <div class="sec-title" style="margin-top:6px"><span class="badge"><svg class="ic"><use href="#i-phone"/></svg></span><h2>Tu agencia</h2></div>
       <div class="card">
         <div class="agent">
