@@ -310,7 +310,7 @@ function info(t) {
   if (T < t.start) { const n = days(T, t.start); st = "prox"; label = n === 1 ? "Sale mañana" : `Sale en ${n} días`; }
   else if (T <= t.end) { const n = days(t.start, T) + 1; st = "curso"; label = n === 1 && t.start === T ? "Sale hoy" : `En viaje · día ${n} de ${len}`; pct = Math.round(n / len * 100); }
   else { st = "fin"; label = "Terminado"; pct = 100; }
-  const expires = t.demo ? null : addDays(t.last || t.end, 1); // el código se bloquea a las 00:00 del día siguiente a la vuelta
+  const expires = t.forever ? null : addDays(t.last || t.end, 1); // el código se bloquea a las 00:00 del día siguiente a la vuelta
   const expIn = expires ? days(T, expires) : null;
   return { st, label, pct, len, nights: len - 1, expires, expIn, isNew: !!seen && !seen.includes(t.code) };
 }
@@ -358,7 +358,7 @@ function list() {
     return true;
   });
   const k = S.sort.k, dir = S.sort.dir;
-  const val = t => k === "exp" ? (t.demo ? "9999" : addDays(t.last || t.end, 1)) : k === "status" ? ({ curso: 0, prox: 1, fin: 2 }[info(t).st] + t.start) : String(t[k] || "");
+  const val = t => k === "exp" ? (t.forever ? "9999" : addDays(t.last || t.end, 1)) : k === "status" ? ({ curso: 0, prox: 1, fin: 2 }[info(t).st] + t.start) : String(t[k] || "");
   out.sort((a, b) => val(a).localeCompare(val(b), "es") * dir || a.code.localeCompare(b.code));
   return out;
 }
@@ -489,7 +489,7 @@ function sheet(code) {
         ${t.type === "FLY" ? `<div><dt>Aerolínea</dt><dd>${esc(t.airline) || `<span class="muted">Por asignar</span>`}</dd></div>
         <div><dt>Tipo de vuelo</dt><dd>${esc(t.tripKind) || `<span class="muted">Por asignar</span>`}</dd></div>` : ""}
         <div><dt>Estado</dt><dd><span class="pill ${i.st}">${ST[i.st]}</span></dd></div>
-        ${hasApp(t) ? `<div><dt>El código caduca</dt><dd class="num">${i.expires ? `${fd(i.expires)} a las 00:00<small>${i.expIn > 0 ? `dentro de ${i.expIn} ${i.expIn === 1 ? "día" : "días"}` : "ya no funciona"}</small>` : "Nunca<small>es el viaje de demostración</small>"}</dd></div>
+        ${hasApp(t) ? `<div><dt>El código caduca</dt><dd class="num">${i.expires ? `${fd(i.expires)} a las 00:00<small>${i.expIn > 0 ? `dentro de ${i.expIn} ${i.expIn === 1 ? "día" : "días"}` : "ya no funciona"}</small>` : `Nunca<small>${t.demo ? "es el viaje de demostración" : "acceso permanente"}</small>`}</dd></div>
         <div><dt>Enlace directo</dt><dd style="font-size:13px;font-weight:500">${esc(link(t).replace(/^https?:\/\//, ""))}</dd></div>` : `<div><dt>App</dt><dd>No tiene<small>solo seguimiento en este panel</small></dd></div>`}
       </dl>
       ${tl}
