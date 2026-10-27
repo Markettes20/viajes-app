@@ -252,6 +252,110 @@ html.lock, html.lock body { overflow: hidden; }
 .stat, .next, .chip, .seg button, .tile, .mrow, .btn, .mini { touch-action: manipulation; }
 a.mini { text-decoration: none; }
 @media (hover: none) { .tile:hover { transform: none; box-shadow: none; } tbody tr:hover, .mrow:hover { background: none; } }
+
+/* ---------- Nuestros viajes (Pedro y Cristina) ---------- */
+.mode { display: grid; grid-template-columns: 1fr 1fr; width: 100%; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); border-radius: 14px; padding: 4px; gap: 4px; }
+.mode button { border: 0; background: none; color: rgba(255,255,255,.75); height: 42px; padding: 0 10px; justify-content: center; min-width: 0; border-radius: 10px; font-weight: 600; font-size: 15px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+.mode button[aria-pressed="true"] { background: #fff; color: var(--brand-deep); }
+.mode .ic { width: 18px; height: 18px; }
+.who-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.who-tab { border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.05); color: #fff; border-radius: 16px; padding: 12px 10px; cursor: pointer; display: grid; justify-items: center; gap: 6px; min-width: 0; }
+.who-tab[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--brand-deep); }
+.who-tab .av { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font: 400 19px var(--font-display); background: rgba(255,255,255,.12); }
+.who-tab[aria-pressed="true"] .av { background: rgba(10,30,48,.14); }
+.who-tab .av.two { width: 58px; letter-spacing: -.02em; border-radius: 22px; }
+.who-tab b { font-size: 15px; }
+.who-tab small { font-size: 12.5px; opacity: .8; }
+.fam-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.fam-stats div { border-top: 1px solid rgba(255,255,255,.16); padding-top: 10px; }
+.fam-stats b { display: block; font-size: 26px; font-weight: 700; line-height: 1.1; }
+.fam-stats span { font-size: 13px; color: rgba(255,255,255,.72); }
+.year { display: flex; align-items: baseline; gap: 12px; margin: 26px 0 12px; }
+.year h2 { font-size: 30px; color: var(--brand-ink); }
+.year span { color: var(--muted); font-size: 14px; }
+.year::after { content: ""; flex: 1; height: 1px; background: var(--line); align-self: center; }
+.memories { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.memory { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow); min-width: 0; }
+.memory .ph { aspect-ratio: 4 / 3; max-width: 100%; background: var(--surface-2) center / cover no-repeat; position: relative; cursor: pointer; border: 0; padding: 0; display: block; width: 100%; text-align: left; }
+.memory .ph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,43,.05) 35%, rgba(6,26,43,.82)); }
+.memory .ph .pill { position: absolute; left: 14px; top: 14px; z-index: 1; background: var(--surface); box-shadow: 0 1px 6px rgba(0,0,0,.2); }
+.memory .ph .cap { position: absolute; left: 16px; right: 16px; bottom: 14px; z-index: 1; color: #fff; display: grid; gap: 2px; }
+.memory .ph .cap small { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: #F1D49B; }
+.memory .ph .cap h3 { font-size: 26px; line-height: 1.1; text-shadow: 0 1px 8px rgba(0,0,0,.35); }
+.memory .bd { padding: 14px 16px 16px; display: grid; gap: 12px; }
+.memory .facts { display: flex; flex-wrap: wrap; gap: 6px 14px; color: var(--muted); font-size: 14px; }
+.memory .facts b { color: var(--ink); font-weight: 600; }
+.memory .when { font-size: 14.5px; }
+.memory .cd { font: 700 14px var(--font-mono); letter-spacing: .06em; color: var(--brand-ink); }
+.memory .acts2 { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; }
+.memory .bar { height: 5px; border-radius: 5px; background: var(--surface-2); overflow: hidden; }
+.memory .bar i { display: block; height: 100%; background: var(--ok); }
+.fam-foot { text-align: center; color: var(--muted); font-size: 14px; margin: 28px auto 40px; max-width: 420px; display: grid; gap: 6px; justify-items: center; }
+.fam-foot .ic { color: var(--accent); width: 24px; height: 24px; }
+@media (max-width: 420px) { .memories { grid-template-columns: minmax(0, 1fr); } .who-tab .av { width: 40px; height: 40px; } .who-tab .av.two { width: 52px; } }
+
+/* ---------- Mapamundi (el mapa va siempre en oscuro, también en modo claro, para no cansar la vista) ---------- */
+:root { --w-pedro: #5AA7E8; --w-cris: #F07E9E; --w-both: #52C487; --w-home: #F0BC52; --w-none: #2A4054; --w-sea: #0B1824; --w-stroke: #0B1824; }
+.map-btn .treasure { width: 28px; height: 28px; display: block; }
+.top-acts { display: flex; gap: 10px; margin-left: auto; }
+.world { position: fixed; inset: 0; z-index: 50; background: var(--bg); display: flex; flex-direction: column; animation: up .22s ease both; overscroll-behavior: contain; }
+.world .wh { background: var(--brand-deep); color: #fff; padding-top: env(safe-area-inset-top, 0px); }
+.world .wh .wrap { display: flex; align-items: center; gap: 12px; padding-block: 14px 18px; }
+.world .wh h2 { font-size: 26px; line-height: 1.1; }
+.world .wh .sub { color: rgba(255,255,255,.72); font-size: 14.5px; margin-top: 4px; }
+.world .wh .icon-btn { margin-left: auto; }
+.world .body { flex: 1; overflow: auto; padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px)); }
+.world .body .wrap { display: grid; gap: 16px; padding-block: 16px; }
+.wbar { height: 8px; border-radius: 8px; background: var(--w-none); overflow: hidden; display: flex; }
+.wbar i { display: block; height: 100%; }
+.mapbox { position: relative; background: var(--w-sea); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.mapscroll { overflow: auto; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y; }
+.mapscroll svg { display: block; width: 100%; height: auto; }
+.mapscroll path { fill: var(--w-none); stroke: var(--w-stroke); stroke-width: .35; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.mapscroll path.p { fill: var(--w-pedro); } .mapscroll path.c { fill: var(--w-cris); } .mapscroll path.b { fill: var(--w-both); }
+.mapscroll path.h { fill: var(--w-home); stroke: #fff; stroke-width: 1.2; }
+.mapscroll path.sel { stroke: var(--ink); stroke-width: 1.4; }
+.legend { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.legend div { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; min-width: 0; font-size: 14.5px; }
+.legend i { width: 18px; height: 18px; border-radius: 6px; flex: none; }
+.legend b { margin-left: auto; font-variant-numeric: tabular-nums; }
+.legend .full { grid-column: 1 / -1; }
+.clist { display: flex; flex-wrap: wrap; gap: 8px; }
+.clist span { display: inline-flex; align-items: center; gap: 7px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px 5px 8px; font-size: 14px; }
+.clist i { width: 10px; height: 10px; border-radius: 50%; }
+.whint { color: var(--muted); font-size: 13.5px; text-align: center; }
+
+.wfull { position: fixed; inset: 0; z-index: 60; background: var(--w-sea); }
+.wf-in { position: absolute; left: 0; top: 0; width: 100vw; height: 100vh; display: grid; place-items: center; padding: max(14px, env(safe-area-inset-top, 0px)) max(14px, env(safe-area-inset-right, 0px)) max(44px, env(safe-area-inset-bottom, 0px)) max(14px, env(safe-area-inset-left, 0px)); }
+.wf-in .mapscroll { width: 100%; }
+.wf-in .icon-btn { position: absolute; right: max(12px, env(safe-area-inset-right, 0px)); top: max(12px, env(safe-area-inset-top, 0px)); background: var(--surface); color: var(--ink); border-color: var(--line); }
+.wf-leg { position: absolute; left: 0; right: 0; bottom: max(10px, env(safe-area-inset-bottom, 0px)); display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink); }
+.wf-leg span { display: inline-flex; align-items: center; gap: 6px; }
+.wf-leg i { width: 11px; height: 11px; border-radius: 4px; }
+@media (orientation: portrait) {
+  .wf-in { width: 100vh; height: 100vw; transform-origin: top left; transform: translateX(100vw) rotate(90deg);
+    padding: max(14px, env(safe-area-inset-right, 0px)) max(14px, env(safe-area-inset-top, 0px)) 44px max(14px, env(safe-area-inset-bottom, 0px)); }
+  .wf-in .icon-btn { right: 12px; top: 12px; }
+  .wf-leg { bottom: 10px; }
+}
+
+.mapbox .zoom { position: absolute; right: 10px; bottom: 10px; display: grid; gap: 6px; }
+.mapbox .zoom button { width: 36px; height: 36px; border-radius: 10px; border: 1px solid rgba(255,255,255,.18); background: rgba(14,29,42,.85); color: #EAF1F5; display: grid; place-items: center; cursor: pointer; }
+.ctip { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; font-size: 14.5px; display: grid; gap: 10px; }
+.ctip .tt { display: grid; gap: 1px; } .ctip .tt b { font-size: 16px; }
+.pick { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.pick button { height: 38px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface-2); font-size: 13.5px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 4px; min-width: 0; white-space: nowrap; }
+.pick button i { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.pick button[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: #fff; }
+.pick button:disabled { opacity: .35; cursor: default; }
+.section-k { font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: var(--muted); }
+.clist button { display: inline-flex; align-items: center; gap: 7px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px 5px 8px; font-size: 14px; cursor: pointer; }
+.whint { margin: 0; }
+.wadd { position: fixed; inset: 0; z-index: 70; background: var(--scrim); display: grid; align-items: end; justify-items: center; }
+.wa-in { background: var(--bg); width: min(560px, 100%); height: min(88dvh, 760px); border-radius: 22px 22px 0 0; display: grid; grid-template-rows: auto auto 1fr auto; gap: 12px; padding: 16px max(16px, env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); animation: up .22s ease both; }
+.wa-h { display: flex; align-items: center; } .wa-h h2 { font-size: 24px; } .wa-h .icon-btn { margin-left: auto; background: var(--surface); color: var(--ink); border-color: var(--line); }
+.wa-list { overflow: auto; display: grid; gap: 8px; align-content: start; overscroll-behavior: contain; }
+.wa-row { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; display: grid; gap: 8px; }
 </style>
 </head>
 <body>
@@ -271,6 +375,12 @@ a.mini { text-decoration: none; }
   <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
   <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
   <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 8 3.4 4.5 7 4.5c2 0 3.6 1.1 5 3 1.4-1.9 3-3 5-3 3.6 0 5.6 3.5 4.3 6.8-1.8 4.6-9.3 9.2-9.3 9.2z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5M16 4.8a3.5 3.5 0 0 1 0 6.4M18.5 14.8c1.7.8 2.7 2.5 3 5.2"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
   <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
 </svg>
 <div id="app"><div style="min-height:100vh;display:grid;place-items:center;background:#0A1E30;color:#C9973A;font:600 18px system-ui">Abriendo el panel…</div></div>
@@ -292,7 +402,7 @@ const PK = store.get("pk", null), PID = store.get("pid", null);
 if (!PK || !PID || !/^[0-9a-f]{32}$/.test(PID)) { exit(); return; }
 
 let DATA = { trips: [], built: "" };
-const S = { view: store.get("panel:view", "list"), q: "", status: "all", type: "all", when: "all", from: "", to: "", sort: store.get("panel:sort", { k: "start", dir: 1 }), open: null };
+const S = { mode: store.get("panel:mode", "clients"), who: store.get("panel:who", "juntos"), view: store.get("panel:view", "list"), q: "", status: "all", type: "all", when: "all", from: "", to: "", sort: store.get("panel:sort", { k: "start", dir: 1 }), open: null };
 let seen = store.get("panel:seen", null);
 
 // ---------- Fechas (hora de España) ----------
@@ -366,6 +476,7 @@ function list() {
 // ---------- Pintar ----------
 const app = document.getElementById("app");
 function renderPanel() {
+  if (S.mode === "fam") return renderFam();
   const items = all(), infos = items.map(info);
   const c = { curso: 0, prox: 0, fin: 0, new: 0 }; infos.forEach(i => { c[i.st]++; if (i.isNew) c.new++; });
   const rank = t => { const i = info(t); return i.st === "curso" ? "0" + t.end : "1" + t.start; };
@@ -375,21 +486,13 @@ function renderPanel() {
   const statBtn = (k, label, color) => `<button class="stat" type="button" data-status="${k}" aria-pressed="${S.status === k}"><b class="num">${c[k]}</b><span><i class="dot" style="background:${color}"></i>${label}</span></button>`;
   const filtered = S.q || S.status !== "all" || S.type !== "all" || S.when !== "all";
   app.innerHTML = `
-  <header class="top"><div class="wrap">
-    <span class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 44" fill="none" stroke="currentColor" role="img" aria-label="Anillo Travel">
-  <path d="M15 33C4 31 2 21 10 13 19 5 36 3 44 9c5 4 5 9 2 13" stroke-width="1.8" stroke-linecap="round"/>
-  <path d="M9 35c14-3 28-12 38-21" stroke-width="2.2" stroke-linecap="round"/>
-  <g transform="translate(50 11) rotate(-36) scale(.55)" fill="currentColor" stroke="none"><path d="M-12-1.6 3.5-1.8 9-9.2h3.3L8.9-1.9 14.6-2c2 0 3.4.8 3.4 2s-1.4 2-3.4 2L8.9 1.9l3.4 7.3H9L3.5 1.8-12 1.6l-1.5 3.6h-2.6L-15 0l-1.1-5.2h2.6Z"/></g>
-  <text x="64" y="26" fill="currentColor" stroke="none" font-family="Marcellus, 'Cormorant Garamond', Georgia, serif" font-size="23" letter-spacing="2.6">ANILLO</text>
-  <path d="M64 35.5h12M144 35.5h12" stroke-width="1"/>
-  <text x="110" y="39" text-anchor="middle" fill="currentColor" stroke="none" font-family="Marcellus, Georgia, serif" font-size="9.5" letter-spacing="3.6">TRAVEL</text>
-</svg>
-</span>
-    <div class="who"><b>Panel del organizador</b>${esc(AGENCY)}</div>
-    <button class="icon-btn" type="button" id="out" aria-label="Salir del panel" title="Salir">${ic("out")}</button>
-  </div></header>
+  ${header()}
   <section class="hero"><div class="wrap">
     <div><h1 id="hello">${greet()}</h1><div class="sub">${items.length} ${items.length === 1 ? "viaje" : "viajes"} en el panel · hoy ${fd(todayISO())}</div></div>
+    <div class="mode" role="group" aria-label="Qué ver">
+      <button type="button" data-mode="clients" aria-pressed="${S.mode === "clients"}">${ic("users")} Clientes</button>
+      <button type="button" data-mode="fam" aria-pressed="${S.mode === "fam"}">${ic("heart")} Nuestros viajes</button>
+    </div>
     ${newOnes.length ? `<div class="newbar"><span class="tag new">NUEVO</span><span class="nt">${newOnes.length === 1 ? `Hay un código nuevo: <span class="mono">${newOnes[0].code}</span> (${esc(newOnes[0].client.split(" ").slice(0, 2).join(" "))})` : `Hay ${newOnes.length} códigos nuevos desde tu última visita`}</span><button type="button" id="seeNew">Ver</button></div>` : ""}
     <div class="stats">
       ${statBtn("curso", "En curso", "var(--ok)")}${statBtn("prox", "Próximos", "var(--sea)")}${statBtn("fin", "Terminados", "#98AAB7")}${statBtn("new", "Nuevos", "var(--accent)")}
@@ -420,6 +523,184 @@ function renderPanel() {
   </div></div>
   <main class="wrap">${rows.length ? (S.view === "grid" ? grid(rows) : table(rows)) : `<div class="empty"><b>${items.length ? "Ningún viaje con estos filtros" : "Todavía no hay viajes con código"}</b><span>${items.length ? "Prueba con otra fecha o quita los filtros." : "Cuando se cree un código nuevo aparecerá aquí."}</span>${items.length ? `<button type="button" class="btn" id="clear2">Quitar filtros</button>` : ""}</div>`}</main>`;
   bind();
+}
+
+// ---------- Nuestros viajes: los de Pedro, los de Cristina y los que hacen juntos ----------
+const WHO = [["juntos", "Juntos", "P·C"], ["pedro", "Pedro", "P"], ["cristina", "Cristina", "C"]];
+const famTrips = k => ((DATA.family || {})[k] || []).map(find).filter(Boolean).sort((a, b) => b.start.localeCompare(a.start));
+const header = () => `<header class="top"><div class="wrap">
+    <span class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 44" fill="none" stroke="currentColor" role="img" aria-label="Anillo Travel">
+  <path d="M15 33C4 31 2 21 10 13 19 5 36 3 44 9c5 4 5 9 2 13" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M9 35c14-3 28-12 38-21" stroke-width="2.2" stroke-linecap="round"/>
+  <g transform="translate(50 11) rotate(-36) scale(.55)" fill="currentColor" stroke="none"><path d="M-12-1.6 3.5-1.8 9-9.2h3.3L8.9-1.9 14.6-2c2 0 3.4.8 3.4 2s-1.4 2-3.4 2L8.9 1.9l3.4 7.3H9L3.5 1.8-12 1.6l-1.5 3.6h-2.6L-15 0l-1.1-5.2h2.6Z"/></g>
+  <text x="64" y="26" fill="currentColor" stroke="none" font-family="Marcellus, 'Cormorant Garamond', Georgia, serif" font-size="23" letter-spacing="2.6">ANILLO</text>
+  <path d="M64 35.5h12M144 35.5h12" stroke-width="1"/>
+  <text x="110" y="39" text-anchor="middle" fill="currentColor" stroke="none" font-family="Marcellus, Georgia, serif" font-size="9.5" letter-spacing="3.6">TRAVEL</text>
+</svg>
+</span>
+    <div class="who"><b>Panel del organizador</b>${esc(AGENCY)}</div>
+    <div class="top-acts"><button class="icon-btn map-btn" type="button" id="world" aria-label="Nuestro mapa del mundo" title="Nuestro mapa del mundo">${TREASURE}</button>
+    <button class="icon-btn" type="button" id="out" aria-label="Salir del panel" title="Salir">${ic("out")}</button></div>
+  </div></header>`;
+function memory(t) {
+  const i = info(t), place = t.country || t.dest;
+  const status = i.st === "prox" ? i.label : i.st === "curso" ? i.label : "Recuerdo";
+  return `<article class="memory">
+    <button type="button" class="ph" data-open="${t.code}" style="background-image:url('${esc(img(t))}')" aria-label="Ver la ficha de ${esc(t.title)}">
+      <span class="pill ${i.st}">${esc(status)}</span>
+      <span class="cap"><small>${esc(place)}</small><h3>${esc(t.title)}</h3></span>
+    </button>
+    <div class="bd">
+      <div class="when num"><b>${fRange(t.start, t.end)}</b> <span class="muted">· ${i.len} días, ${i.nights} ${i.nights === 1 ? "noche" : "noches"}</span></div>
+      ${t.dest && t.dest !== place ? `<div class="facts"><span>${esc(t.dest.replace(place + " · ", ""))}</span></div>` : ""}
+      ${i.st === "curso" ? `<div class="bar"><i style="width:${i.pct}%"></i></div>` : ""}
+      <div class="acts2"><a class="btn primary" href="${link(t)}" target="_blank" rel="noopener">${ic("open")} Abrir el viaje</a><span class="cd" style="align-self:center">${t.code}</span></div>
+    </div>
+  </article>`;
+}
+function renderFam() {
+  const rows = famTrips(S.who);
+  const allFam = [...new Set(WHO.flatMap(([k]) => famTrips(k)))];
+  const dayCount = rows.reduce((n, t) => n + info(t).len, 0);
+  const countries = new Set(rows.map(t => t.country || t.dest)).size;
+  const years = [...new Set(rows.map(t => t.start.slice(0, 4)))];
+  const label = WHO.find(w => w[0] === S.who)[1];
+  const empty = S.who === "juntos" ? "Todavía no hay viajes juntos" : `Todavía no hay viajes de ${label}`;
+  app.innerHTML = `${header()}
+  <section class="hero"><div class="wrap">
+    <div><h1 id="hello">${greet()}</h1><div class="sub">El álbum de los viajes de Pedro y Cristina · ${allFam.length} ${allFam.length === 1 ? "viaje" : "viajes"}</div></div>
+    <div class="mode" role="group" aria-label="Qué ver">
+      <button type="button" data-mode="clients" aria-pressed="false">${ic("users")} Clientes</button>
+      <button type="button" data-mode="fam" aria-pressed="true">${ic("heart")} Nuestros viajes</button>
+    </div>
+    <div class="who-tabs" role="group" aria-label="De quién">
+      ${WHO.map(([k, l, a]) => { const n = famTrips(k).length; return `<button type="button" class="who-tab" data-who="${k}" aria-pressed="${S.who === k}"><span class="av ${a.length > 1 ? "two" : ""}">${a}</span><b>${l}</b><small>${n} ${n === 1 ? "viaje" : "viajes"}</small></button>`; }).join("")}
+    </div>
+    <div class="fam-stats">
+      <div><b class="num">${rows.length}</b><span>${rows.length === 1 ? "viaje" : "viajes"}</span></div>
+      <div><b class="num">${dayCount}</b><span>días viajando</span></div>
+      <div><b class="num">${countries}</b><span>${countries === 1 ? "país" : "países"}</span></div>
+    </div>
+  </div></section>
+  <main class="wrap">
+    ${rows.length ? years.map(y => { const ys = rows.filter(t => t.start.startsWith(y)); return `<div class="year"><h2 class="num">${y}</h2><span>${ys.length} ${ys.length === 1 ? "viaje" : "viajes"}</span></div><div class="memories">${ys.map(memory).join("")}</div>`; }).join("")
+      : `<div class="empty" style="margin-top:22px"><b>${empty}</b><span>Cuando haya uno, aparecerá aquí con su foto y sus fechas.</span></div>`}
+    <div class="fam-foot">${ic("heart")}<span>Aquí se irán guardando todos vuestros viajes, para volver a verlos dentro de unos años.</span></div>
+  </main>`;
+  document.getElementById("out").onclick = exit;
+  document.getElementById("world").onclick = worldMap;
+  bindMode();
+  document.querySelectorAll("[data-who]").forEach(b => b.onclick = () => { S.who = b.dataset.who; store.set("panel:who", S.who); renderFam(); });
+  app.querySelectorAll("main [data-open]").forEach(r => r.addEventListener("click", () => sheet(r.dataset.open)));
+}
+function bindMode() {
+  document.querySelectorAll("[data-mode]").forEach(b => b.onclick = () => { if (S.mode === b.dataset.mode) return; S.mode = b.dataset.mode; store.set("panel:mode", S.mode); renderPanel(); window.scrollTo(0, 0); });
+}
+
+// ---------- Mapamundi: países de Pedro, de Cristina y de los dos. España (donde viven) va siempre en amarillo y no cuenta. ----------
+let WORLD = null;
+const WORLD_N = 195; // países del mundo (miembros de la ONU + 2 observadores)
+const TREASURE = `<svg class="treasure" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 8.5 11 5l10 3.5L29 5v18.5L21 27l-10-3.5L3 27z" fill="#EAD19C" stroke="#8A5A2B" stroke-width="1.4" stroke-linejoin="round"/><path d="M11 5v18.5L21 27V8.5z" fill="#D9B978"/><path d="M6.5 21c2-1 2.5-4 5-4.5s3.8 2 6.2.4c1.6-1.1 2-3.6 3.6-5" fill="none" stroke="#8A5A2B" stroke-width="1.3" stroke-linecap="round" stroke-dasharray="1.6 2.1"/><path d="m22 8.6 3.6 3.6M25.6 8.6 22 12.2" stroke="#D2392B" stroke-width="2" stroke-linecap="round"/></svg>`;
+async function worldMap() {
+  const box = document.createElement("div");
+  box.className = "world"; box.setAttribute("role", "dialog"); box.setAttribute("aria-label", "Nuestro mapa del mundo");
+  document.body.appendChild(box); document.body.style.overflow = "hidden";
+  const close = () => { box.remove(); document.body.style.overflow = ""; document.removeEventListener("keydown", esc_); };
+  const esc_ = e => { if (e.key === "Escape") { const a = box.querySelector(".wadd, .wfull"); if (a) a.remove(); else close(); } };
+  document.addEventListener("keydown", esc_);
+  box.innerHTML = `<div class="wh"><div class="wrap"><div><h2>Nuestro mapa del mundo</h2><div class="sub">Cargando el mapa…</div></div><button class="icon-btn" type="button" data-x aria-label="Cerrar">${ic("x")}</button></div></div>`;
+  box.querySelector("[data-x]").onclick = close;
+  try { if (!WORLD) WORLD = await (await fetch("../maps/mundo.json")).json(); }
+  catch (e) { box.querySelector(".sub").textContent = "No se ha podido cargar el mapa. Revisa la conexión."; return; }
+  const C = (DATA.family || {}).countries || { pedro: [], cristina: [], home: "ES" };
+  const home = C.home || "ES", P0 = new Set(C.pedro || []), C0 = new Set(C.cristina || []);
+  const codes = Object.keys(WORLD.c);
+  const nm = k => (WORLD.c[k] || {}).n || k;
+  const sorted = codes.filter(k => k !== home).sort((a, b) => nm(a).localeCompare(nm(b), "es"));
+  const col = { b: "var(--w-both)", p: "var(--w-pedro)", c: "var(--w-cris)" };
+  // Países que marcan ellos a mano (se guardan en este móvil): { ISO: "p" | "c" | "b" }
+  let man = store.get("panel:paises", {}) || {};
+  const hasP = k => P0.has(k) || man[k] === "p" || man[k] === "b";
+  const hasC = k => C0.has(k) || man[k] === "c" || man[k] === "b";
+  const kind = k => k === home ? "h" : hasP(k) && hasC(k) ? "b" : hasP(k) ? "p" : hasC(k) ? "c" : "";
+  const setKind = (k, t) => {
+    // Lo que viene de un viaje con la app no se puede quitar: solo se puede ampliar.
+    const wantP = t === "p" || t === "b", wantC = t === "c" || t === "b";
+    const mp = wantP && !P0.has(k), mc = wantC && !C0.has(k);
+    const m = mp && mc ? "b" : mp ? "p" : mc ? "c" : "";
+    if (m) man[k] = m; else delete man[k];
+    store.set("panel:paises", man);
+  };
+  const choices = k => {
+    const cur = kind(k);
+    const ok = t => (!P0.has(k) || t === "p" || t === "b") && (!C0.has(k) || t === "c" || t === "b");
+    return `<div class="pick" role="group" aria-label="¿Quién ha estado en ${esc(nm(k))}?">${[["p", "Pedro"], ["c", "Cristina"], ["b", "Los dos"], ["", "Nadie"]].map(([t, l]) => `<button type="button" data-k="${k}" data-t="${t}" aria-pressed="${cur === t}" ${ok(t) ? "" : "disabled"}>${t ? `<i style="background:${col[t]}"></i>` : ""}${l}</button>`).join("")}</div>`;
+  };
+  let z = 1;
+  function paint() {
+    const by = { b: [], p: [], c: [] };
+    sorted.forEach(k => { const t = kind(k); if (t) by[t].push(k); });
+    const visited = by.b.length + by.p.length + by.c.length;
+    const pct = (visited / WORLD_N * 100).toFixed(1).replace(".", ",").replace(",0", "");
+    box.querySelector(".sub").textContent = `${visited} ${visited === 1 ? "país visitado" : "países visitados"} · el ${pct} % del mundo`;
+    box.querySelectorAll("#ms path").forEach(el => { el.setAttribute("class", kind(el.dataset.c)); });
+    box.querySelector(".wbar").innerHTML = ["b", "p", "c"].map(t => by[t].length ? `<i style="width:${by[t].length / WORLD_N * 100}%;background:${col[t]}"></i>` : "").join("");
+    box.querySelector(".legend").innerHTML = `
+      <div><i style="background:var(--w-pedro)"></i>Pedro<b>${by.p.length}</b></div>
+      <div><i style="background:var(--w-cris)"></i>Cristina<b>${by.c.length}</b></div>
+      <div><i style="background:var(--w-both)"></i>Los dos<b>${by.b.length}</b></div>
+      <div><i style="background:var(--w-none)"></i>Sin visitar<b>${WORLD_N - visited}</b></div>`;
+    box.querySelector(".clist").innerHTML = visited ? ["b", "p", "c"].flatMap(t => by[t].map(k => `<span><i style="background:${col[t]}"></i>${esc(nm(k))}</span>`)).join("") : `<span class="muted">Todavía no hay países marcados.</span>`;
+  }
+  box.innerHTML = `<div class="wh"><div class="wrap"><div><h2>Nuestro mapa del mundo</h2><div class="sub"></div></div><button class="icon-btn" type="button" data-x aria-label="Cerrar">${ic("x")}</button></div></div>
+  <div class="body"><div class="wrap">
+    <div class="mapbox">
+      <div class="mapscroll" id="ms"><svg viewBox="0 0 ${WORLD.w} ${WORLD.h}" role="img" aria-label="Mapamundi con los países visitados">${codes.map(k => `<path d="${WORLD.c[k].d}" data-c="${k}"><title>${esc(nm(k))}</title></path>`).join("")}</svg></div>
+      <div class="zoom"><button type="button" data-z="1" aria-label="Acercar">${ic("plus")}</button><button type="button" data-z="-1" aria-label="Alejar">${ic("minus")}</button></div>
+    </div>
+    <div class="btns"><button type="button" class="btn primary" id="add">${ic("plus")} Añadir países</button><button type="button" class="btn" id="big">${ic("expand")} En grande</button></div>
+    <div class="wbar" aria-hidden="true"></div>
+    <div class="legend"></div>
+    <div class="section-k">Países visitados</div>
+    <div class="clist"></div>
+    <p class="whint">Los países que añadáis se guardan en este móvil. Los de los viajes con la app salen solos.</p>
+  </div></div>`;
+  box.querySelector("[data-x]").onclick = close;
+  const ms = box.querySelector("#ms"), svg = ms.querySelector("svg");
+  paint();
+  box.querySelectorAll("[data-z]").forEach(b => b.onclick = () => {
+    const nz = Math.max(1, Math.min(6, z * (+b.dataset.z > 0 ? 1.6 : 1 / 1.6)));
+    const cx = (ms.scrollLeft + ms.clientWidth / 2) / ms.scrollWidth, cy = (ms.scrollTop + ms.clientHeight / 2) / ms.scrollHeight;
+    z = nz; svg.style.width = (z * 100) + "%";
+    ms.style.height = z > 1 ? Math.min(ms.clientWidth * WORLD.h / WORLD.w * 1.35, window.innerHeight * .6) + "px" : "";
+    ms.scrollLeft = cx * ms.scrollWidth - ms.clientWidth / 2; ms.scrollTop = cy * ms.scrollHeight - ms.clientHeight / 2;
+  });
+  // Añadir países: buscador con todos los países y quién ha estado en cada uno.
+  box.querySelector("#add").onclick = () => {
+    const sh = document.createElement("div"); sh.className = "wadd";
+    sh.innerHTML = `<div class="wa-in"><div class="wa-h"><h2>Añadir países</h2><button class="icon-btn" type="button" data-cl aria-label="Cerrar">${ic("x")}</button></div>
+      <label class="search">${ic("search")}<input type="search" placeholder="Buscar país" aria-label="Buscar país" autocomplete="off"></label>
+      <div class="wa-list"></div>
+      <button type="button" class="btn primary" data-cl>Listo</button></div>`;
+    box.appendChild(sh);
+    const list = sh.querySelector(".wa-list"), q = sh.querySelector("input");
+    const draw = () => {
+      const f = norm(q.value.trim());
+      const rows = sorted.filter(k => !f || norm(nm(k)).includes(f));
+      list.innerHTML = rows.length ? rows.map(k => `<div class="wa-row"><b>${esc(nm(k))}</b>${choices(k)}</div>`).join("") : `<div class="muted" style="padding:16px 4px">No hay ningún país con ese nombre.</div>`;
+      list.querySelectorAll("[data-t]").forEach(b => b.onclick = () => { const y = list.scrollTop; setKind(b.dataset.k, b.dataset.t); draw(); list.scrollTop = y; paint(); });
+    };
+    q.addEventListener("input", draw); draw();
+    sh.querySelectorAll("[data-cl]").forEach(b => b.onclick = () => sh.remove());
+  };
+  // En grande: el mapa ocupa toda la pantalla en horizontal (en vertical se gira para que quepa a lo largo).
+  box.querySelector("#big").onclick = () => {
+    const fs = document.createElement("div"); fs.className = "wfull";
+    fs.innerHTML = `<div class="wf-in"><div class="mapscroll">${svg.outerHTML.replace(/ style="[^"]*"/, "")}</div>
+      <div class="wf-leg">${[["p", "Pedro"], ["c", "Cristina"], ["b", "Los dos"]].map(([t, l]) => `<span><i style="background:${col[t]}"></i>${l}</span>`).join("")}</div>
+      <button class="icon-btn" type="button" aria-label="Cerrar">${ic("x")}</button></div>`;
+    box.appendChild(fs); fs.querySelector("button").onclick = () => fs.remove();
+  };
 }
 
 function expTxt(i) { return i.expires ? `<span class="${i.expIn >= 0 && i.expIn <= 7 ? "exp-soon" : ""}">${i.expIn <= 0 ? "Caducó el " + fd(i.expires) : fd(i.expires)}</span>` : `<span class="muted">No caduca</span>`; }
@@ -535,6 +816,8 @@ function bindActions(root) {
 let qTimer = null;
 function bind() {
   document.getElementById("out").onclick = exit;
+  document.getElementById("world").onclick = worldMap;
+  bindMode();
   const q = document.getElementById("q");
   // Buscar sin volver a pintar la barra (así no se cierra el teclado del móvil mientras se escribe).
   q.addEventListener("input", e => { S.q = e.target.value; clearTimeout(qTimer); qTimer = setTimeout(refreshList, 120); });
