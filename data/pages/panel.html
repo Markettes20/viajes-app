@@ -227,6 +227,10 @@ td.nowrap { white-space: nowrap; }
   .top .logo { margin-right: auto; }
 }
 
+.mrow .l3 { white-space: normal; overflow: visible; }
+.mrow .l3 .num { white-space: nowrap; }
+a.phone { color: var(--sea); font-weight: 600; text-decoration: none; white-space: nowrap; font-size: 14px; }
+.facts a.phone { font-size: inherit; }
 html.lock, html.lock body { overflow: hidden; }
 .sheet { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -248,6 +252,7 @@ a.mini { text-decoration: none; }
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
   <symbol id="i-plane" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></symbol>
   <symbol id="i-bag" viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="13" rx="2.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M4 12h16"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
   <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></symbol>
   <symbol id="i-open" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
@@ -306,6 +311,11 @@ const img = t => "../../" + t.img;
 const first = s => String(s || "").split(" ")[0];
 const waText = t => `Hola ${first(t.client)}, aquí tienes tu viaje "${t.title}" en la app de ${AGENCY}.\n\nCódigo: ${t.code}\nEnlace: ${link(t)}\n\nGuárdalo en la pantalla de inicio del móvil para tenerlo siempre a mano.`;
 const waURL = t => "https://wa.me/?text=" + encodeURIComponent(waText(t));
+// Comprador: quién compró el viaje y su teléfono (solo están en la lista cifrada).
+const hasApp = t => t.type !== "FLY"; // los FLY ya no tienen app: solo se siguen desde aquí
+const telDigits = p => { let d = String(p || "").replace(/[^\d+]/g, ""); if (d.startsWith("00")) d = "+" + d.slice(2); if (!d.startsWith("+") && d.length === 9) d = "+34" + d; return d; };
+const telURL = p => "tel:" + telDigits(p);
+const waBuyerURL = t => "https://wa.me/" + telDigits(t.buyerPhone).replace("+", "") + "?text=" + encodeURIComponent(`Hola${t.buyer ? " " + first(t.buyer) : ""}, te escribimos de ${AGENCY} por tu viaje "${t.title}".`);
 const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const ic = (n, cls = "") => `<svg class="ic ${cls}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
 const norm = s => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
@@ -330,7 +340,7 @@ function list() {
     if (S.status !== "all" && (S.status === "new" ? !i.isNew : i.st !== S.status)) return false;
     if (S.type !== "all" && t.type !== S.type) return false;
     if (r && (t.end < r[0] || t.start > r[1])) return false; // el viaje se solapa con el periodo
-    if (q && !norm([t.code, t.client, t.group, t.title, t.dest].join(" ")).includes(q)) return false;
+    if (q && !norm([t.code, t.client, t.group, t.title, t.dest, t.buyer, t.buyerPhone, telDigits(t.buyerPhone)].join(" ")).includes(q)) return false;
     return true;
   });
   const k = S.sort.k, dir = S.sort.dir;
@@ -388,7 +398,7 @@ function renderPanel() {
       ${[["all", "Todos"], ["ANI", "Viaje completo"], ["FLY", "Solo vuelos"]].map(([v, l]) => `<button type="button" class="chip" data-type="${v}" aria-pressed="${S.type === v}">${l}</button>`).join("")}
       <span class="chip sep">Orden</span>
       <span class="chip"><select id="sort" aria-label="Ordenar por">
-        ${[["start:1", "Salida más cercana"], ["start:-1", "Salida más lejana"], ["client:1", "Cliente A–Z"], ["code:1", "Código"], ["exp:1", "Caduca antes"], ["status:1", "Estado"]].map(([v, l]) => `<option value="${v}" ${S.sort.k + ":" + S.sort.dir === v ? "selected" : ""}>${l}</option>`).join("")}
+        ${[["start:1", "Salida más cercana"], ["start:-1", "Salida más lejana"], ["client:1", "Cliente A–Z"], ["buyer:1", "Comprador A–Z"], ["code:1", "Código"], ["exp:1", "Caduca antes"], ["status:1", "Estado"]].map(([v, l]) => `<option value="${v}" ${S.sort.k + ":" + S.sort.dir === v ? "selected" : ""}>${l}</option>`).join("")}
       </select></span>
     </div>
     ${S.when === "custom" ? `<div class="range"><span class="muted">Viajes entre</span><input type="date" id="from" value="${S.from}" aria-label="Desde"><span class="muted">y</span><input type="date" id="to" value="${S.to}" aria-label="Hasta"></div>` : ""}
@@ -407,17 +417,18 @@ function table(rows) {
       <td><span class="codecell">${t.code}<button type="button" class="mini" data-copy="${t.code}" title="Copiar código" aria-label="Copiar código ${t.code}">${ic("copy")}</button></span></td>
       <td><div class="c-main"><span class="type ${t.type}" title="${t.type === "FLY" ? "Solo vuelos" : "Viaje completo"}">${ic(t.type === "FLY" ? "plane" : "bag")}</span><div style="min-width:0"><div class="t">${esc(t.client)}${tags(t, i)}</div><div class="s">${esc(t.title)}</div></div></div></td>
       <td>${esc(t.dest)}</td>
+      <td>${t.buyer || t.buyerPhone ? `<div class="t">${esc(t.buyer) || "—"}</div>${t.buyerPhone ? `<a class="phone num" href="${telURL(t.buyerPhone)}">${esc(t.buyerPhone)}</a>` : ""}` : `<span class="muted">Sin datos</span>`}</td>
       <td class="nowrap num">${fRange(t.start, t.end)}<div class="muted" style="font-size:13px">${i.len} días</div></td>
       <td><span class="pill ${i.st}">${ST[i.st]}</span><div class="muted" style="font-size:13px;margin-top:3px">${i.st === "fin" ? "" : i.label}</div></td>
-      <td class="nowrap num">${expTxt(i)}</td>
-      <td><div class="acts"><a class="mini" href="${waURL(t)}" target="_blank" rel="noopener" title="Enviar por WhatsApp" aria-label="Enviar por WhatsApp">${ic("wa", "fill")}</a><button type="button" class="mini" data-link="${t.code}" title="Copiar enlace" aria-label="Copiar enlace">${ic("link")}</button><a class="mini" href="${link(t)}" target="_blank" rel="noopener" title="Abrir el viaje como el cliente" aria-label="Abrir viaje">${ic("open")}</a></div></td>
+      <td class="nowrap num">${hasApp(t) ? expTxt(i) : `<span class="muted">Sin app</span>`}</td>
+      <td><div class="acts">${hasApp(t) ? `<a class="mini" href="${waURL(t)}" target="_blank" rel="noopener" title="Enviar por WhatsApp" aria-label="Enviar por WhatsApp">${ic("wa", "fill")}</a><button type="button" class="mini" data-link="${t.code}" title="Copiar enlace" aria-label="Copiar enlace">${ic("link")}</button><a class="mini" href="${link(t)}" target="_blank" rel="noopener" title="Abrir el viaje como el cliente" aria-label="Abrir viaje">${ic("open")}</a>` : (t.buyerPhone ? `<a class="mini" href="${waBuyerURL(t)}" target="_blank" rel="noopener" title="WhatsApp al comprador" aria-label="WhatsApp al comprador">${ic("wa", "fill")}</a><a class="mini" href="${telURL(t.buyerPhone)}" title="Llamar al comprador" aria-label="Llamar al comprador">${ic("phone")}</a>` : "")}</div></td>
     </tr>`; }).join("");
   const mrows = rows.map(t => { const i = info(t); return `<button type="button" class="mrow" data-open="${t.code}">
       <span class="type ${t.type}">${ic(t.type === "FLY" ? "plane" : "bag")}</span>
-      <span class="mid"><span class="l1"><b>${esc(t.client)}</b>${tags(t, i)}</span><span class="l2">${esc(t.dest)} · ${fRange(t.start, t.end)}</span><span class="l3"><span class="mono">${t.code}</span> · ${i.st === "fin" ? "terminado" : i.label.toLowerCase()}</span></span>
+      <span class="mid"><span class="l1"><b>${esc(t.client)}</b>${tags(t, i)}</span><span class="l2">${esc(t.dest)} · ${fRange(t.start, t.end)}</span><span class="l3"><span class="mono">${t.code}</span> · ${hasApp(t) ? (i.expires ? (i.expIn <= 0 ? "caducó " : "caduca ") + fd(i.expires) : "nunca caduca") : "sin app"}${t.buyerPhone ? ` · <span class="num">${esc(t.buyerPhone)}</span>` : ""}</span></span>
       <span class="right"><span class="pill ${i.st}">${ST[i.st]}</span></span>
     </button>`; }).join("");
-  return `<div class="table-wrap"><table><thead><tr>${th("code", "Código")}${th("client", "Cliente y viaje")}${th("dest", "Destino")}${th("start", "Fechas")}${th("status", "Estado")}${th("exp", "Caduca")}<th><span class="sr">Acciones</span></th></tr></thead><tbody>${tr}</tbody></table></div><div class="mlist">${mrows}</div>`;
+  return `<div class="table-wrap"><table><thead><tr>${th("code", "Código")}${th("client", "Cliente y viaje")}${th("dest", "Destino")}${th("buyer", "Comprador")}${th("start", "Fechas")}${th("status", "Estado")}${th("exp", "Caduca")}<th><span class="sr">Acciones</span></th></tr></thead><tbody>${tr}</tbody></table></div><div class="mlist">${mrows}</div>`;
 }
 
 function grid(rows) {
@@ -444,21 +455,28 @@ function sheet(code) {
   el.innerHTML = `<div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(t.title)}">
     <div class="cover" style="background-image:url('${esc(img(t))}')"><button type="button" class="icon-btn x" id="close" aria-label="Cerrar">${ic("x")}</button><div class="ttl"><div class="st">${t.type === "FLY" ? "Solo vuelos" : "Viaje completo"}${t.demo ? " · demo" : ""}</div><h2>${esc(t.title)}</h2></div></div>
     <div class="in">
-      <div class="bigcode"><div><div class="l">Código del cliente</div><div class="mono">${t.code}</div></div><button type="button" class="btn" data-copy="${t.code}">${ic("copy")} Copiar</button></div>
+      <div class="bigcode"><div><div class="l">${hasApp(t) ? "Código del cliente" : "Código del vuelo"}</div><div class="mono">${t.code}</div></div><button type="button" class="btn" data-copy="${t.code}">${ic("copy")} Copiar</button></div>
       <dl class="facts">
         <div><dt>Cliente</dt><dd>${esc(t.client) || "—"}${t.group ? `<small>${esc(t.group)}</small>` : ""}</dd></div>
         <div><dt>Destino</dt><dd>${esc(t.dest) || "—"}</dd></div>
+        <div><dt>Comprador</dt><dd>${esc(t.buyer) || `<span class="muted">Sin datos</span>`}</dd></div>
+        <div><dt>Teléfono del comprador</dt><dd class="num">${t.buyerPhone ? `<a class="phone" href="${telURL(t.buyerPhone)}">${esc(t.buyerPhone)}</a>` : `<span class="muted">Sin datos</span>`}</dd></div>
         <div><dt>Fechas</dt><dd class="num">${fRange(t.start, t.end)}<small>${i.len} ${i.len === 1 ? "día" : "días"} · ${i.nights} ${i.nights === 1 ? "noche" : "noches"}</small></dd></div>
         <div><dt>Estado</dt><dd><span class="pill ${i.st}">${ST[i.st]}</span></dd></div>
-        <div><dt>El código caduca</dt><dd class="num">${i.expires ? `${fd(i.expires)} a las 00:00<small>${i.expIn > 0 ? `dentro de ${i.expIn} ${i.expIn === 1 ? "día" : "días"}` : "ya no funciona"}</small>` : "Nunca<small>es el viaje de demostración</small>"}</dd></div>
-        <div><dt>Enlace directo</dt><dd style="font-size:13px;font-weight:500">${esc(link(t).replace(/^https?:\/\//, ""))}</dd></div>
+        ${hasApp(t) ? `<div><dt>El código caduca</dt><dd class="num">${i.expires ? `${fd(i.expires)} a las 00:00<small>${i.expIn > 0 ? `dentro de ${i.expIn} ${i.expIn === 1 ? "día" : "días"}` : "ya no funciona"}</small>` : "Nunca<small>es el viaje de demostración</small>"}</dd></div>
+        <div><dt>Enlace directo</dt><dd style="font-size:13px;font-weight:500">${esc(link(t).replace(/^https?:\/\//, ""))}</dd></div>` : `<div><dt>App</dt><dd>No tiene<small>solo seguimiento en este panel</small></dd></div>`}
       </dl>
       ${tl}
-      <div class="btns">
+      ${t.buyerPhone ? `<div class="btns">
+        <a class="btn" href="${telURL(t.buyerPhone)}">${ic("phone")} Llamar</a>
+        <a class="btn wa" href="${waBuyerURL(t)}" target="_blank" rel="noopener">${ic("wa", "fill")} WhatsApp</a>
+        <button type="button" class="btn full" data-copy="${esc(t.buyerPhone)}" data-msg="Teléfono copiado">${ic("copy")} Copiar teléfono</button>
+      </div>` : ""}
+      ${hasApp(t) ? `<div class="btns">
         <a class="btn wa full" href="${waURL(t)}" target="_blank" rel="noopener">${ic("wa", "fill")} Enviar código por WhatsApp</a>
         <button type="button" class="btn" data-link="${t.code}">${ic("link")} Copiar enlace</button>
         <a class="btn primary" href="${link(t)}" target="_blank" rel="noopener">${ic("open")} Abrir viaje</a>
-      </div>
+      </div>` : ""}
       <div class="note"><label for="note">Mis notas de este viaje</label><textarea id="note" placeholder="Ej.: pagado el 50 %, falta enviar el seguro…">${esc(notes[code] || "")}</textarea><small>Solo se guardan en este dispositivo.</small></div>
     </div></div>`;
   document.body.appendChild(el);
@@ -483,9 +501,9 @@ function copy(text, msg) {
   try { if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => toast(msg), fallback); else fallback(); } catch (e) { fallback(); }
 }
 function bindActions(root) {
-  root.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); copy(b.dataset.copy, "Código copiado"); }));
+  root.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); copy(b.dataset.copy, b.dataset.msg || "Código copiado"); }));
   root.querySelectorAll("[data-link]").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); const t = find(b.dataset.link); if (t) copy(link(t), "Enlace copiado"); }));
-  root.querySelectorAll("a.mini").forEach(a => a.addEventListener("click", e => e.stopPropagation()));
+  root.querySelectorAll("a.mini, a.phone").forEach(a => a.addEventListener("click", e => e.stopPropagation()));
 }
 let qTimer = null;
 function bind() {

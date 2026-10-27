@@ -816,6 +816,8 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
   async function openTrip(code, silent) {
     code = normCode(code);
     if (!/^[A-Z0-9]{3}-[A-Z0-9]{5}$/.test(code)) return false;
+    // Los viajes FLY (solo vuelos) ya no tienen app para el cliente: solo se siguen desde el panel del organizador.
+    if (code.startsWith("FLY-")) { if (silent) store.del("code"); return false; }
     if (!isDemo(code) && store.get("gone", []).includes(code)) { renderExpired(); return true; }
     try {
       const trip = await getJSON(`data/trips/${code}.json`);
