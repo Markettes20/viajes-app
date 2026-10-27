@@ -1,0 +1,1490 @@
+{
+ "code": "ANI-DDPY4",
+ "traveler": {
+  "firstName": "Pedro y Cristina",
+  "fullName": "Pedro Martínez Fernández y Zulinet Cristina Morales Anillo",
+  "plural": true
+ },
+ "title": "Safari en Tanzania",
+ "subtitle": "Tarangire, Manyara, Serengeti y Ngorongoro",
+ "destination": "Tanzania",
+ "country": "Tanzania",
+ "langs": [
+  "es"
+ ],
+ "language": {
+  "es": "suajili",
+  "en": "Swahili",
+  "speech": "sw-TZ",
+  "fallback": "es-ES"
+ },
+ "map": "tanzania-norte",
+ "mapHint": "Toca un parque o una parada para ver dónde dormís y qué hay.",
+ "tz": "+03:00",
+ "start": "2026-11-15",
+ "end": "2026-11-23",
+ "cover": "img/tz/portada.jpg",
+ "previewDay": 2,
+ "organizer": {
+  "name": "Safari Avventura",
+  "note": "Organizador local en Tanzania"
+ },
+ "route": [
+  "Valencia",
+  "Kilimanjaro",
+  "Karatu",
+  "Serengeti",
+  "Ngorongoro",
+  "Valencia"
+ ],
+ "routeIds": [
+  "vlc",
+  "jro",
+  "krt",
+  "tar",
+  "krt",
+  "mny",
+  "krt",
+  "ser",
+  "ngo",
+  "krt",
+  "jro",
+  "vlc"
+ ],
+ "cities": [
+  {
+   "id": "vlc",
+   "name": "Valencia",
+   "country": "España",
+   "lat": 39.47,
+   "lng": -0.38,
+   "home": true
+  },
+  {
+   "id": "jro",
+   "name": "Kilimanjaro",
+   "local": "Kilimanjaro International Airport",
+   "lat": -3.43,
+   "lng": 37.07,
+   "image": "img/tz/kilimanjaro.jpg",
+   "nights": 2,
+   "label": [
+    0,
+    58,
+    "middle"
+   ],
+   "sub": "Aeropuerto · llegada y salida"
+  },
+  {
+   "id": "krt",
+   "name": "Karatu",
+   "local": "Karatu",
+   "lat": -3.34,
+   "lng": 35.67,
+   "label": [
+    28,
+    2,
+    "start"
+   ],
+   "image": "img/tz/karatu.jpg",
+   "nights": 4,
+   "sub": "Star World Lodge · 4 noches"
+  },
+  {
+   "id": "tar",
+   "name": "Tarangire",
+   "local": "Tarangire National Park",
+   "lat": -3.92,
+   "lng": 36.0,
+   "label": [
+    30,
+    10,
+    "start"
+   ],
+   "image": "img/tz/tarangire.jpg",
+   "sub": "Safari · mar 17"
+  },
+  {
+   "id": "mny",
+   "name": "Lago Manyara",
+   "local": "Lake Manyara National Park",
+   "lat": -3.58,
+   "lng": 35.82,
+   "short": "Manyara",
+   "label": [
+    30,
+    14,
+    "start"
+   ],
+   "image": "img/tz/manyara.jpg",
+   "sub": "Safari · mié 18"
+  },
+  {
+   "id": "ser",
+   "name": "Serengeti",
+   "local": "Serengeti National Park",
+   "lat": -2.45,
+   "lng": 34.83,
+   "label": [
+    30,
+    8,
+    "start"
+   ],
+   "image": "img/tz/serengeti.jpg",
+   "nights": 2,
+   "sub": "Safari · jue 19 y vie 20 · 2 noches"
+  },
+  {
+   "id": "ngo",
+   "name": "Ngorongoro",
+   "local": "Ngorongoro Crater",
+   "lat": -3.2,
+   "lng": 35.58,
+   "label": [
+    -30,
+    -10,
+    "end"
+   ],
+   "image": "img/tz/ngorongoro.jpg",
+   "sub": "Cráter · sáb 21"
+  }
+ ],
+ "places": [
+  {
+   "id": "p-tar",
+   "city": "tar",
+   "kind": "park",
+   "name": "Parque Nacional de Tarangire",
+   "cardName": "Tarangire",
+   "local": "Tarangire National Park",
+   "when": "Martes 17 · día completo",
+   "short": "El parque de los elefantes y los baobabs",
+   "image": "img/tz/tarangire.jpg",
+   "query": "Tarangire National Park",
+   "desc": "Grandes manadas de elefantes bajo baobabs de cientos de años, a orillas del río Tarangire. Es uno de los mejores sitios de Tanzania para ver elefantes de cerca.",
+   "facts": [
+    {
+     "k": "Tamaño",
+     "v": "2.850 km²"
+    },
+    {
+     "k": "Desde Karatu",
+     "v": "Unas 2 h en jeep"
+    },
+    {
+     "k": "Paisaje",
+     "v": "Baobabs, acacias y el río"
+    },
+    {
+     "k": "Comida",
+     "v": "Picnic dentro del parque"
+    }
+   ],
+   "look": "elefantes, jirafas, cebras, ñus, leones y pitones en los árboles. Mirad bien las ramas de los baobabs."
+  },
+  {
+   "id": "p-mny",
+   "city": "mny",
+   "kind": "park",
+   "name": "Parque Nacional del Lago Manyara",
+   "cardName": "Lago Manyara",
+   "local": "Lake Manyara National Park",
+   "when": "Miércoles 18 · día completo",
+   "short": "Bosque, lago rosa de flamencos y leones que trepan",
+   "image": "img/tz/manyara.jpg",
+   "query": "Lake Manyara National Park",
+   "desc": "Un parque pequeño y muy variado entre el lago y la pared del valle del Rift: bosque frondoso, fuentes termales y orillas llenas de flamencos y pelícanos.",
+   "facts": [
+    {
+     "k": "Tamaño",
+     "v": "330 km² (dos tercios son lago)"
+    },
+    {
+     "k": "Desde Karatu",
+     "v": "Unos 30 min"
+    },
+    {
+     "k": "Famoso por",
+     "v": "Leones que suben a los árboles"
+    },
+    {
+     "k": "Aves",
+     "v": "Más de 400 especies"
+    }
+   ],
+   "look": "babuinos, elefantes, hipopótamos en las pozas, flamencos y, con suerte, leones descansando en las acacias."
+  },
+  {
+   "id": "p-ser",
+   "city": "ser",
+   "kind": "park",
+   "name": "Parque Nacional del Serengeti",
+   "cardName": "Serengeti",
+   "local": "Serengeti National Park",
+   "when": "Jueves 19 y viernes 20",
+   "short": "La llanura sin fin y la gran migración",
+   "image": "img/tz/serengeti.jpg",
+   "query": "Seronera, Serengeti National Park",
+   "desc": "«Serengeti» significa «llanura sin fin» en maasai. Es el parque más famoso de África: en noviembre, con las primeras lluvias, millones de ñus y cebras bajan desde el norte hacia las praderas del sur.",
+   "facts": [
+    {
+     "k": "Tamaño",
+     "v": "14.750 km²"
+    },
+    {
+     "k": "Patrimonio",
+     "v": "UNESCO desde 1981"
+    },
+    {
+     "k": "Dormís en",
+     "v": "Campamentos de tiendas en el centro (Seronera)"
+    },
+    {
+     "k": "Desde Karatu",
+     "v": "5 o 6 h, con safari por el camino"
+    }
+   ],
+   "look": "leopardos en las acacias del río Seronera, guepardos en la llanura, leones, hienas y las manadas de la migración."
+  },
+  {
+   "id": "p-ngo",
+   "city": "ngo",
+   "kind": "park",
+   "name": "Cráter del Ngorongoro",
+   "cardName": "Ngorongoro",
+   "local": "Ngorongoro Crater",
+   "when": "Sábado 21 · día completo",
+   "short": "Un volcán convertido en paraíso de animales",
+   "image": "img/tz/ngorongoro.jpg",
+   "query": "Ngorongoro Crater",
+   "desc": "La caldera volcánica intacta más grande del mundo: 20 km de lado a lado y 600 m de pared. Dentro viven unos 25.000 animales, y es uno de los pocos sitios donde se puede ver el rinoceronte negro.",
+   "facts": [
+    {
+     "k": "Diámetro",
+     "v": "Unos 20 km"
+    },
+    {
+     "k": "Altura del borde",
+     "v": "Unos 2.300 m: amanece frío"
+    },
+    {
+     "k": "Patrimonio",
+     "v": "UNESCO desde 1979"
+    },
+    {
+     "k": "Desde el Serengeti",
+     "v": "Unas 3 h"
+    }
+   ],
+   "look": "rinoceronte negro (con prismáticos, suele estar lejos), leones, búfalos, hipopótamos en la poza, flamencos en el lago Magadi y grullas coronadas."
+  },
+  {
+   "id": "p-krt",
+   "city": "krt",
+   "name": "Karatu",
+   "local": "Karatu",
+   "desc": "Pueblo de las tierras altas, entre cafetales y a unos 30 minutos de la entrada del Ngorongoro. Aquí está vuestro lodge principal.",
+   "query": "Karatu, Tanzania"
+  },
+  {
+   "id": "p-jro",
+   "city": "jro",
+   "name": "Aeropuerto del Kilimanjaro",
+   "local": "Kilimanjaro International Airport (JRO)",
+   "desc": "Aquí aterrizáis y desde aquí volvéis. Si el cielo está despejado, se ve el Kilimanjaro, la montaña más alta de África (5.895 m).",
+   "query": "Kilimanjaro International Airport"
+  }
+ ],
+ "flights": [
+  {
+   "id": "f1",
+   "date": "2026-11-15",
+   "airline": "Turkish Airlines",
+   "number": "TK1302",
+   "from": {
+    "code": "VLC",
+    "city": "Valencia",
+    "airport": "Aeropuerto de Valencia",
+    "tz": "+01:00",
+    "time": "11:55"
+   },
+   "to": {
+    "code": "IST",
+    "city": "Estambul",
+    "airport": "Aeropuerto de Estambul",
+    "tz": "+03:00",
+    "time": "17:50"
+   },
+   "locators": [
+    {
+     "name": "Pedro",
+     "code": "96MO2E"
+    },
+    {
+     "name": "Cristina",
+     "code": "SMYLEQ"
+    }
+   ],
+   "bags": "2 maletas de 23 kg por persona",
+   "note": "Conexión en Estambul con el vuelo al Kilimanjaro (1 h 45 min)."
+  },
+  {
+   "id": "f2",
+   "date": "2026-11-15",
+   "airline": "Turkish Airlines",
+   "number": "TK564",
+   "from": {
+    "code": "IST",
+    "city": "Estambul",
+    "airport": "Aeropuerto de Estambul",
+    "tz": "+03:00",
+    "time": "19:35"
+   },
+   "to": {
+    "code": "JRO",
+    "city": "Kilimanjaro",
+    "airport": "Aeropuerto Internacional del Kilimanjaro",
+    "tz": "+03:00",
+    "time": "02:35"
+   },
+   "locators": [
+    {
+     "name": "Pedro",
+     "code": "96MO2E"
+    },
+    {
+     "name": "Cristina",
+     "code": "SMYLEQ"
+    }
+   ],
+   "bags": "2 maletas de 23 kg por persona",
+   "note": "Vuelo nocturno. Llegáis el lunes 16 de madrugada, hora de Tanzania."
+  },
+  {
+   "id": "f3",
+   "date": "2026-11-23",
+   "airline": "Turkish Airlines",
+   "number": "TK568",
+   "from": {
+    "code": "JRO",
+    "city": "Kilimanjaro",
+    "airport": "Aeropuerto Internacional del Kilimanjaro",
+    "tz": "+03:00",
+    "time": "05:55"
+   },
+   "to": {
+    "code": "IST",
+    "city": "Estambul",
+    "airport": "Aeropuerto de Estambul",
+    "tz": "+03:00",
+    "time": "13:30"
+   },
+   "locators": [
+    {
+     "name": "Pedro",
+     "code": "96MO2E"
+    },
+    {
+     "name": "Cristina",
+     "code": "SMYLEQ"
+    }
+   ],
+   "bags": "2 maletas de 23 kg por persona",
+   "note": "Estad en el aeropuerto hacia las 03:00."
+  },
+  {
+   "id": "f4",
+   "date": "2026-11-23",
+   "airline": "Turkish Airlines",
+   "number": "TK1313",
+   "from": {
+    "code": "IST",
+    "city": "Estambul",
+    "airport": "Aeropuerto de Estambul",
+    "tz": "+03:00",
+    "time": "15:30"
+   },
+   "to": {
+    "code": "VLC",
+    "city": "Valencia",
+    "airport": "Aeropuerto de Valencia",
+    "tz": "+01:00",
+    "time": "17:30"
+   },
+   "locators": [
+    {
+     "name": "Pedro",
+     "code": "96MO2E"
+    },
+    {
+     "name": "Cristina",
+     "code": "SMYLEQ"
+    }
+   ],
+   "bags": "2 maletas de 23 kg por persona",
+   "note": ""
+  }
+ ],
+ "hotels": [
+  {
+   "id": "jro1",
+   "city": "jro",
+   "name": "Hotel junto al aeropuerto",
+   "pending": true,
+   "checkIn": "2026-11-15",
+   "checkOut": "2026-11-16",
+   "nights": 1,
+   "image": "img/tz/kilimanjaro.jpg",
+   "address": "Zona del aeropuerto del Kilimanjaro",
+   "addressLocal": "Karibu na uwanja wa ndege wa Kilimanjaro",
+   "query": "Kilimanjaro International Airport",
+   "note": "Tu agencia os confirmará el hotel para descansar al llegar de madrugada.",
+   "short": "Por confirmar",
+   "kind": "Llegada"
+  },
+  {
+   "id": "star1",
+   "city": "krt",
+   "name": "Star World Lodge",
+   "kind": "Lodge · Karatu",
+   "checkIn": "2026-11-16",
+   "checkOut": "2026-11-19",
+   "nights": 3,
+   "image": "img/tz/lodge.jpg",
+   "address": "Karatu, región de Arusha, Tanzania",
+   "addressLocal": "Star World Lodge, Karatu, Arusha",
+   "query": "Star World Lodge Karatu",
+   "note": "Cena y desayuno incluidos. Desde aquí salís a Tarangire y al lago Manyara.",
+   "short": "Star World Lodge"
+  },
+  {
+   "id": "sig",
+   "city": "ser",
+   "name": "Signature Serengeti Luxury Tented Camp",
+   "kind": "Campamento de lujo · Serengeti",
+   "checkIn": "2026-11-19",
+   "checkOut": "2026-11-20",
+   "nights": 1,
+   "image": "img/tz/camp.jpg",
+   "address": "Serengeti central (zona de Seronera), Tanzania",
+   "addressLocal": "Signature Serengeti Luxury Tented Camp, Seronera, Serengeti",
+   "query": "Signature Serengeti Luxury Tented Camp",
+   "note": "Tiendas de lujo sobre plataformas de madera, con baño propio, mirando al atardecer.",
+   "short": "Signature Serengeti"
+  },
+  {
+   "id": "iwa",
+   "city": "ser",
+   "name": "Into Wild Africa Safari Lodge",
+   "kind": "Campamento de tiendas · Serengeti",
+   "checkIn": "2026-11-20",
+   "checkOut": "2026-11-21",
+   "nights": 1,
+   "image": "img/tz/tienda.jpg",
+   "address": "Serengeti central, cerca de Seronera, Tanzania",
+   "addressLocal": "Into Wild Africa Camp, Serengeti",
+   "query": "Into Wild Africa Camp Serengeti",
+   "note": "Campamento de tiendas en plena sabana. De noche se oyen los animales: no salgáis solos de la tienda, pedid que os acompañen.",
+   "short": "Into Wild Africa"
+  },
+  {
+   "id": "star2",
+   "city": "krt",
+   "name": "Star World Lodge",
+   "kind": "Lodge · Karatu",
+   "checkIn": "2026-11-21",
+   "checkOut": "2026-11-22",
+   "nights": 1,
+   "image": "img/tz/lodge.jpg",
+   "address": "Karatu, región de Arusha, Tanzania",
+   "addressLocal": "Star World Lodge, Karatu, Arusha",
+   "query": "Star World Lodge Karatu",
+   "note": "Vuelta al lodge después del Ngorongoro.",
+   "short": "Star World Lodge"
+  },
+  {
+   "id": "jro2",
+   "city": "jro",
+   "name": "Hotel junto al aeropuerto",
+   "pending": true,
+   "checkIn": "2026-11-22",
+   "checkOut": "2026-11-23",
+   "nights": 1,
+   "image": "img/tz/regreso.jpg",
+   "address": "Zona del aeropuerto del Kilimanjaro",
+   "addressLocal": "Karibu na uwanja wa ndege wa Kilimanjaro",
+   "query": "Kilimanjaro International Airport",
+   "note": "Tu agencia os confirmará el hotel para la última noche (el vuelo sale a las 05:55).",
+   "short": "Por confirmar",
+   "kind": "Salida"
+  }
+ ],
+ "transfers": [
+  {
+   "id": "t1",
+   "date": "2026-11-16",
+   "time": "Hora por confirmar",
+   "title": "Recogida y traslado a Karatu",
+   "from": "Aeropuerto del Kilimanjaro",
+   "to": "Star World Lodge (Karatu)",
+   "kind": "Incluido"
+  },
+  {
+   "id": "t2",
+   "date": "2026-11-17",
+   "time": "Del 17 al 22",
+   "title": "Safari en jeep 4x4 con techo abierto",
+   "from": "Karatu",
+   "to": "Tarangire, Manyara, Serengeti y Ngorongoro",
+   "kind": "Incluido"
+  },
+  {
+   "id": "t3",
+   "date": "2026-11-22",
+   "time": "Tras el desayuno",
+   "title": "Traslado al aeropuerto del Kilimanjaro",
+   "from": "Star World Lodge (Karatu)",
+   "to": "Zona del aeropuerto",
+   "kind": "Incluido"
+  },
+  {
+   "id": "t4",
+   "date": "2026-11-23",
+   "time": "Hacia las 03:00",
+   "title": "Al aeropuerto para el vuelo de las 05:55",
+   "from": "Hotel junto al aeropuerto",
+   "to": "Aeropuerto del Kilimanjaro",
+   "pending": true
+  }
+ ],
+ "days": [
+  {
+   "date": "2026-11-15",
+   "city": "vlc",
+   "title": "Rumbo a Tanzania",
+   "subtitle": "Valencia → Estambul → Kilimanjaro",
+   "image": "img/ventanilla.jpg",
+   "tip": "Llevad dólares en billetes nuevos (de 2013 en adelante, sin roturas) para el visado: lo pagaréis nada más aterrizar.",
+   "meta": [
+    {
+     "icon": "plane",
+     "text": "2 vuelos · Turkish Airlines"
+    },
+    {
+     "icon": "bag",
+     "text": "2 maletas de 23 kg cada uno"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Mediodía",
+     "icon": "plane",
+     "title": "Vuelo a Estambul",
+     "flight": "f1"
+    },
+    {
+     "part": "Tarde",
+     "icon": "plane",
+     "title": "Conexión al Kilimanjaro",
+     "flight": "f2",
+     "items": [
+      "Cena a bordo. Intentad dormir: el lunes empieza la aventura."
+     ]
+    }
+   ],
+   "stay": "jro1"
+  },
+  {
+   "date": "2026-11-16",
+   "city": "jro",
+   "title": "Karibu Tanzania",
+   "subtitle": "Llegada y subida a las tierras altas de Karatu",
+   "image": "img/tz/kilimanjaro.jpg",
+   "tip": "Mirad por la ventanilla al amanecer o en la carretera: con cielo despejado se ve el Kilimanjaro nevado.",
+   "meta": [
+    {
+     "icon": "clock",
+     "text": "Aterrizaje 02:35"
+    },
+    {
+     "icon": "car",
+     "text": "Recogida: hora por confirmar",
+     "pending": true
+    },
+    {
+     "icon": "dinner",
+     "text": "Cena incluida"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Madrugada",
+     "icon": "id",
+     "title": "Llegada al Kilimanjaro",
+     "items": [
+      "Visado a la llegada: pasaporte y dólares en efectivo.",
+      "Recogida de maletas y descanso en el hotel junto al aeropuerto."
+     ]
+    },
+    {
+     "part": "Día",
+     "icon": "car",
+     "title": "Traslado a Karatu",
+     "items": [
+      "El equipo de Safari Avventura os recoge y os lleva a Karatu (unas 4 h, pasando por Arusha).",
+      "Paisajes de cafetales, aldeas maasai y el valle del Rift."
+     ]
+    },
+    {
+     "part": "Noche",
+     "icon": "dinner",
+     "title": "Primera noche en el lodge",
+     "items": [
+      "Cena y alojamiento en el Star World Lodge."
+     ]
+    }
+   ],
+   "stay": "star1",
+   "contacts": [
+    "krt"
+   ]
+  },
+  {
+   "date": "2026-11-17",
+   "city": "tar",
+   "title": "Tarangire",
+   "subtitle": "El parque de los elefantes y los baobabs",
+   "image": "img/tz/tarangire.jpg",
+   "meta": [
+    {
+     "icon": "jeep",
+     "text": "Safari todo el día"
+    },
+    {
+     "icon": "dinner",
+     "text": "Pensión completa"
+    },
+    {
+     "icon": "clock",
+     "text": "Salida temprano: preguntad la hora al guía"
+    }
+   ],
+   "pack": [
+    "Prismáticos",
+    "Gorra y crema solar",
+    "Cámara y batería de repuesto",
+    "Una capa de abrigo para la mañana"
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "mug",
+     "title": "Desayuno y safari",
+     "items": [
+      "Desayuno en el lodge y salida en jeep hacia Tarangire (unas 2 h)."
+     ],
+     "places": [
+      "p-tar"
+     ]
+    },
+    {
+     "part": "Mediodía",
+     "icon": "dinner",
+     "title": "Picnic en el parque",
+     "items": [
+      "Almuerzo en una zona preparada dentro del parque."
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "binoc",
+     "title": "Safari fotográfico",
+     "items": [
+      "Las mejores horas para ver animales bebiendo en el río."
+     ]
+    },
+    {
+     "part": "Noche",
+     "icon": "moon",
+     "title": "Vuelta a Karatu",
+     "items": [
+      "Cena y alojamiento en el Star World Lodge."
+     ]
+    }
+   ],
+   "stay": "star1",
+   "contacts": [
+    "krt"
+   ]
+  },
+  {
+   "date": "2026-11-18",
+   "city": "mny",
+   "title": "Lago Manyara",
+   "subtitle": "Bosque, flamencos y leones en los árboles",
+   "image": "img/tz/manyara.jpg",
+   "meta": [
+    {
+     "icon": "jeep",
+     "text": "Safari todo el día"
+    },
+    {
+     "icon": "dinner",
+     "text": "Pensión completa"
+    },
+    {
+     "icon": "car",
+     "text": "A 30 min del lodge"
+    }
+   ],
+   "pack": [
+    "Prismáticos",
+    "Repelente de mosquitos",
+    "Chubasquero ligero",
+    "Cámara"
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "mug",
+     "title": "Desayuno y safari",
+     "items": [
+      "Bajada por la pared del valle del Rift hasta el lago."
+     ],
+     "places": [
+      "p-mny"
+     ]
+    },
+    {
+     "part": "Mediodía",
+     "icon": "dinner",
+     "title": "Picnic en el parque",
+     "items": [
+      "Almuerzo en una zona preparada dentro del parque."
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "binoc",
+     "title": "Safari fotográfico",
+     "items": [
+      "Orillas del lago: flamencos, pelícanos e hipopótamos."
+     ]
+    },
+    {
+     "part": "Noche",
+     "icon": "moon",
+     "title": "Última noche de esta tanda en Karatu",
+     "items": [
+      "Cena y alojamiento en el Star World Lodge.",
+      "Esta noche preparad una bolsa pequeña: mañana dormís en el Serengeti."
+     ]
+    }
+   ],
+   "stay": "star1",
+   "contacts": [
+    "krt"
+   ]
+  },
+  {
+   "date": "2026-11-19",
+   "city": "ser",
+   "title": "Serengeti",
+   "subtitle": "Rumbo a la llanura sin fin",
+   "image": "img/tz/serengeti.jpg",
+   "tip": "Por el camino pasáis por el borde del cráter del Ngorongoro: pedid al guía parar en el mirador.",
+   "meta": [
+    {
+     "icon": "jeep",
+     "text": "Safari en ruta (5 a 6 h)"
+    },
+    {
+     "icon": "dinner",
+     "text": "Pensión completa"
+    },
+    {
+     "icon": "tent",
+     "text": "Noche en campamento de lujo"
+    }
+   ],
+   "pack": [
+    "Prismáticos",
+    "Pañuelo o buff para el polvo",
+    "Forro polar",
+    "Cargador y batería externa"
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "mug",
+     "title": "Desayuno y salida",
+     "items": [
+      "Subida por el área de conservación del Ngorongoro y entrada al Serengeti por Naabi Hill."
+     ],
+     "places": [
+      "p-ser"
+     ]
+    },
+    {
+     "part": "Mediodía",
+     "icon": "dinner",
+     "title": "Picnic en el parque",
+     "items": [
+      "Almuerzo en una zona preparada dentro del parque."
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "binoc",
+     "title": "Safari hacia Seronera",
+     "items": [
+      "La zona central, la mejor para ver leopardos y leones."
+     ]
+    },
+    {
+     "part": "Noche",
+     "icon": "tent",
+     "title": "Campamento en plena sabana",
+     "items": [
+      "Cena y alojamiento en el Signature Serengeti Luxury Tented Camp."
+     ]
+    }
+   ],
+   "stay": "sig",
+   "contacts": [
+    "ser"
+   ]
+  },
+  {
+   "date": "2026-11-20",
+   "city": "ser",
+   "title": "Un día entero en el Serengeti",
+   "subtitle": "Leones, leopardos y la gran migración",
+   "image": "img/tz/serengeti-leones.jpg",
+   "tip": "En noviembre las manadas de ñus y cebras empiezan a bajar hacia el sur. El guía sabe dónde están: dejaos llevar.",
+   "meta": [
+    {
+     "icon": "jeep",
+     "text": "Safari todo el día"
+    },
+    {
+     "icon": "dinner",
+     "text": "Pensión completa"
+    },
+    {
+     "icon": "tent",
+     "text": "Noche en campamento"
+    }
+   ],
+   "pack": [
+    "Prismáticos",
+    "Gorra y crema solar",
+    "Agua (os dan en el jeep)",
+    "Tarjeta de memoria de repuesto"
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "mug",
+     "title": "Desayuno en el campamento",
+     "items": [
+      "Safari fotográfico desde primera hora."
+     ],
+     "places": [
+      "p-ser"
+     ]
+    },
+    {
+     "part": "Mediodía",
+     "icon": "dinner",
+     "title": "Picnic en el parque",
+     "items": [
+      "Almuerzo en una zona preparada dentro del parque."
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "binoc",
+     "title": "Safari fotográfico",
+     "items": [
+      "Al atardecer los depredadores se activan."
+     ]
+    },
+    {
+     "part": "Noche",
+     "icon": "tent",
+     "title": "Otro campamento",
+     "items": [
+      "Cena y alojamiento en el Into Wild Africa Safari Lodge."
+     ]
+    }
+   ],
+   "stay": "iwa",
+   "contacts": [
+    "ser"
+   ]
+  },
+  {
+   "date": "2026-11-21",
+   "city": "ngo",
+   "title": "Cráter del Ngorongoro",
+   "subtitle": "Dentro de un volcán lleno de vida",
+   "image": "img/tz/ngorongoro.jpg",
+   "tip": "En el borde del cráter (2.300 m) amanece frío: llevad el forro polar a mano en el jeep.",
+   "meta": [
+    {
+     "icon": "jeep",
+     "text": "Bajada al cráter"
+    },
+    {
+     "icon": "dinner",
+     "text": "Pensión completa"
+    },
+    {
+     "icon": "mount",
+     "text": "Hace frío por la mañana"
+    }
+   ],
+   "pack": [
+    "Forro polar o chaqueta",
+    "Prismáticos (para el rinoceronte)",
+    "Gorra y crema solar",
+    "Cámara"
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "mug",
+     "title": "Desayuno y bajada al cráter",
+     "items": [
+      "Del Serengeti al Ngorongoro (unas 3 h) y descenso por la pared del volcán."
+     ],
+     "places": [
+      "p-ngo"
+     ]
+    },
+    {
+     "part": "Mediodía",
+     "icon": "dinner",
+     "title": "Picnic en el cráter",
+     "items": [
+      "Almuerzo en una zona preparada, junto a una poza."
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "binoc",
+     "title": "Safari fotográfico",
+     "items": [
+      "Subida por la tarde y vuelta a Karatu (1 h)."
+     ]
+    },
+    {
+     "part": "Noche",
+     "icon": "moon",
+     "title": "Vuelta al lodge",
+     "items": [
+      "Cena y alojamiento en el Star World Lodge."
+     ]
+    }
+   ],
+   "stay": "star2",
+   "contacts": [
+    "krt"
+   ]
+  },
+  {
+   "date": "2026-11-22",
+   "city": "krt",
+   "title": "Kwaheri, safari",
+   "subtitle": "Karatu → aeropuerto del Kilimanjaro",
+   "image": "img/tz/regreso.jpg",
+   "tip": "Es el día de las propinas: el guía suele recibirlas al final, en un sobre (unos 10 USD por persona y día de safari).",
+   "meta": [
+    {
+     "icon": "mug",
+     "text": "Desayuno incluido"
+    },
+    {
+     "icon": "car",
+     "text": "Traslado al aeropuerto"
+    },
+    {
+     "icon": "hotel",
+     "text": "Hotel por confirmar",
+     "pending": true
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "mug",
+     "title": "Último desayuno en Karatu",
+     "items": [
+      "Maletas listas y despedida del lodge."
+     ]
+    },
+    {
+     "part": "Día",
+     "icon": "car",
+     "title": "Traslado al aeropuerto",
+     "items": [
+      "El equipo de Safari Avventura os lleva hacia el aeropuerto del Kilimanjaro, pasando por Arusha.",
+      "Fin de los servicios del safari."
+     ]
+    },
+    {
+     "part": "Noche",
+     "icon": "hotel",
+     "title": "Noche corta junto al aeropuerto",
+     "items": [
+      "Hotel por confirmar. Cenad pronto y dejad la maleta lista: os levantáis hacia las 02:30."
+     ]
+    }
+   ],
+   "stay": "jro2"
+  },
+  {
+   "date": "2026-11-23",
+   "city": "jro",
+   "title": "Vuelta a casa",
+   "subtitle": "Kilimanjaro → Estambul → Valencia",
+   "image": "img/ventanilla.jpg",
+   "meta": [
+    {
+     "icon": "clock",
+     "text": "En el aeropuerto hacia las 03:00"
+    },
+    {
+     "icon": "plane",
+     "text": "Llegada a Valencia 17:30"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Madrugada",
+     "icon": "plane",
+     "title": "Vuelo a Estambul",
+     "flight": "f3"
+    },
+    {
+     "part": "Tarde",
+     "icon": "plane",
+     "title": "Conexión a Valencia",
+     "flight": "f4",
+     "items": [
+      "¡Bienvenidos a casa!"
+     ]
+    }
+   ]
+  }
+ ],
+ "documents": [
+  {
+   "title": "Pasaporte",
+   "detail": "Con al menos 6 meses de validez y 2 páginas en blanco.",
+   "icon": "id"
+  },
+  {
+   "title": "Visado de Tanzania",
+   "detail": "Se saca al llegar al aeropuerto. Unos 50 USD por persona, en efectivo.",
+   "icon": "doc"
+  },
+  {
+   "title": "Seguro médico AMREF Flying Doctors",
+   "detail": "Incluido en el safari: evacuación médica en avioneta si hiciera falta.",
+   "icon": "shield"
+  },
+  {
+   "title": "Billetes de avión",
+   "detail": "Turkish Airlines · Pedro 96MO2E · Cristina SMYLEQ",
+   "icon": "ticket"
+  },
+  {
+   "title": "Vacunas",
+   "detail": "Fiebre amarilla no obligatoria viniendo de España. Consultad en Sanidad Exterior la prevención de la malaria.",
+   "icon": "shield"
+  }
+ ],
+ "checklist": [
+  "Pasaporte (6 meses de validez)",
+  "Dólares en billetes nuevos para el visado y las propinas",
+  "Adaptador de enchufe tipo G (el británico)",
+  "Ropa de colores neutros: beige, caqui, verde",
+  "Forro polar o chaqueta para las mañanas",
+  "Chubasquero ligero (noviembre trae chaparrones)",
+  "Gorra o sombrero, gafas de sol y crema solar",
+  "Repelente de mosquitos",
+  "Prismáticos",
+  "Cámara, tarjetas de memoria y batería externa",
+  "Pañuelo o buff para el polvo",
+  "Medicación habitual y un pequeño botiquín",
+  "Sin bolsas de plástico: están prohibidas en Tanzania"
+ ],
+ "info": {
+  "timeDiff": "+2 h",
+  "timeDiffText": "En Tanzania son 2 horas más que en España.",
+  "currency": {
+   "name": "Chelín tanzano",
+   "symbol": "TSh",
+   "code": "TZS",
+   "text": "En safari casi todo está pagado. Para visado, propinas y extras, lo más práctico son los dólares en efectivo. En los lodges suelen aceptar tarjeta.",
+   "rate": 2955,
+   "rateNote": "Cambio del 27 de octubre de 2026 (aprox.)",
+   "quick": [
+    10,
+    20,
+    50,
+    100,
+    200
+   ],
+   "alts": [
+    {
+     "name": "Dólar",
+     "symbol": "$",
+     "code": "USD",
+     "rate": 1.12,
+     "rateNote": "Cambio del 27 de octubre de 2026 (aprox.)",
+     "quick": [
+      10,
+      50,
+      100,
+      200,
+      500
+     ]
+    }
+   ]
+  },
+  "plugsType": "G",
+  "plugsShort": "Como el británico: necesitáis adaptador.",
+  "plugs": "Enchufes tipo G, 230 V.",
+  "weatherTitle": "Clima en noviembre",
+  "weather": [
+   {
+    "city": "Karatu",
+    "min": 13,
+    "max": 25,
+    "text": "Templado de día, fresco por la noche."
+   },
+   {
+    "city": "Serengeti",
+    "min": 16,
+    "max": 29,
+    "text": "Calor al mediodía, chaparrones por la tarde."
+   },
+   {
+    "city": "Borde del Ngorongoro",
+    "min": 8,
+    "max": 19,
+    "text": "Frío al amanecer. Forro polar."
+   }
+  ],
+  "tips": [
+   {
+    "icon": "coin",
+    "title": "Propinas",
+    "text": "Unos 10 USD por persona y día para el guía: 120 USD en total para los dos."
+   },
+   {
+    "icon": "water",
+    "title": "Agua",
+    "text": "Solo embotellada. En el jeep tenéis agua y refrescos."
+   },
+   {
+    "icon": "bag",
+    "title": "Sin plásticos",
+    "text": "Las bolsas de plástico están prohibidas. Usad bolsas de tela."
+   },
+   {
+    "icon": "shield",
+    "title": "Mosquitos",
+    "text": "Repelente y manga larga al atardecer."
+   },
+   {
+    "icon": "eye",
+    "title": "Fotos",
+    "text": "Pedid permiso antes de fotografiar a las personas, sobre todo a los maasai."
+   },
+   {
+    "icon": "wifi",
+    "title": "Internet",
+    "text": "Poca cobertura en los parques y wifi lento en los lodges. Esta app funciona sin conexión."
+   }
+  ],
+  "emergencies": [
+   {
+    "title": "Emergencias",
+    "detail": "Policía, ambulancia y bomberos",
+    "phone": "112",
+    "big": true
+   }
+  ],
+  "consulateUrl": "https://www.exteriores.gob.es/Embajadas/daressalaam/es/Paginas/index.aspx"
+ },
+ "phrases": [
+  {
+   "es": "Hola",
+   "local": "Jambo",
+   "say": "YAM-bo"
+  },
+  {
+   "es": "¿Qué tal? / Bien",
+   "local": "Habari? / Nzuri",
+   "say": "ja-BA-ri / n-SU-ri"
+  },
+  {
+   "es": "Gracias (muchas)",
+   "local": "Asante (sana)",
+   "say": "a-SAN-te (SA-na)"
+  },
+  {
+   "es": "Bienvenidos / De nada",
+   "local": "Karibu",
+   "say": "ka-RI-bu"
+  },
+  {
+   "es": "Por favor",
+   "local": "Tafadhali",
+   "say": "ta-fa-DA-li"
+  },
+  {
+   "es": "Sí / No",
+   "local": "Ndiyo / Hapana",
+   "say": "n-DI-yo / ja-PA-na"
+  },
+  {
+   "es": "Despacio, con calma",
+   "local": "Pole pole",
+   "say": "PO-le PO-le"
+  },
+  {
+   "es": "No hay problema",
+   "local": "Hakuna matata",
+   "say": "ja-KU-na ma-TA-ta"
+  },
+  {
+   "es": "León / Elefante / Jirafa",
+   "local": "Simba / Tembo / Twiga",
+   "say": "SIM-ba / TEM-bo / TUI-ga"
+  },
+  {
+   "es": "Amigo",
+   "local": "Rafiki",
+   "say": "ra-FI-ki"
+  },
+  {
+   "es": "¿Cuánto cuesta?",
+   "local": "Bei gani?",
+   "say": "BEI GA-ni"
+  },
+  {
+   "es": "Agua",
+   "local": "Maji",
+   "say": "MA-yi"
+  },
+  {
+   "es": "Adiós",
+   "local": "Kwaheri",
+   "say": "kua-JE-ri"
+  }
+ ],
+ "taxiPhrase": {
+  "local": "Tafadhali nipeleke kwenye anwani hii.",
+  "es": "¿Me puede llevar a esta dirección, por favor?"
+ },
+ "included": [
+  {
+   "icon": "plane",
+   "title": "4 vuelos con Turkish Airlines",
+   "text": "Valencia – Estambul – Kilimanjaro y vuelta, con 2 maletas de 23 kg cada uno."
+  },
+  {
+   "icon": "jeep",
+   "title": "Safari de 7 días en jeep 4x4",
+   "text": "Toyota de 7 plazas con techo abierto, compartido y con kilómetros ilimitados."
+  },
+  {
+   "icon": "guide",
+   "title": "Guía profesional en español",
+   "text": "Os acompaña durante todo el safari."
+  },
+  {
+   "icon": "tent",
+   "title": "5 noches de safari en lodge y campamentos",
+   "text": "Habitación doble con baño propio: Star World Lodge, Signature Serengeti e Into Wild Africa."
+  },
+  {
+   "icon": "dinner",
+   "title": "Pensión completa",
+   "text": "Desde la cena del día de llegada. Agua, snacks y refrescos durante el safari."
+  },
+  {
+   "icon": "binoc",
+   "title": "Entradas a los parques",
+   "text": "Tarangire, Lago Manyara, Serengeti y cráter del Ngorongoro."
+  },
+  {
+   "icon": "car",
+   "title": "Traslados",
+   "text": "Desde y hasta el aeropuerto del Kilimanjaro."
+  },
+  {
+   "icon": "shield",
+   "title": "Seguro médico AMREF Flying Doctors",
+   "text": "Evacuación médica aérea durante el safari."
+  }
+ ],
+ "notIncluded": [
+  {
+   "icon": "doc",
+   "title": "Visado",
+   "text": "Unos 50 USD por persona, al llegar."
+  },
+  {
+   "icon": "coin",
+   "title": "Propinas del guía",
+   "text": "Unos 10 USD por persona y día."
+  },
+  {
+   "icon": "dinner",
+   "title": "Bebidas en los alojamientos y extras",
+   "text": ""
+  },
+  {
+   "icon": "hotel",
+   "title": "Las dos noches junto al aeropuerto",
+   "text": "Las reserva aparte tu agencia."
+  }
+ ],
+ "wildlife": {
+  "intro": "Marcad los animales que vayáis viendo. Al final del viaje tendréis vuestro propio diario del safari.",
+  "animals": [
+   {
+    "id": "leon",
+    "big5": true,
+    "name": "León",
+    "local": "Simba",
+    "image": "img/tz/a-leon.jpg",
+    "where": "Serengeti, Ngorongoro y los que trepan en Manyara"
+   },
+   {
+    "id": "leopardo",
+    "big5": true,
+    "name": "Leopardo",
+    "local": "Chui",
+    "image": "img/tz/a-leopardo.jpg",
+    "where": "En las ramas de las acacias de Seronera"
+   },
+   {
+    "id": "elefante",
+    "big5": true,
+    "name": "Elefante",
+    "local": "Tembo",
+    "image": "img/tz/a-elefante.jpg",
+    "where": "Manadas enormes en Tarangire"
+   },
+   {
+    "id": "bufalo",
+    "big5": true,
+    "name": "Búfalo",
+    "local": "Nyati",
+    "image": "img/tz/a-bufalo.jpg",
+    "where": "Ngorongoro y Tarangire"
+   },
+   {
+    "id": "rinoceronte",
+    "big5": true,
+    "name": "Rinoceronte",
+    "local": "Kifaru",
+    "image": "img/tz/a-rinoceronte.jpg",
+    "where": "Casi solo en el cráter del Ngorongoro"
+   },
+   {
+    "id": "jirafa",
+    "name": "Jirafa",
+    "local": "Twiga",
+    "image": "img/tz/a-jirafa.jpg",
+    "where": "Tarangire y Serengeti"
+   },
+   {
+    "id": "cebra",
+    "name": "Cebra",
+    "local": "Punda milia",
+    "image": "img/tz/a-cebra.jpg",
+    "where": "En todos los parques"
+   },
+   {
+    "id": "nu",
+    "name": "Ñu",
+    "local": "Nyumbu",
+    "image": "img/tz/a-nu.jpg",
+    "where": "La gran migración del Serengeti"
+   },
+   {
+    "id": "hipopotamo",
+    "name": "Hipopótamo",
+    "local": "Kiboko",
+    "image": "img/tz/a-hipopotamo.jpg",
+    "where": "Pozas de Manyara y Ngorongoro"
+   },
+   {
+    "id": "guepardo",
+    "name": "Guepardo",
+    "local": "Duma",
+    "image": "img/tz/a-guepardo.jpg",
+    "where": "Llanuras abiertas del Serengeti"
+   },
+   {
+    "id": "hiena",
+    "name": "Hiena",
+    "local": "Fisi",
+    "image": "img/tz/a-hiena.jpg",
+    "where": "Serengeti y Ngorongoro"
+   },
+   {
+    "id": "grulla",
+    "name": "Grulla coronada",
+    "local": "Korongo",
+    "image": "img/tz/a-grulla.jpg",
+    "where": "Orillas de Manyara y del cráter"
+   }
+  ],
+  "rules": [
+   {
+    "icon": "jeep",
+    "title": "Siempre dentro del jeep",
+    "text": "Solo se baja en las zonas preparadas. Podéis poneros de pie con el techo abierto."
+   },
+   {
+    "icon": "speaker",
+    "title": "En silencio cerca de los animales",
+    "text": "Hablad bajo y sin movimientos bruscos: así se quedan más tiempo."
+   },
+   {
+    "icon": "sun",
+    "title": "Madrugar compensa",
+    "text": "Las primeras y las últimas horas del día son las mejores para ver depredadores."
+   },
+   {
+    "icon": "guide",
+    "title": "Fiaos del guía",
+    "text": "Los guías se avisan por radio cuando alguien ve algo especial."
+   }
+  ]
+ },
+ "scheduleNote": "Las horas de salida de cada safari os las dará el guía cada noche.",
+ "localContacts": [
+  {
+   "city": "krt",
+   "name": "Safari Avventura",
+   "email": "info@safariavventura.com",
+   "detail": "Organizador del safari · Arusha"
+  },
+  {
+   "city": "ser",
+   "name": "Safari Avventura",
+   "email": "info@safariavventura.com",
+   "detail": "Organizador del safari · Arusha"
+  }
+ ]
+}
