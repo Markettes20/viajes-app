@@ -801,3 +801,9 @@ li.on .hl-n, .place.on .hl-n { background: var(--terra); }
 .app-id span { color: #A9BACB; font-size: .9rem; }
 .app-note { display: flex; gap: 8px; align-items: flex-start; margin-top: 16px; font-size: .88rem; color: #A9BACB; max-width: 46ch; }
 .app-note svg { width: 16px; height: 16px; flex: none; margin-top: 3px; color: var(--gold-soft); }
+
+/* rótulo del lugar en las fotos de tipos de viaje */
+.place-tag { position: absolute; right: 14px; top: 14px; z-index: 1; font-size: .74rem; font-weight: 600; letter-spacing: .04em; color: #fff; background: rgba(6,26,43,.45); backdrop-filter: blur(6px); padding: 4px 10px; border-radius: 999px; }
+.split-media .place-tag { top: auto; bottom: 16px; right: 16px; }
+.type .place-tag { top: auto; bottom: 12px; right: 12px; }
+.type { padding-bottom: 46px; }
