@@ -356,7 +356,7 @@
    "city": "scl",
    "title": "Bienvenida a Santiago",
    "subtitle": "Descanso y primer paseo por el centro",
-   "image": "img/cl/santiago.jpg",
+   "image": "img/cl/centro.jpg",
    "tip": "Hay 4 horas menos que en España: cena pronto el primer día y duerme a la hora de Chile para quitarte antes el jet lag.",
    "meta": [
     {
@@ -409,7 +409,7 @@
    "city": "scl",
    "title": "Santiago desde arriba",
    "subtitle": "Cerro San Cristóbal y Sky Costanera",
-   "image": "img/cl/sancristobal.jpg",
+   "image": "img/cl/miradores.jpg",
    "meta": [
     {
      "icon": "info",
@@ -468,7 +468,7 @@
    "city": "scl",
    "title": "Barrio Lastarria",
    "subtitle": "Cafés, museos y el Cerro Santa Lucía",
-   "image": "img/cl/santiago.jpg",
+   "image": "img/cl/forestal.jpg",
    "meta": [
     {
      "icon": "sun",
@@ -560,8 +560,8 @@
    "date": "2026-12-14",
    "city": "scl",
    "title": "Día libre",
-   "subtitle": "A tu aire por Santiago",
-   "image": "img/cl/santiago.jpg",
+   "subtitle": "Parques y arte al aire libre",
+   "image": "img/cl/bicentenario.jpg",
    "meta": [
     {
      "icon": "sun",
@@ -578,7 +578,7 @@
      "icon": "pin",
      "title": "Si te apetece",
      "items": [
-      "Parque Bicentenario y el barrio de Vitacura.",
+      "Parque Bicentenario y el barrio de Vitacura, con esculturas y lagunas.",
       "Museo de la Memoria y los Derechos Humanos (entrada gratis)."
      ]
     }
@@ -652,7 +652,7 @@
    "city": "scl",
    "title": "Día libre",
    "subtitle": "Compras y paseo",
-   "image": "img/cl/santiago.jpg",
+   "image": "img/cl/costanera.jpg",
    "meta": [
     {
      "icon": "sun",
@@ -730,8 +730,8 @@
    "date": "2026-12-18",
    "city": "scl",
    "title": "Día libre",
-   "subtitle": "Descanso",
-   "image": "img/cl/santiago.jpg",
+   "subtitle": "Templo Bahá'í y atardecer en la precordillera",
+   "image": "img/cl/bahai.jpg",
    "meta": [
     {
      "icon": "sun",
@@ -748,7 +748,8 @@
      "icon": "pin",
      "title": "Si te apetece",
      "items": [
-      "Una tarde de piscina o de parque: diciembre es pleno verano en Chile."
+      "El Templo Bahá'í de Sudamérica, en Peñalolén: arquitectura espectacular, jardines y vistas a toda la ciudad. La entrada es gratis.",
+      "Ve a última hora de la tarde para ver el atardecer desde allí."
      ]
     }
    ],
@@ -759,7 +760,7 @@
    "city": "scl",
    "title": "Día libre",
    "subtitle": "A tu aire por Santiago",
-   "image": "img/cl/santiago.jpg",
+   "image": "img/cl/noche.jpg",
    "meta": [
     {
      "icon": "sun",
@@ -788,7 +789,7 @@
    "city": "scl",
    "title": "Día libre",
    "subtitle": "Domingo en Santiago",
-   "image": "img/cl/santiago.jpg",
+   "image": "img/cl/vega.jpg",
    "meta": [
     {
      "icon": "sun",
@@ -817,7 +818,7 @@
    "city": "scl",
    "title": "Último día completo",
    "subtitle": "Recuerdos y despedida",
-   "image": "img/cl/santiago.jpg",
+   "image": "img/cl/artesania.jpg",
    "meta": [
     {
      "icon": "sun",
@@ -850,7 +851,7 @@
    "city": "scl",
    "title": "Vuelta a casa",
    "subtitle": "Santiago de Chile → Madrid",
-   "image": "img/ventanilla.jpg",
+   "image": "img/cl/andes.jpg",
    "tip": "Estate en el aeropuerto hacia las 13:00. Desde el centro se tarda entre 30 y 60 minutos según el tráfico.",
    "meta": [
     {
@@ -887,7 +888,7 @@
    "city": "mad",
    "title": "Llegada a Madrid",
    "subtitle": "¡Bienvenida a casa!",
-   "image": "img/ventanilla.jpg",
+   "image": "img/cl/madrid.jpg",
    "meta": [
     {
      "icon": "plane",
