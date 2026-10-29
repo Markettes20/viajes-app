@@ -792,3 +792,12 @@ li.on .hl-n, .place.on .hl-n { background: var(--terra); }
 .phones.two .phone:nth-child(1) { transform: rotate(-5deg) translateY(20px); margin-right: -8%; }
 .phones.two .phone:nth-child(2) { transform: rotate(4deg); }
 @media (max-width: 560px) { .phones.two .phone:nth-child(3) { display: none; } }
+
+/* app: logo y nombre + aviso */
+.app-id { display: flex; align-items: center; gap: 14px; margin-top: 22px; }
+.app-id img { width: 64px; height: 64px; border-radius: 16px; box-shadow: 0 10px 26px -10px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.12); }
+.app-id div { display: grid; line-height: 1.25; }
+.app-id b { color: #fff; font-family: var(--f-display); font-weight: 400; font-size: 1.45rem; }
+.app-id span { color: #A9BACB; font-size: .9rem; }
+.app-note { display: flex; gap: 8px; align-items: flex-start; margin-top: 16px; font-size: .88rem; color: #A9BACB; max-width: 46ch; }
+.app-note svg { width: 16px; height: 16px; flex: none; margin-top: 3px; color: var(--gold-soft); }
