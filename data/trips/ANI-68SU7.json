@@ -1,0 +1,1060 @@
+{
+ "code": "ANI-68SU7",
+ "traveler": {
+  "firstName": "Yasmin",
+  "fullName": "Yasmin Josefina García Díaz",
+  "plural": false
+ },
+ "title": "Viaje a Chile",
+ "subtitle": "Santiago, la costa y la cordillera de los Andes",
+ "destination": "Chile",
+ "country": "Chile",
+ "langs": [
+  "es"
+ ],
+ "language": {
+  "es": "español",
+  "en": "Spanish",
+  "speech": "es-CL",
+  "fallback": "es-ES",
+  "same": true
+ },
+ "map": "chile-central",
+ "mapHint": "Toca un punto para ver qué hay. Las excursiones son ideas: tu agencia te confirma lo reservado.",
+ "tz": "-03:00",
+ "start": "2026-12-09",
+ "end": "2026-12-23",
+ "cover": "img/cl/portada.jpg",
+ "previewDay": 1,
+ "route": [
+  "Madrid",
+  "Santiago de Chile",
+  "Madrid"
+ ],
+ "routeIds": [
+  "mad",
+  "scl",
+  "mad"
+ ],
+ "cities": [
+  {
+   "id": "mad",
+   "name": "Madrid",
+   "country": "España",
+   "lat": 40.42,
+   "lng": -3.7,
+   "home": true
+  },
+  {
+   "id": "scl",
+   "name": "Santiago",
+   "local": "Santiago de Chile",
+   "lat": -33.44,
+   "lng": -70.65,
+   "image": "img/cl/santiago.jpg",
+   "nights": 13,
+   "label": [
+    30,
+    8,
+    "start"
+   ],
+   "sub": "Tu base · 13 noches"
+  },
+  {
+   "id": "vap",
+   "name": "Valparaíso y Viña",
+   "short": "Valparaíso",
+   "local": "Valparaíso",
+   "lat": -33.04,
+   "lng": -71.61,
+   "image": "img/cl/valparaiso.jpg",
+   "label": [
+    30,
+    -6,
+    "start"
+   ],
+   "sub": "Excursión de un día · idea"
+  },
+  {
+   "id": "cas",
+   "name": "Valle de Casablanca",
+   "short": "Casablanca",
+   "local": "Casablanca",
+   "lat": -33.32,
+   "lng": -71.41,
+   "image": "img/cl/vinedo.jpg",
+   "label": [
+    30,
+    12,
+    "start"
+   ],
+   "sub": "Viñedos · idea"
+  },
+  {
+   "id": "mai",
+   "name": "Cajón del Maipo",
+   "short": "Cajón del Maipo",
+   "local": "Cajón del Maipo",
+   "lat": -33.68,
+   "lng": -70.09,
+   "image": "img/cl/maipo.jpg",
+   "label": [
+    -30,
+    40,
+    "end"
+   ],
+   "sub": "Montaña y Embalse El Yeso · idea"
+  }
+ ],
+ "places": [
+  {
+   "id": "p-plaza",
+   "city": "scl",
+   "name": "Plaza de Armas",
+   "es": "El centro histórico",
+   "desc": "El corazón de Santiago desde 1541: la Catedral Metropolitana, el Correo Central y el Museo Histórico Nacional, con pintores y ajedrecistas en la plaza.",
+   "query": "Plaza de Armas, Santiago, Chile"
+  },
+  {
+   "id": "p-mercado",
+   "city": "scl",
+   "name": "Mercado Central",
+   "es": "Pescados y mariscos",
+   "desc": "Mercado de hierro de 1872, a cinco minutos de la Plaza de Armas. Sitio clásico para probar caldillo de congrio, machas a la parmesana o una paila marina.",
+   "query": "Mercado Central, Santiago, Chile"
+  },
+  {
+   "id": "p-moneda",
+   "city": "scl",
+   "name": "Palacio de La Moneda",
+   "es": "Palacio de Gobierno",
+   "desc": "Sede del presidente de Chile. El cambio de guardia es en días alternos a las 10:00 (consulta el calendario). Debajo está el Centro Cultural La Moneda.",
+   "query": "Palacio de La Moneda, Santiago"
+  },
+  {
+   "id": "p-sancris",
+   "city": "scl",
+   "name": "Cerro San Cristóbal",
+   "es": "Las mejores vistas de la ciudad",
+   "desc": "Subida en funicular desde Bellavista y bajada en teleférico. Arriba está la Virgen blanca y, con el cielo limpio, toda la cordillera de los Andes delante.",
+   "query": "Funicular Cerro San Cristóbal, Santiago"
+  },
+  {
+   "id": "p-sky",
+   "city": "scl",
+   "name": "Sky Costanera",
+   "es": "Mirador a 300 metros",
+   "desc": "El mirador más alto de Sudamérica, en lo alto de la Gran Torre Santiago. Al atardecer se ve la ciudad encenderse con los Andes detrás.",
+   "query": "Sky Costanera, Santiago"
+  },
+  {
+   "id": "p-lastarria",
+   "city": "scl",
+   "name": "Barrio Lastarria y Cerro Santa Lucía",
+   "es": "Cafés, librerías y miradores",
+   "desc": "Calles de adoquín con terrazas, museos pequeños y heladerías. Justo al lado, el Cerro Santa Lucía, donde se fundó la ciudad, con escaleras y un castillo mirador.",
+   "query": "Barrio Lastarria, Santiago"
+  },
+  {
+   "id": "p-chascona",
+   "city": "scl",
+   "name": "La Chascona",
+   "es": "Casa de Pablo Neruda",
+   "desc": "La casa del poeta en el barrio Bellavista, llena de objetos curiosos. Se visita con audioguía; conviene reservar en la web de la Fundación Neruda.",
+   "query": "La Chascona, Santiago"
+  },
+  {
+   "id": "p-dominicos",
+   "city": "scl",
+   "name": "Pueblito Los Dominicos",
+   "es": "Artesanía chilena",
+   "desc": "Más de 150 talleres de artesanos junto a una iglesia colonial: lapislázuli, cobre, lana y cerámica. El mejor sitio para los regalos de vuelta.",
+   "query": "Pueblito Los Dominicos, Las Condes"
+  },
+  {
+   "id": "p-valpo",
+   "city": "vap",
+   "name": "Valparaíso",
+   "es": "Cerros de colores",
+   "desc": "Ciudad Patrimonio de la Humanidad: casas de colores colgadas de los cerros, ascensores centenarios y murales en cada esquina. Los cerros Alegre y Concepción son los más bonitos para pasear.",
+   "query": "Cerro Alegre, Valparaíso"
+  },
+  {
+   "id": "p-vina",
+   "city": "vap",
+   "name": "Viña del Mar",
+   "es": "La ciudad jardín",
+   "desc": "Al lado de Valparaíso: playas, el Reloj de Flores y el paseo marítimo. En diciembre el agua del Pacífico está fría, pero la playa apetece.",
+   "query": "Reloj de Flores, Viña del Mar"
+  },
+  {
+   "id": "p-cas",
+   "city": "cas",
+   "name": "Valle de Casablanca",
+   "es": "Ruta del vino",
+   "desc": "A medio camino entre Santiago y la costa, famoso por sus vinos blancos. Muchas bodegas ofrecen visita con cata y almuerzo; se reserva con antelación.",
+   "query": "Valle de Casablanca, Chile"
+  },
+  {
+   "id": "p-yeso",
+   "city": "mai",
+   "name": "Embalse El Yeso",
+   "es": "Lago turquesa entre montañas",
+   "desc": "A unas 2 h de Santiago por el Cajón del Maipo, a 2.500 m de altura. Lo normal es ir con una excursión organizada: el último tramo es de tierra.",
+   "query": "Embalse El Yeso"
+  },
+  {
+   "id": "p-sanjose",
+   "city": "mai",
+   "name": "San José de Maipo",
+   "es": "Pueblo de montaña",
+   "desc": "El pueblo principal del Cajón, con empanadas caseras, termas y rafting en el río Maipo en verano.",
+   "query": "San José de Maipo"
+  }
+ ],
+ "flights": [
+  {
+   "id": "f1",
+   "date": "2026-12-09",
+   "airline": "LATAM",
+   "number": "LA707",
+   "from": {
+    "code": "MAD",
+    "city": "Madrid",
+    "airport": "Aeropuerto Adolfo Suárez Madrid-Barajas",
+    "tz": "+01:00",
+    "time": "11:05"
+   },
+   "to": {
+    "code": "SCL",
+    "city": "Santiago",
+    "airport": "Aeropuerto Internacional Arturo Merino Benítez",
+    "tz": "-03:00",
+    "time": "20:45"
+   },
+   "locators": [
+    {
+     "name": "Yasmin",
+     "code": "OWKIYX"
+    }
+   ],
+   "bags": "1 maleta facturada (economy)",
+   "note": "Vuelo directo de 13 h 40 min. Llegas el mismo día por la noche, hora de Chile."
+  },
+  {
+   "id": "f2",
+   "date": "2026-12-22",
+   "airline": "LATAM",
+   "number": "LA708",
+   "from": {
+    "code": "SCL",
+    "city": "Santiago",
+    "airport": "Aeropuerto Internacional Arturo Merino Benítez",
+    "tz": "-03:00",
+    "time": "16:00"
+   },
+   "to": {
+    "code": "MAD",
+    "city": "Madrid",
+    "airport": "Aeropuerto Adolfo Suárez Madrid-Barajas",
+    "tz": "+01:00",
+    "time": "09:00"
+   },
+   "locators": [
+    {
+     "name": "Yasmin",
+     "code": "OWKIYX"
+    }
+   ],
+   "bags": "1 maleta facturada (economy)",
+   "note": "Vuelo directo de 13 h. Llegas a Madrid el miércoles 23 por la mañana."
+  }
+ ],
+ "hotels": [
+  {
+   "id": "scl1",
+   "city": "scl",
+   "name": "Alojamiento en Santiago",
+   "pending": true,
+   "checkIn": "2026-12-09",
+   "checkOut": "2026-12-22",
+   "nights": 13,
+   "image": "img/cl/santiago.jpg",
+   "address": "Santiago de Chile",
+   "query": "Santiago, Chile",
+   "note": "Tu agencia te confirmará aquí la dirección de tu alojamiento.",
+   "short": "Por confirmar",
+   "kind": "Santiago"
+  }
+ ],
+ "transfers": [
+  {
+   "id": "t1",
+   "date": "2026-12-09",
+   "time": "Al aterrizar (20:45)",
+   "title": "Del aeropuerto a tu alojamiento",
+   "from": "Aeropuerto de Santiago",
+   "to": "Alojamiento en Santiago",
+   "pending": true
+  },
+  {
+   "id": "t2",
+   "date": "2026-12-22",
+   "time": "Hacia las 12:30",
+   "title": "Al aeropuerto para el vuelo de las 16:00",
+   "from": "Alojamiento en Santiago",
+   "to": "Aeropuerto de Santiago",
+   "pending": true
+  }
+ ],
+ "days": [
+  {
+   "date": "2026-12-09",
+   "city": "mad",
+   "title": "Rumbo a Chile",
+   "subtitle": "Madrid → Santiago de Chile",
+   "image": "img/ventanilla.jpg",
+   "tip": "En el avión te darán la declaración del SAG: Chile no deja entrar fruta, carne, embutido, queso ni semillas. Si llevas algo de comida, decláralo.",
+   "meta": [
+    {
+     "icon": "plane",
+     "text": "Vuelo directo · LATAM"
+    },
+    {
+     "icon": "bag",
+     "text": "1 maleta facturada"
+    },
+    {
+     "icon": "clock",
+     "text": "Llegada 20:45 hora de Chile"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "plane",
+     "title": "Vuelo a Santiago",
+     "flight": "f1",
+     "items": [
+      "Estate en Barajas hacia las 08:00 (vuelo internacional)."
+     ]
+    },
+    {
+     "part": "Noche",
+     "icon": "hotel",
+     "title": "Llegada a Santiago",
+     "items": [
+      "Control de pasaportes, maletas y declaración del SAG.",
+      "Traslado a tu alojamiento: por confirmar."
+     ]
+    }
+   ],
+   "stay": "scl1"
+  },
+  {
+   "date": "2026-12-10",
+   "city": "scl",
+   "title": "Bienvenida a Santiago",
+   "subtitle": "Descanso y primer paseo por el centro",
+   "image": "img/cl/santiago.jpg",
+   "tip": "Hay 4 horas menos que en España: cena pronto el primer día y duerme a la hora de Chile para quitarte antes el jet lag.",
+   "meta": [
+    {
+     "icon": "info",
+     "text": "Idea · por confirmar",
+     "pending": true
+    },
+    {
+     "icon": "sun",
+     "text": "Verano: unos 29 °C"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "mug",
+     "title": "Sin prisas",
+     "items": [
+      "Desayuno tranquilo y saca pesos chilenos en un cajero."
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "pin",
+     "title": "El centro histórico",
+     "items": [
+      "Plaza de Armas, la Catedral y el Palacio de La Moneda, todo a pie."
+     ],
+     "places": [
+      "p-plaza",
+      "p-moneda"
+     ]
+    },
+    {
+     "part": "Noche",
+     "icon": "dinner",
+     "title": "Cena en el Mercado Central",
+     "items": [
+      "Pescados y mariscos del Pacífico."
+     ],
+     "places": [
+      "p-mercado"
+     ]
+    }
+   ],
+   "stay": "scl1"
+  },
+  {
+   "date": "2026-12-11",
+   "city": "scl",
+   "title": "Santiago desde arriba",
+   "subtitle": "Cerro San Cristóbal y Sky Costanera",
+   "image": "img/cl/sancristobal.jpg",
+   "meta": [
+    {
+     "icon": "info",
+     "text": "Idea · por confirmar",
+     "pending": true
+    },
+    {
+     "icon": "mount",
+     "text": "Vistas a los Andes"
+    }
+   ],
+   "pack": [
+    "Gorra y crema solar",
+    "Agua",
+    "Calzado cómodo"
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "mount",
+     "title": "Cerro San Cristóbal",
+     "items": [
+      "Sube en funicular desde Bellavista y baja en teleférico. Por la mañana el aire está más limpio y se ven mejor los Andes."
+     ],
+     "places": [
+      "p-sancris"
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "pin",
+     "title": "Bellavista",
+     "items": [
+      "Paseo por el barrio y visita a La Chascona, la casa de Neruda."
+     ],
+     "places": [
+      "p-chascona"
+     ]
+    },
+    {
+     "part": "Atardecer",
+     "icon": "eye",
+     "title": "Sky Costanera",
+     "items": [
+      "La ciudad a 300 metros de altura mientras se pone el sol."
+     ],
+     "places": [
+      "p-sky"
+     ]
+    }
+   ],
+   "stay": "scl1"
+  },
+  {
+   "date": "2026-12-12",
+   "city": "scl",
+   "title": "Barrio Lastarria",
+   "subtitle": "Cafés, museos y el Cerro Santa Lucía",
+   "image": "img/cl/santiago.jpg",
+   "meta": [
+    {
+     "icon": "sun",
+     "text": "Día libre"
+    },
+    {
+     "icon": "hotel",
+     "text": "Noche en Santiago"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Ideas",
+     "icon": "pin",
+     "title": "Para un día tranquilo",
+     "items": [
+      "Paseo por Lastarria y subida al Cerro Santa Lucía.",
+      "Museo de Bellas Artes y Parque Forestal, al lado."
+     ],
+     "places": [
+      "p-lastarria"
+     ]
+    }
+   ],
+   "stay": "scl1"
+  },
+  {
+   "date": "2026-12-13",
+   "city": "vap",
+   "title": "Valparaíso y Viña del Mar",
+   "subtitle": "Excursión de un día a la costa",
+   "image": "img/cl/valparaiso.jpg",
+   "tip": "Valparaíso tiene muchas cuestas: calzado cómodo. Y guarda el móvil en las calles del puerto.",
+   "meta": [
+    {
+     "icon": "info",
+     "text": "Idea · por confirmar",
+     "pending": true
+    },
+    {
+     "icon": "car",
+     "text": "1 h 30 min desde Santiago"
+    },
+    {
+     "icon": "boat",
+     "text": "Costa del Pacífico"
+    }
+   ],
+   "pack": [
+    "Calzado cómodo",
+    "Una chaqueta fina (en la costa refresca)",
+    "Crema solar"
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "car",
+     "title": "Hacia la costa",
+     "items": [
+      "En excursión organizada o en autobús desde la terminal Pajaritos (Turbus o Pullman)."
+     ]
+    },
+    {
+     "part": "Mediodía",
+     "icon": "pin",
+     "title": "Los cerros de Valparaíso",
+     "items": [
+      "Cerro Alegre y Concepción: murales, miradores y un ascensor centenario."
+     ],
+     "places": [
+      "p-valpo"
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "sun",
+     "title": "Viña del Mar",
+     "items": [
+      "El Reloj de Flores y un paseo junto al mar antes de volver."
+     ],
+     "places": [
+      "p-vina"
+     ]
+    }
+   ],
+   "stay": "scl1"
+  },
+  {
+   "date": "2026-12-14",
+   "city": "scl",
+   "title": "Día libre",
+   "subtitle": "A tu aire por Santiago",
+   "image": "img/cl/santiago.jpg",
+   "meta": [
+    {
+     "icon": "sun",
+     "text": "Día libre"
+    },
+    {
+     "icon": "hotel",
+     "text": "Noche en Santiago"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Ideas",
+     "icon": "pin",
+     "title": "Si te apetece",
+     "items": [
+      "Parque Bicentenario y el barrio de Vitacura.",
+      "Museo de la Memoria y los Derechos Humanos (entrada gratis)."
+     ]
+    }
+   ],
+   "stay": "scl1"
+  },
+  {
+   "date": "2026-12-15",
+   "city": "mai",
+   "title": "Cajón del Maipo",
+   "subtitle": "Montaña y el Embalse El Yeso",
+   "image": "img/cl/maipo.jpg",
+   "tip": "El Yeso está a 2.500 m: aunque en Santiago haga calor, lleva abrigo. Y protector solar: allí arriba el sol quema mucho.",
+   "meta": [
+    {
+     "icon": "info",
+     "text": "Idea · por confirmar",
+     "pending": true
+    },
+    {
+     "icon": "car",
+     "text": "Excursión organizada"
+    },
+    {
+     "icon": "mount",
+     "text": "2.500 m de altura"
+    }
+   ],
+   "pack": [
+    "Abrigo o forro polar",
+    "Gafas de sol y crema solar",
+    "Agua y algo de picar",
+    "Calzado de montaña o deportivas"
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "car",
+     "title": "Subida por el Cajón",
+     "items": [
+      "Las excursiones recogen en Santiago temprano. Parada en San José de Maipo."
+     ],
+     "places": [
+      "p-sanjose"
+     ]
+    },
+    {
+     "part": "Mediodía",
+     "icon": "mount",
+     "title": "Embalse El Yeso",
+     "items": [
+      "Lago turquesa entre montañas. Muchas excursiones incluyen picnic con vino y queso."
+     ],
+     "places": [
+      "p-yeso"
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "moon",
+     "title": "Vuelta a Santiago",
+     "items": [
+      "Llegada a media tarde."
+     ]
+    }
+   ],
+   "stay": "scl1"
+  },
+  {
+   "date": "2026-12-16",
+   "city": "scl",
+   "title": "Día libre",
+   "subtitle": "Compras y paseo",
+   "image": "img/cl/santiago.jpg",
+   "meta": [
+    {
+     "icon": "sun",
+     "text": "Día libre"
+    },
+    {
+     "icon": "hotel",
+     "text": "Noche en Santiago"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Ideas",
+     "icon": "pin",
+     "title": "Si te apetece",
+     "items": [
+      "Costanera Center, el centro comercial más grande de Sudamérica.",
+      "Barrio Italia: tiendas de diseño, anticuarios y cafés."
+     ]
+    }
+   ],
+   "stay": "scl1"
+  },
+  {
+   "date": "2026-12-17",
+   "city": "cas",
+   "title": "Ruta del vino",
+   "subtitle": "Viñedos del Valle de Casablanca",
+   "image": "img/cl/vinedo.jpg",
+   "meta": [
+    {
+     "icon": "info",
+     "text": "Idea · por confirmar",
+     "pending": true
+    },
+    {
+     "icon": "car",
+     "text": "1 h desde Santiago"
+    },
+    {
+     "icon": "dinner",
+     "text": "Cata y almuerzo"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "car",
+     "title": "Hacia Casablanca",
+     "items": [
+      "En tour organizado: así no tienes que conducir después de la cata."
+     ],
+     "places": [
+      "p-cas"
+     ]
+    },
+    {
+     "part": "Mediodía",
+     "icon": "dinner",
+     "title": "Visita a una bodega",
+     "items": [
+      "Paseo entre viñas, cata de vinos blancos y almuerzo."
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "moon",
+     "title": "Vuelta a Santiago",
+     "items": []
+    }
+   ],
+   "stay": "scl1"
+  },
+  {
+   "date": "2026-12-18",
+   "city": "scl",
+   "title": "Día libre",
+   "subtitle": "Descanso",
+   "image": "img/cl/santiago.jpg",
+   "meta": [
+    {
+     "icon": "sun",
+     "text": "Día libre"
+    },
+    {
+     "icon": "hotel",
+     "text": "Noche en Santiago"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Ideas",
+     "icon": "pin",
+     "title": "Si te apetece",
+     "items": [
+      "Una tarde de piscina o de parque: diciembre es pleno verano en Chile."
+     ]
+    }
+   ],
+   "stay": "scl1"
+  },
+  {
+   "date": "2026-12-19",
+   "city": "scl",
+   "title": "Día libre",
+   "subtitle": "A tu aire por Santiago",
+   "image": "img/cl/santiago.jpg",
+   "meta": [
+    {
+     "icon": "sun",
+     "text": "Día libre"
+    },
+    {
+     "icon": "hotel",
+     "text": "Noche en Santiago"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Ideas",
+     "icon": "pin",
+     "title": "Si te apetece",
+     "items": [
+      "Barrio Yungay y Barrio Brasil: casas antiguas y comida peruana y chilena.",
+      "Por la noche, el ambiente de Bellavista."
+     ]
+    }
+   ],
+   "stay": "scl1"
+  },
+  {
+   "date": "2026-12-20",
+   "city": "scl",
+   "title": "Día libre",
+   "subtitle": "Domingo en Santiago",
+   "image": "img/cl/santiago.jpg",
+   "meta": [
+    {
+     "icon": "sun",
+     "text": "Día libre"
+    },
+    {
+     "icon": "hotel",
+     "text": "Noche en Santiago"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Ideas",
+     "icon": "pin",
+     "title": "Si te apetece",
+     "items": [
+      "Mercado de la Vega Central: frutas de temporada como cerezas y duraznos.",
+      "Paseo por el Parque Forestal."
+     ]
+    }
+   ],
+   "stay": "scl1"
+  },
+  {
+   "date": "2026-12-21",
+   "city": "scl",
+   "title": "Último día completo",
+   "subtitle": "Recuerdos y despedida",
+   "image": "img/cl/santiago.jpg",
+   "meta": [
+    {
+     "icon": "sun",
+     "text": "Día libre"
+    },
+    {
+     "icon": "hotel",
+     "text": "Noche en Santiago"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Ideas",
+     "icon": "pin",
+     "title": "Para los regalos",
+     "items": [
+      "Pueblito Los Dominicos: artesanía en lapislázuli, cobre y lana.",
+      "Deja la maleta casi lista: mañana vuelas por la tarde."
+     ],
+     "places": [
+      "p-dominicos"
+     ]
+    }
+   ],
+   "stay": "scl1",
+   "tip": "Si compras vino, mételo en la maleta facturada (en la de mano no se puede llevar líquido)."
+  },
+  {
+   "date": "2026-12-22",
+   "city": "scl",
+   "title": "Vuelta a casa",
+   "subtitle": "Santiago de Chile → Madrid",
+   "image": "img/ventanilla.jpg",
+   "tip": "Estate en el aeropuerto hacia las 13:00. Desde el centro se tarda entre 30 y 60 minutos según el tráfico.",
+   "meta": [
+    {
+     "icon": "clock",
+     "text": "En el aeropuerto hacia las 13:00"
+    },
+    {
+     "icon": "plane",
+     "text": "Salida 16:00"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "mug",
+     "title": "Última mañana",
+     "items": [
+      "Desayuno y salida del alojamiento."
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "plane",
+     "title": "Vuelo a Madrid",
+     "flight": "f2",
+     "items": [
+      "Vuelo de noche: intenta dormir."
+     ]
+    }
+   ]
+  },
+  {
+   "date": "2026-12-23",
+   "city": "mad",
+   "title": "Llegada a Madrid",
+   "subtitle": "¡Bienvenida a casa!",
+   "image": "img/ventanilla.jpg",
+   "meta": [
+    {
+     "icon": "plane",
+     "text": "Aterrizaje 09:00"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "plane",
+     "title": "Aterrizaje en Barajas",
+     "items": [
+      "Llegada a las 09:00, hora de España. ¡Feliz Navidad!"
+     ]
+    }
+   ]
+  }
+ ],
+ "documents": [
+  {
+   "title": "Pasaporte",
+   "detail": "En vigor durante todo el viaje. Con pasaporte español no hace falta visado (hasta 90 días). Con otro pasaporte, pregunta a tu agencia.",
+   "icon": "id"
+  },
+  {
+   "title": "Billetes de avión",
+   "detail": "LATAM · localizador OWKIYX",
+   "icon": "ticket"
+  },
+  {
+   "title": "Declaración del SAG",
+   "detail": "Te la dan en el avión. Declara cualquier comida: fruta, carne, embutido, queso o semillas.",
+   "icon": "doc"
+  },
+  {
+   "title": "Seguro de viaje",
+   "detail": "Recomendable: la sanidad privada en Chile es cara.",
+   "icon": "shield"
+  }
+ ],
+ "checklist": [
+  "Pasaporte en vigor",
+  "Tarjeta para sacar pesos chilenos en el cajero",
+  "Ropa de verano y una chaqueta para la costa y la montaña",
+  "Gorra, gafas de sol y crema solar alta",
+  "Calzado cómodo (Valparaíso es todo cuestas)",
+  "Medicación habitual",
+  "Cargador y batería externa",
+  "Adaptador de enchufe por si acaso (tipo C o L)",
+  "No llevar fruta, carne, embutido ni queso",
+  "Bañador"
+ ],
+ "info": {
+  "timeDiff": "−4 h",
+  "timeDiffText": "En diciembre, en Chile son 4 horas menos que en España.",
+  "currency": {
+   "name": "Peso chileno",
+   "symbol": "$",
+   "code": "CLP",
+   "text": "En Chile el símbolo del peso también es $: no lo confundas con el dólar. Casi todo se paga con tarjeta.",
+   "rate": 1100,
+   "rateNote": "Cambio del 29 de octubre de 2026 (aprox.)",
+   "quick": [
+    5,
+    10,
+    20,
+    50,
+    100
+   ]
+  },
+  "plugsType": "C/L",
+  "plugsShort": "Los enchufes finos europeos suelen entrar.",
+  "plugs": "Enchufes tipo C y L, 220 V. Los cargadores finos de España entran; para los enchufes gordos lleva un adaptador por si acaso.",
+  "weatherTitle": "Clima en diciembre",
+  "weather": [
+   {
+    "city": "Santiago",
+    "min": 12,
+    "max": 29,
+    "text": "Verano seco y soleado. Fresco por la noche."
+   },
+   {
+    "city": "Valparaíso y Viña",
+    "min": 12,
+    "max": 21,
+    "text": "Más suave, con brisa del mar."
+   },
+   {
+    "city": "Cajón del Maipo",
+    "min": 5,
+    "max": 22,
+    "text": "Arriba hace frío por la mañana."
+   }
+  ],
+  "tips": [
+   {
+    "icon": "coin",
+    "title": "Propinas",
+    "text": "En los restaurantes te preguntarán si incluyen la propina: lo normal es el 10 %."
+   },
+   {
+    "icon": "car",
+    "title": "Moverte",
+    "text": "Uber y Cabify funcionan bien. Para el metro compra la tarjeta bip! en cualquier estación."
+   },
+   {
+    "icon": "sun",
+    "title": "Sol fuerte",
+    "text": "En diciembre el sol quema mucho, más que en España. Crema solar siempre."
+   },
+   {
+    "icon": "water",
+    "title": "Agua",
+    "text": "La del grifo en Santiago se puede beber, aunque sabe a cal. Si no te gusta, embotellada."
+   },
+   {
+    "icon": "shield",
+    "title": "Temblores",
+    "text": "En Chile tiembla a menudo y los edificios están preparados. Si pasa, mantén la calma y sigue las señales de evacuación."
+   },
+   {
+    "icon": "eye",
+    "title": "Ojo con el móvil",
+    "text": "En el centro y en el metro, guarda el móvil y la cartera, como en cualquier gran ciudad."
+   },
+   {
+    "icon": "dinner",
+    "title": "Prueba",
+    "text": "Empanada de pino, pastel de choclo, completo, mote con huesillo y un pisco sour."
+   },
+   {
+    "icon": "mount",
+    "title": "Los Andes, mejor por la mañana",
+    "text": "A primera hora el aire está más limpio y la cordillera se ve nítida. Si hay un día despejado, aprovéchalo para subir al Cerro San Cristóbal o al Sky Costanera."
+   },
+   {
+    "icon": "star",
+    "title": "Navidad en verano",
+    "text": "En diciembre Santiago se llena de luces y mercadillos navideños con 30 °C. Es temporada de cerezas: cómpralas en la Vega Central."
+   }
+  ],
+  "emergencies": [
+   {
+    "title": "Ambulancia (SAMU)",
+    "detail": "Urgencias médicas",
+    "phone": "131",
+    "big": true
+   },
+   {
+    "title": "Carabineros (policía)",
+    "detail": "",
+    "phone": "133"
+   },
+   {
+    "title": "Bomberos",
+    "detail": "",
+    "phone": "132"
+   }
+  ],
+  "consulateUrl": "https://www.exteriores.gob.es/Embajadas/santiagodechile/es/Paginas/index.aspx"
+ },
+ "included": [
+  {
+   "icon": "plane",
+   "title": "Vuelos directos con LATAM",
+   "text": "Madrid – Santiago de Chile y vuelta, con 1 maleta facturada."
+  }
+ ],
+ "scheduleNote": "Los días marcados como «Idea» son propuestas: tu agencia te confirma lo que tengas reservado."
+}
