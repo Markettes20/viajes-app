@@ -371,27 +371,64 @@
     secs.forEach(function (s) { s && tio.observe(s); });
   }
 
-  // ---------- Mapas 2D (Leaflet + OpenStreetMap en blanco y negro, en blanco y negro) ----------
+  // ---------- Mapas 2D con el estilo de la marca: mar azul noche, tierra arena y nombres en español ----------
+  // Mapas de país o región: costa y fronteras dibujadas por nosotros (Natural Earth, assets/maps/*.json).
+  // Mapas de ciudad: teselas de Esri en gris, pasadas a los colores de la marca con un filtro SVG.
+  function mapFilter() {
+    if (d.getElementById("anillo-map-f")) return;
+    var nav = [], sand = [];
+    function tv(a, b, c) { var o = []; for (var i = 0; i < 20; i++) o.push(i < 17 ? a : (i < 19 ? b : c)); return o.join(" "); }
+    var div = d.createElement("div");
+    div.innerHTML = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="anillo-map-f" color-interpolation-filters="sRGB"><feComponentTransfer>' +
+      '<feFuncR type="discrete" tableValues="' + tv(.059, .91, .957) + '"/><feFuncG type="discrete" tableValues="' + tv(.208, .863, .925) + '"/><feFuncB type="discrete" tableValues="' + tv(.333, .784, .875) + '"/>' +
+      '</feComponentTransfer></filter></svg>';
+    d.body.appendChild(div.firstChild);
+  }
   function initMap(box) {
     if (!window.L || box._map) return;
     var pts; try { pts = JSON.parse(box.getAttribute("data-points")); } catch (e) { return; }
+    var shape = box.getAttribute("data-shape");
     box.innerHTML = "";
-    var map = L.map(box, { scrollWheelZoom: false, zoomControl: true, attributionControl: true, tap: false });
+    var single = pts.length === 1;
+    var map = L.map(box, { scrollWheelZoom: false, zoomControl: true, attributionControl: true, tap: false, zoomSnap: .25 });
     box._map = map;
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>' }).addTo(map);
-    var markers = {}, latlngs = [];
-    pts.forEach(function (p) {
-      var single = pts.length === 1;
+    var markers = {}, latlngs = pts.map(function (p) { return p.ll; });
+    if (shape) {
+      box.classList.add("vec");
+      map.attributionControl.addAttribution("Natural Earth");
+      fetch(shape).then(function (r) { return r.json(); }).then(function (g) {
+        L.polygon(g.land, { stroke: true, color: "rgba(10,42,67,.18)", weight: .8, fillColor: "#E8DCC8", fillOpacity: 1, interactive: false }).addTo(map).bringToBack();
+        if (g.borders && g.borders.length) L.polyline(g.borders, { color: "rgba(10,42,67,.32)", weight: 1, dashArray: "3 3", interactive: false }).addTo(map);
+        var b = g.bbox; map.setMaxBounds([[b[1], b[0]], [b[3], b[2]]]);
+      }).catch(function () {});
+      if (pts.length > 1 && box.hasAttribute("data-route")) L.polyline(latlngs, { color: "#C9973A", weight: 2, dashArray: "2 7", lineCap: "round", opacity: .95, interactive: false }).addTo(map);
+    } else {
+      mapFilter(); box.classList.add("tiles");
+      L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", { maxZoom: 16, attribution: "© Esri" }).addTo(map);
+    }
+    var z = parseInt(box.getAttribute("data-mapzoom") || "0", 10);
+    if (single) map.setView(latlngs[0], z || 14);
+    else map.fitBounds(latlngs, { padding: [44, 44], maxZoom: shape ? 9 : 15 });
+    // etiqueta de cada punto a un lado que no pise a otro
+    var xy = latlngs.map(function (ll) { return map.latLngToContainerPoint(ll); });
+    function side(i) {
+      var near = function (dir) { return xy.some(function (q, j) { if (j === i) return false; var dx = (q.x - xy[i].x) * dir, dy = Math.abs(q.y - xy[i].y); return dx > -14 && dx < 150 && dy < 30; }); };
+      var W = box.clientWidth, x = xy[i].x;
+      if (x > W - 150 && !near(-1)) return "left";
+      if (!near(1) && x < W - 150) return "right"; if (!near(-1) && x > 150) return "left"; if (!near(1) && x < W - 150) return "right";
+      var up = xy.some(function (q, j) { return j !== i && q.y < xy[i].y && xy[i].y - q.y < 40 && Math.abs(q.x - xy[i].x) < 90; });
+      return up ? "bottom" : "top";
+    }
+    pts.forEach(function (p, i) {
       var icon = L.divIcon({ className: "", html: '<span class="pin' + (single ? " home" : "") + '">' + (single ? "★" : p.n) + "</span>", iconSize: [26, 26], iconAnchor: [13, 13] });
       var m = L.marker(p.ll, { icon: icon, keyboard: false, riseOnHover: true }).addTo(map);
-      m.bindTooltip(esc(p.name), { className: "pin-tip", direction: "top", offset: [0, -14], permanent: single });
+      var dir = single ? "right" : side(i), off = { right: [16, 0], left: [-16, 0], top: [0, -16], bottom: [0, 16] }[dir];
+      var crowd = xy.some(function (q, j) { return j !== i && Math.abs(q.x - xy[i].x) < 34 && Math.abs(q.y - xy[i].y) < 34; });
+      m.bindTooltip(esc(p.name), { className: "pin-lbl", direction: dir, offset: off, permanent: !crowd });
       m.on("mouseover", function () { mark(p.n, true); }); m.on("mouseout", function () { mark(p.n, false); });
       m.on("click", function () { var li = scope.querySelector('[data-pt="' + p.n + '"]'); if (li) { li.scrollIntoView({ behavior: REDUCE ? "auto" : "smooth", block: "center" }); mark(p.n, true); } });
-      markers[p.n] = m; latlngs.push(p.ll);
+      markers[p.n] = m;
     });
-    var z = parseInt(box.getAttribute("data-mapzoom") || "0", 10);
-    if (latlngs.length === 1) map.setView(latlngs[0], z || 14);
-    else map.fitBounds(latlngs, { padding: [28, 28], maxZoom: 14 });
     var scope = box.closest(".dest-layout, .art-layout") || d;
     function mark(n, onn) {
       var m = markers[n]; if (m) { var el = m.getElement(); el && el.querySelector(".pin").classList.toggle("on", onn); if (onn) m.setZIndexOffset(1000); else m.setZIndexOffset(0); }
@@ -403,7 +440,7 @@
       li.addEventListener("mouseleave", function () { mark(n, false); });
       li.addEventListener("focus", function () { mark(n, true); });
       li.addEventListener("blur", function () { mark(n, false); });
-      li.addEventListener("click", function () { var m = markers[n]; if (m) { map.panTo(m.getLatLng(), { animate: !REDUCE }); m.openTooltip(); setTimeout(function () { m.closeTooltip(); }, 1800); } });
+      li.addEventListener("click", function () { var m = markers[n]; if (m) map.panTo(m.getLatLng(), { animate: !REDUCE }); });
     });
     setTimeout(function () { map.invalidateSize(); }, 200);
   }
@@ -468,6 +505,68 @@
       location.href = "mailto:" + CFG.email + "?subject=" + encodeURIComponent("Consulta de viaje · " + (form.elements.destino.value || "Anillo Travel")) + "&body=" + encodeURIComponent(text());
     });
     try { var q = new URLSearchParams(location.search).get("destino"); if (q) form.elements.destino.value = q; } catch (e) {}
+  }
+
+
+  // ---------- Opiniones: carrusel (3 a la vez en ordenador, 1 en el móvil) ----------
+  $$("[data-car]").forEach(function (car) {
+    var track = car.querySelector(".car-track"), slides = $$(".slide", track), dots = $$(".car-dots button", car.parentNode);
+    if (slides.length < 2) return;
+    var k = 0, busy = false, timer = null;
+    function per() { return innerWidth <= 760 ? 1 : 3; }
+    function paint() { dots.forEach(function (b, i) { b.classList.toggle("on", i === k); }); }
+    function step(n) {
+      if (busy) return; busy = true;
+      var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
+      var w = slides[0].getBoundingClientRect().width + gap;
+      if (n > 0) {
+        track.style.transition = REDUCE ? "none" : "transform .8s cubic-bezier(.2,.7,.2,1)";
+        track.style.transform = "translateX(" + (-w) + "px)";
+        setTimeout(function () { track.style.transition = "none"; track.appendChild(track.firstElementChild); track.style.transform = "none"; busy = false; }, REDUCE ? 0 : 820);
+      } else {
+        track.style.transition = "none"; track.insertBefore(track.lastElementChild, track.firstElementChild); track.style.transform = "translateX(" + (-w) + "px)";
+        track.getBoundingClientRect();
+        track.style.transition = REDUCE ? "none" : "transform .8s cubic-bezier(.2,.7,.2,1)"; track.style.transform = "none";
+        setTimeout(function () { busy = false; }, REDUCE ? 0 : 820);
+      }
+      k = (k + n + slides.length) % slides.length; paint();
+    }
+    function play() { stop(); if (!REDUCE) timer = setInterval(function () { if (!d.hidden) step(1); }, 4500); }
+    function stop() { if (timer) clearInterval(timer); timer = null; }
+    dots.forEach(function (b, i) { b.addEventListener("click", function () { var n = (i - k + slides.length) % slides.length; (function go(c) { if (c <= 0) return; step(1); setTimeout(function () { go(c - 1); }, REDUCE ? 0 : 840); })(n); play(); }); });
+    car.addEventListener("mouseenter", stop); car.addEventListener("mouseleave", play);
+    var x0 = null;
+    car.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; stop(); }, { passive: true });
+    car.addEventListener("touchend", function (e) { if (x0 == null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1); x0 = null; play(); });
+    paint(); play();
+  });
+
+  // ---------- Opiniones: cita grande que cambia sola (portada) ----------
+  $$("[data-bq]").forEach(function (st) {
+    var qs = $$(".bq", st), avs = $$(".bq-av", st.parentNode), k = 0, timer = null;
+    if (qs.length < 2) return;
+    function show(i) { qs[k].classList.remove("on"); avs[k] && avs[k].classList.remove("on"); k = i; qs[k].classList.add("on"); avs[k] && avs[k].classList.add("on"); }
+    function play() { if (timer) clearInterval(timer); if (!REDUCE) timer = setInterval(function () { if (!d.hidden) show((k + 1) % qs.length); }, 6000); }
+    avs.forEach(function (a, i) { a.addEventListener("click", function () { show(i); play(); }); });
+    play();
+  });
+
+  // ---------- Vídeos de nuestros viajeros (ventana encima de la página) ----------
+  var vm = d.getElementById("vmodal");
+  if (vm) {
+    var media = vm.querySelector(".vmedia"), cap = vm.querySelector(".vcap"), note = vm.querySelector(".vnote"), last = null;
+    function closeV() { vm.hidden = true; media.innerHTML = ""; d.body.style.overflow = ""; if (last) last.focus(); }
+    $$(".vcard").forEach(function (c) {
+      c.addEventListener("click", function () {
+        last = c; var v = c.getAttribute("data-video"), poster = c.getAttribute("data-poster");
+        media.innerHTML = v ? '<video src="' + esc(v) + '" poster="' + esc(poster) + '" controls autoplay playsinline></video>' : '<img src="' + esc(poster) + '" alt="">';
+        note.hidden = !!v;
+        cap.querySelector("b").textContent = c.getAttribute("data-who"); cap.querySelector("small").textContent = c.getAttribute("data-meta");
+        vm.hidden = false; d.body.style.overflow = "hidden"; vm.querySelector(".vclose").focus();
+      });
+    });
+    vm.addEventListener("click", function (e) { if (e.target === vm || e.target.closest(".vclose")) closeV(); });
+    d.addEventListener("keydown", function (e) { if (e.key === "Escape" && !vm.hidden) closeV(); });
   }
 
   // Año del pie
