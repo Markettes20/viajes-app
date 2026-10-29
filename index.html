@@ -643,7 +643,7 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
       "Gracias por viajar con {a}. Cuando quieras, preparamos el siguiente.": "Thank you for travelling with {a}. Whenever you like, we'll plan the next one.",
       "Dejar una reseña": "Leave a review", "Tu próximo vuelo": "Your next flight", "Ver todos": "See all", "Ver todo": "See all",
       "¡Hola, {n}!": "Hi, {n}!", "{d} días": "{d} days", "{n} noches": "{n} nights",
-      "Mi itinerario": "My itinerary", "Día a día": "Day by day", "Mi hotel": "My hotel", "Para el taxista": "For the taxi driver",
+      "Mi itinerario": "My itinerary", "Día a día": "Day by day", "Mi hotel": "My hotel", "Para el taxista": "For the taxi driver", "Info útil": "Useful info", "Clima, consejos y más": "Weather, tips and more",
       "Dirección en {l}": "Address in {l}", "Mi agencia": "My agency", "{n} te ayuda": "{n} is here to help",
       "Tu viaje en {n} días": "Your trip in {n} days", "Día {n}": "Day {n}", "HOY": "TODAY",
       "Antes de salir": "Before you go", "Tu maleta": "Your packing list", "Toca para revisar lo que no te puedes olvidar.": "Tap to check what you can't forget.",
@@ -1068,6 +1068,14 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
   // ---------- datos derivados ----------
   const T = () => S.trip;
   // Idioma del país (para frases y taxi). Por defecto, turco (viaje de Turquía).
+  // Destino donde se habla lo mismo que el cliente (language.same): sin frases ni «dirección en…»; en su lugar, el cambio de moneda.
+  const sameLang = () => !!(T().language && T().language.same);
+  function moneyTile() {
+    const c = (T().info || {}).currency;
+    if (!c || !c.rate) return `<button class="qa brand" type="button" data-go="info"><span class="qi">${ic("info")}</span><span><b>${L("Info útil")}</b><small>${L("Clima, consejos y más")}</small></span></button>`;
+    const r = store.get("rate:" + c.code, c.rate), v = Math.round(10 * r);
+    return `<button class="qa brand" type="button" data-go="info"><span class="qi">${ic("coin")}</span><span><b>${L("Dinero")}</b><small class="num">10 € ≈ ${esc(v.toLocaleString("es-ES"))} ${esc(c.symbol)}</small></span></button>`;
+  }
   const langName = () => { const g = T().language; return g ? (g[LANG] || g.es) : (LANG === "en" ? "Turkish" : "turco"); };
   const tz = () => T().tz || "+00:00";
   const plural = () => !!(T() && T().traveler && T().traveler.plural);
@@ -1191,7 +1199,7 @@ html.page-mode, html.page-mode body { height: 100%; overflow: hidden; background
         <div class="quick">
           <button class="qa" type="button" data-go="plan"><span class="qi">${ic("cal")}</span><span><b>${L("Mi itinerario")}</b><small>${L("Día a día")}</small></span></button>
           ${wild() ? `<button class="qa green" type="button" data-go="map"><span class="qi">${ic("map")}</span><span><b>${L("Mapa")}</b><small>${L("La ruta del safari")}</small></span></button>` : `<button class="qa gold" type="button" data-act="hotel" data-id="${esc(hNow.id)}"><span class="qi">${ic("hotel")}</span><span><b>${L("Mi hotel")}</b><small>${esc(hNow.short || hNow.name)}</small></span></button>`}
-          ${wild() ? `<button class="qa brand" type="button" data-go="safari"><span class="qi">${ic("paw")}</span><span><b>${L("Cuaderno de safari")}</b><small>${L("{a} de {b} Cinco Grandes", { a: seenBig5(), b: bigFive().length })}</small></span></button>` : `<button class="qa brand" type="button" data-act="taxi" data-id="${esc(hNow.id)}"><span class="qi">${ic("taxi")}</span><span><b>${L("Para el taxista")}</b><small>${L("Dirección en {l}", { l: langName() })}</small></span></button>`}
+          ${wild() ? `<button class="qa brand" type="button" data-go="safari"><span class="qi">${ic("paw")}</span><span><b>${L("Cuaderno de safari")}</b><small>${L("{a} de {b} Cinco Grandes", { a: seenBig5(), b: bigFive().length })}</small></span></button>` : sameLang() ? moneyTile() : `<button class="qa brand" type="button" data-act="taxi" data-id="${esc(hNow.id)}"><span class="qi">${ic("taxi")}</span><span><b>${L("Para el taxista")}</b><small>${L("Dirección en {l}", { l: langName() })}</small></span></button>`}
           <button class="qa wa" type="button" data-act="contact"><span class="qi">${ic("wa")}</span><span><b>${L("Mi agencia")}</b><small>${L("{n} te ayuda", { n: esc(S.agency.agent.firstName) })}</small></span></button>
         </div>
         ${nfHTML ? `<div>${nfHTML}</div>` : ""}
