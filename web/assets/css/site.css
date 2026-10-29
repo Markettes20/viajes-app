@@ -919,3 +919,16 @@ li.on .hl-n, .place.on .hl-n { background: var(--terra); }
 .link-arrow.light { color: #fff; }
 .r-quote .rev-actions .btn-ghost { color: #fff; }
 @media (prefers-reduced-motion: reduce) { .vstrip, .vs-more, .bq, .vstrip > img { transition: none; } }
+
+/* portada: lema pequeño y centrado abajo para que se vean los vídeos */
+.hero-inner { justify-items: center; text-align: center; gap: 20px; padding-bottom: clamp(28px, 4vw, 44px); }
+.hero h1 { font-size: clamp(1.9rem, 1.4rem + 2vw, 3rem); max-width: none; letter-spacing: .04em; line-height: 1.1; }
+.hero-inner .hero-actions { justify-content: center; }
+.hero-inner .hero-meta { justify-content: center; margin-top: 10px; font-size: .88rem; width: 100%; max-width: 900px; }
+.hero::after { background: linear-gradient(180deg, rgba(6,26,43,.3), rgba(6,26,43,0) 30%, rgba(6,26,43,0) 50%, rgba(6,26,43,.7)); }
+.hero-place { bottom: auto; top: 96px; }
+.hero-dots { bottom: auto; top: 140px; }
+@media (max-width: 600px) { .hero-inner .hero-meta { flex-direction: column; gap: 6px; font-size: .84rem; } .hero-inner { padding-bottom: 92px; } }
+.hero h1 { text-shadow: 0 2px 18px rgba(6,26,43,.55), 0 1px 3px rgba(6,26,43,.5); }
+.hero-inner .hero-meta { text-shadow: 0 1px 8px rgba(6,26,43,.6); }
+@media (max-width: 600px) { .hero::after { background: linear-gradient(180deg, rgba(6,26,43,.3), rgba(6,26,43,0) 25%, rgba(6,26,43,.1) 40%, rgba(6,26,43,.75) 60%, rgba(6,26,43,.8)); } }
