@@ -320,7 +320,7 @@
   var filters = $$(".filter[data-filter]");
   function setFilter(t, push) {
     filters.forEach(function (x) { x.setAttribute("aria-pressed", x.getAttribute("data-filter") === t ? "true" : "false"); });
-    $$(".dest-grid [data-tags]").forEach(function (c) { c.classList.toggle("hide", t !== "all" && c.getAttribute("data-tags").split(" ").indexOf(t) < 0); });
+    $$(".dest-grid [data-tags], .mini-grid.all [data-tags]").forEach(function (c) { c.classList.toggle("hide", t !== "all" && c.getAttribute("data-tags").split(" ").indexOf(t) < 0); });
     GLOBE && GLOBE.setFilter(t);
     if (push && history.replaceState) {
       var b = filters.filter(function (x) { return x.getAttribute("data-filter") === t; })[0];
@@ -559,14 +559,49 @@
     $$(".vcard").forEach(function (c) {
       c.addEventListener("click", function () {
         last = c; var v = c.getAttribute("data-video"), poster = c.getAttribute("data-poster");
+        var isPhoto = c.getAttribute("data-kind") === "foto";
+        vm.classList.toggle("photo", isPhoto);
         media.innerHTML = v ? '<video src="' + esc(v) + '" poster="' + esc(poster) + '" controls autoplay playsinline></video>' : '<img src="' + esc(poster) + '" alt="">';
-        note.hidden = !!v;
+        note.hidden = !!v || isPhoto;
         cap.querySelector("b").textContent = c.getAttribute("data-who"); cap.querySelector("small").textContent = c.getAttribute("data-meta");
         vm.hidden = false; d.body.style.overflow = "hidden"; vm.querySelector(".vclose").focus();
       });
     });
     vm.addEventListener("click", function (e) { if (e.target === vm || e.target.closest(".vclose")) closeV(); });
     d.addEventListener("keydown", function (e) { if (e.key === "Escape" && !vm.hidden) closeV(); });
+  }
+
+  // Inicio: mosaico "Me apetece…" (filtra y recoloca los tamaños para que no queden huecos)
+  var mzGrid = d.querySelector("[data-mz-grid]");
+  if (mzGrid) {
+    var mzCards = $$(".mz-card", mzGrid), mzBtns = $$(".mz-f"), MZS = ["big", "tall", "", "wide", "", "tall", "", "", "wide", "", "big", "", "", ""];
+    var mzSet = function (t) {
+      mzBtns.forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-mz") === t ? "true" : "false"); });
+      var on = mzCards.filter(function (c) { return t === "all" || c.getAttribute("data-tags").split(" ").indexOf(t) >= 0; });
+      mzCards.forEach(function (c) { c.classList.remove("big", "tall", "wide"); c.classList.toggle("off", on.indexOf(c) < 0); });
+      if (t === "all") { on.forEach(function (c, i) { if (MZS[i]) c.classList.add(MZS[i]); }); }
+      else if (on.length === 1) { on[0].classList.add("big"); }
+      else if (on.length) {
+        // la primera grande (4 huecos) y el resto de 1; se ensanchan las últimas hasta completar filas de 4
+        on[0].classList.add("big"); var cells = 4 + (on.length - 1), k = on.length - 1;
+        while (cells % 4 && k > 0) { on[k].classList.add("wide"); cells++; k--; }
+      }
+      mzCards.forEach(function (c) { c.style.animation = "none"; void c.offsetWidth; c.style.animation = ""; });
+    };
+    mzBtns.forEach(function (b) { b.addEventListener("click", function () { mzSet(b.getAttribute("data-mz")); }); });
+  }
+
+  // Galería de viajeros: Todo / Fotos / Vídeos
+  var galGrid = d.querySelector("[data-gal-grid]");
+  if (galGrid) {
+    var galBtns = $$(".gal-f");
+    galBtns.forEach(function (b) {
+      b.addEventListener("click", function () {
+        var t = b.getAttribute("data-gal");
+        galBtns.forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+        $$(".vcard", galGrid).forEach(function (c) { var isF = c.getAttribute("data-kind") === "foto"; c.classList.toggle("off", (t === "foto" && !isF) || (t === "video" && isF)); });
+      });
+    });
   }
 
   // Año del pie
