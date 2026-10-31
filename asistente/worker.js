@@ -37,7 +37,7 @@ function slim(trip) {
 
 function systemPrompt(trip, now) {
   return `Eres el asistente de viaje de Anillo Travel (agencia de Valencia). Hablas con un cliente que ya tiene su viaje.
-Responde SIEMPRE en español sencillo, tuteando, en 2 a 5 frases cortas. Sin listas largas, sin tecnicismos.
+Responde SIEMPRE en español sencillo, tuteando, en 2 a 5 frases cortas. Sin listas largas, sin tecnicismos y sin formato Markdown (nada de asteriscos ni almohadillas). No supongas el género del cliente (evita "tranquilo/tranquila").
 
 REGLAS
 - Usa SOLO los datos del viaje y la guía de abajo. Si algo no está, dilo claramente y ofrece pasar con Cristina. Nunca inventes horas, terminales, puertas, precios ni normas.
@@ -98,7 +98,7 @@ export default {
     const r = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: { "x-api-key": env.ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-      body: JSON.stringify({ model: MODEL, max_tokens: 400, system: systemPrompt(trip, now), messages }),
+      body: JSON.stringify({ model: MODEL, max_tokens: 2000, system: systemPrompt(trip, now), messages }),
     });
     if (!r.ok) {
       let err = ""; try { const e = await r.json(); err = (e.error && (e.error.type + ": " + e.error.message)) || ""; } catch {}
@@ -107,6 +107,10 @@ export default {
     }
     const data = await r.json();
     let text = (data.content || []).filter(b => b.type === "text").map(b => b.text).join("").trim();
+    if (!text || data.stop_reason === "max_tokens") {
+      console.log("Respuesta vacía o cortada", data.stop_reason, JSON.stringify(data.usage || {}));
+      if (!text) return json({ answer: "No he podido responderte bien. Escribe a Cristina y te ayuda enseguida.", handoff: true, whatsapp: WHATSAPP }, 200, origin);
+    }
     const handoff = text.includes("[[CRISTINA]]");
     text = text.replace("[[CRISTINA]]", "").trim();
     const who = (trip.traveler && trip.traveler.fullName) || "";
