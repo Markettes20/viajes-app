@@ -19,3 +19,10 @@ Hoy solo tiene el cerebro. Falta conectarle la entrada (pestaña en la app y/o W
 - Los viajes FLY (solo vuelos) no tienen los vuelos en los archivos públicos (están cifrados en el panel), así que el asistente aún no los conoce; hay que decidir cómo darle esos datos sin hacerlos públicos.
 - `guia.md` es un borrador con puntos [CONFIRMAR]; sin revisión de Cristina no debe usarse con clientes reales.
 - El repo es público: la guía no debe llevar nada privado.
+
+## Publicar sin instalar nada (desde el panel de Cloudflare)
+Usa `worker-pegar.js` (es `worker.js` con la guía incluida, en un solo archivo):
+1. Cloudflare → Workers & Pages → Create → Create Worker → nombre `anillo-asistente` → Deploy.
+2. Edit code → borrar todo y pegar el contenido de `worker-pegar.js` → Deploy.
+3. Settings → Variables and Secrets → Add → tipo Secret, nombre `ANTHROPIC_API_KEY`, valor la clave → Deploy.
+Si se cambia `guia.md`, regenerar `worker-pegar.js` y volver a pegarlo.
