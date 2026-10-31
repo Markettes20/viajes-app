@@ -1,0 +1,13 @@
+name = "anillo-asistente"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+[[rules]]
+type = "Text"
+globs = ["**/*.md"]
+
+# Opcional (tope diario por viaje): crear con `npx wrangler kv namespace create LIMITES`
+# y descomentar con el id que devuelva.
+# [[kv_namespaces]]
+# binding = "LIMITES"
+# id = "PEGAR_AQUI_EL_ID"
