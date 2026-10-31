@@ -101,7 +101,9 @@ export default {
       body: JSON.stringify({ model: MODEL, max_tokens: 400, system: systemPrompt(trip, now), messages }),
     });
     if (!r.ok) {
-      return json({ answer: "Ahora mismo no puedo responder. Escribe a Cristina y te ayuda enseguida.", handoff: true, whatsapp: WHATSAPP }, 200, origin);
+      let err = ""; try { const e = await r.json(); err = (e.error && (e.error.type + ": " + e.error.message)) || ""; } catch {}
+      console.log("Error de la IA", r.status, err);
+      return json({ debug: { status: r.status, error: err.slice(0, 200), hasKey: !!env.ANTHROPIC_API_KEY }, answer: "Ahora mismo no puedo responder. Escribe a Cristina y te ayuda enseguida.", handoff: true, whatsapp: WHATSAPP }, 200, origin);
     }
     const data = await r.json();
     let text = (data.content || []).filter(b => b.type === "text").map(b => b.text).join("").trim();
