@@ -4,7 +4,7 @@
 import GUIA from "./guia.md";
 
 const TRIPS_BASE = "https://markettes20.github.io/viajes-app/data/trips/";
-const ALLOWED_ORIGINS = ["https://markettes20.github.io"]; // añadir el dominio propio cuando exista
+const ALLOWED_ORIGINS = ["https://markettes20.github.io", "https://anillotravel.com", "https://www.anillotravel.com", "https://anillotravel.es", "https://www.anillotravel.es"];
 const MODEL = "claude-haiku-5-5";
 const DAILY_LIMIT = 30;       // preguntas por viaje y día
 const MAX_CHARS = 500;        // largo máximo de una pregunta

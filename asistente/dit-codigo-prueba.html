@@ -1,0 +1,11 @@
+<!-- Para "Códigos Avanzados" → "Códigos añadidos en el head html" (DITGESTIÓN).
+     Versión de PRUEBA: el chat solo aparece en la página cuyo enlace contiene "prueba-anillo". -->
+<script>
+(function () {
+  if (location.pathname.indexOf("prueba-anillo") === -1) return;
+  var s = document.createElement("script");
+  s.src = "https://markettes20.github.io/viajes-app/asistente/widget.js";
+  s.onload = function () { window.AnilloChat && window.AnilloChat.mount({ bottom: "20px" }); };
+  document.head.appendChild(s);
+})();
+</script>
