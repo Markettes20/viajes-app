@@ -1,0 +1,1353 @@
+{
+ "code": "ANI-EUMNC",
+ "traveler": {
+  "firstName": "Lisbet y Carlos",
+  "fullName": "Lisbet Jáuregui Enríquez",
+  "plural": true
+ },
+ "title": "Viaje a Tailandia",
+ "subtitle": "Bangkok, Ayutthaya y las playas de Krabi",
+ "destination": "Tailandia",
+ "country": "Thailand",
+ "language": {
+  "es": "tailandés",
+  "en": "Thai",
+  "speech": "th-TH"
+ },
+ "map": "tailandia",
+ "mapHint": "Toca un punto para ver qué hay. En los días libres, las ideas son propuestas: haced lo que más os apetezca.",
+ "tz": "+07:00",
+ "start": "2026-11-06",
+ "end": "2026-11-16",
+ "cover": "img/th/portada.jpg",
+ "previewDay": 2,
+ "organizer": {
+  "name": "Tu Guía en Tailandia",
+  "note": "Traslados y tours en Tailandia"
+ },
+ "route": [
+  "Madrid",
+  "Bangkok",
+  "Krabi",
+  "Bangkok",
+  "Madrid"
+ ],
+ "routeIds": [
+  "mad",
+  "bkk",
+  "kbi",
+  "bkk",
+  "mad"
+ ],
+ "cities": [
+  {
+   "id": "mad",
+   "name": "Madrid",
+   "country": "España",
+   "lat": 40.42,
+   "lng": -3.7,
+   "home": true
+  },
+  {
+   "id": "bkk",
+   "name": "Bangkok",
+   "local": "กรุงเทพฯ",
+   "lat": 13.7563,
+   "lng": 100.5018,
+   "image": "img/th/bangkok.jpg",
+   "nights": 6,
+   "label": [
+    26,
+    14,
+    "start"
+   ],
+   "sub": "4 noches al llegar y 2 al final"
+  },
+  {
+   "id": "ayu",
+   "name": "Ayutthaya",
+   "local": "อยุธยา",
+   "lat": 14.3532,
+   "lng": 100.5689,
+   "image": "img/th/ayutthaya-ruinas.jpg",
+   "label": [
+    26,
+    -4,
+    "start"
+   ],
+   "sub": "Tour con guía en español · 8 nov"
+  },
+  {
+   "id": "kbi",
+   "name": "Krabi",
+   "short": "Krabi",
+   "local": "กระบี่",
+   "lat": 8.0323,
+   "lng": 98.8227,
+   "image": "img/th/railay.jpg",
+   "nights": 3,
+   "label": [
+    22,
+    8,
+    "start"
+   ],
+   "sub": "Playa · 3 noches en Ao Nang"
+  }
+ ],
+ "places": [
+  {
+   "id": "p-chai",
+   "city": "ayu",
+   "name": "Wat Chaiwatthanaram",
+   "es": "El templo junto al río",
+   "desc": "Uno de los templos más fotogénicos de Ayutthaya, con su gran torre de estilo jemer rodeada de torres más pequeñas, a orillas del río Chao Phraya.",
+   "query": "Wat Chaiwatthanaram, Ayutthaya"
+  },
+  {
+   "id": "p-mahathat",
+   "city": "ayu",
+   "name": "Wat Mahathat",
+   "es": "La cabeza de Buda entre raíces",
+   "desc": "Ruinas del siglo XIV famosas por la cabeza de Buda atrapada entre las raíces de un árbol. Para la foto, hay que agacharse: la cabeza no puede quedar por debajo de la vuestra.",
+   "query": "Wat Mahathat, Ayutthaya"
+  },
+  {
+   "id": "p-sanphet",
+   "city": "ayu",
+   "name": "Wat Phra Si Sanphet",
+   "es": "Las tres estupas",
+   "desc": "El templo del antiguo palacio real de Ayutthaya, capital de Siam durante 400 años, con sus tres grandes estupas en fila.",
+   "query": "Wat Phra Si Sanphet, Ayutthaya"
+  },
+  {
+   "id": "p-palacio",
+   "city": "bkk",
+   "name": "Gran Palacio y Buda Esmeralda",
+   "es": "El símbolo de Bangkok",
+   "desc": "Antigua residencia de los reyes y el templo más sagrado del país, Wat Phra Kaew, con el Buda Esmeralda. Aquí la norma de ropa es la más estricta.",
+   "query": "Grand Palace, Bangkok"
+  },
+  {
+   "id": "p-wpho",
+   "city": "bkk",
+   "name": "Wat Pho",
+   "es": "El Buda reclinado",
+   "desc": "Un Buda dorado tumbado de 46 metros. Es también la cuna del masaje tailandés: dentro hay una escuela donde os podéis dar uno.",
+   "query": "Wat Pho, Bangkok"
+  },
+  {
+   "id": "p-arun",
+   "city": "bkk",
+   "name": "Wat Arun",
+   "es": "El Templo del Amanecer",
+   "desc": "En la otra orilla del río, decorado con porcelana de colores. Se cruza en el ferry de Tha Tien por unos pocos baht. Al atardecer se ve precioso desde la orilla de enfrente.",
+   "query": "Wat Arun, Bangkok"
+  },
+  {
+   "id": "p-iconsiam",
+   "city": "bkk",
+   "name": "ICONSIAM",
+   "es": "Centro comercial junto al río",
+   "desc": "Enorme centro comercial con un mercado flotante interior en la planta baja: buena opción para comer y refrescarse con aire acondicionado.",
+   "query": "ICONSIAM, Bangkok"
+  },
+  {
+   "id": "p-china",
+   "city": "bkk",
+   "name": "Chinatown (Yaowarat)",
+   "es": "Comida callejera de noche",
+   "desc": "A partir de las 18:00 la calle Yaowarat se llena de puestos: marisco, noodles, dim sum y fruta. Muy cerca del Amara.",
+   "query": "Yaowarat Road, Bangkok"
+  },
+  {
+   "id": "p-lumpini",
+   "city": "bkk",
+   "name": "Parque Lumpini",
+   "es": "El pulmón verde",
+   "desc": "Lago, gente haciendo deporte y varanos tomando el sol. A primera hora de la mañana es cuando más agradable está.",
+   "query": "Lumphini Park, Bangkok"
+  },
+  {
+   "id": "p-jim",
+   "city": "bkk",
+   "name": "Casa de Jim Thompson",
+   "es": "Casas tradicionales de teca",
+   "desc": "Museo en las casas de madera del americano que hizo famosa la seda tailandesa. Visita guiada corta y jardín muy bonito.",
+   "query": "Jim Thompson House, Bangkok"
+  },
+  {
+   "id": "p-mahanakhon",
+   "city": "bkk",
+   "name": "Mahanakhon SkyWalk",
+   "es": "Suelo de cristal a 314 m",
+   "desc": "El mirador más alto de Bangkok, con suelo de cristal. Al atardecer, la ciudad entera se enciende. Está en Silom, cerca del Amara.",
+   "query": "King Power Mahanakhon SkyWalk"
+  },
+  {
+   "id": "p-aonang",
+   "city": "kbi",
+   "name": "Playa de Ao Nang",
+   "es": "Atardeceres y barcas",
+   "desc": "La playa principal, con paseo, restaurantes y las barcas de cola larga (long-tail) que salen a Railay y a las islas.",
+   "query": "Ao Nang Beach, Krabi"
+  },
+  {
+   "id": "p-railay",
+   "city": "kbi",
+   "name": "Railay y Phra Nang",
+   "es": "Acantilados sobre el mar",
+   "desc": "Solo se llega en barca (unos 15 min desde Ao Nang). Phra Nang tiene una cueva y un agua turquesa espectacular. Id por la mañana, antes de que llegue la gente.",
+   "query": "Phra Nang Cave Beach, Railay"
+  },
+  {
+   "id": "p-4islas",
+   "city": "kbi",
+   "name": "Excursión a las 4 islas",
+   "es": "Tup, Chicken, Poda y Phra Nang",
+   "desc": "La excursión clásica desde Ao Nang: el banco de arena que une dos islas con la marea baja, snorkel y playas. Medio día en long-tail o en lancha.",
+   "query": "Koh Poda, Krabi"
+  },
+  {
+   "id": "p-phiphi",
+   "city": "kbi",
+   "name": "Islas Phi Phi",
+   "es": "Maya Bay",
+   "desc": "Día completo en lancha rápida desde Ao Nang, con Maya Bay, snorkel y comida. Si el mar está movido, mejor las 4 islas, que están más cerca.",
+   "query": "Koh Phi Phi"
+  },
+  {
+   "id": "p-tigre",
+   "city": "kbi",
+   "name": "Templo de la Cueva del Tigre",
+   "es": "1.260 escalones",
+   "desc": "Wat Tham Suea: subida dura (mejor a primera hora) con unas vistas increíbles de Krabi desde arriba. Llevad agua y ropa de templo.",
+   "query": "Tiger Cave Temple, Krabi"
+  }
+ ],
+ "flights": [
+  {
+   "id": "f1",
+   "date": "2026-11-06",
+   "airline": "Qatar Airways",
+   "number": "QR148",
+   "from": {
+    "code": "MAD",
+    "city": "Madrid",
+    "airport": "Aeropuerto Adolfo Suárez Madrid-Barajas · T4S",
+    "tz": "+01:00",
+    "time": "08:05"
+   },
+   "to": {
+    "code": "DOH",
+    "city": "Doha",
+    "airport": "Aeropuerto Internacional Hamad",
+    "tz": "+03:00",
+    "time": "17:00"
+   },
+   "note": "Vuelo directo de 6 h 55 min. Conexión en Doha de 3 h 20 min.",
+   "locator": "7MLVTU"
+  },
+  {
+   "id": "f2",
+   "date": "2026-11-06",
+   "airline": "Qatar Airways",
+   "number": "QR838",
+   "from": {
+    "code": "DOH",
+    "city": "Doha",
+    "airport": "Aeropuerto Internacional Hamad",
+    "tz": "+03:00",
+    "time": "20:20"
+   },
+   "to": {
+    "code": "BKK",
+    "city": "Bangkok",
+    "airport": "Aeropuerto Suvarnabhumi",
+    "tz": "+07:00",
+    "time": "06:40"
+   },
+   "note": "Vuelo nocturno. Llegáis el sábado 7 por la mañana, hora de Tailandia.",
+   "locator": "7MLVTU"
+  },
+  {
+   "id": "f3",
+   "date": "2026-11-11",
+   "airline": "AirAsia",
+   "number": "FD3229",
+   "from": {
+    "code": "DMK",
+    "city": "Bangkok",
+    "airport": "Aeropuerto Don Mueang",
+    "tz": "+07:00",
+    "time": "08:55"
+   },
+   "to": {
+    "code": "KBV",
+    "city": "Krabi",
+    "airport": "Aeropuerto Internacional de Krabi",
+    "tz": "+07:00",
+    "time": "10:20"
+   },
+   "note": "Vuelo interno. Revisad el equipaje que incluye el billete de AirAsia."
+  },
+  {
+   "id": "f4",
+   "date": "2026-11-14",
+   "airline": "AirAsia",
+   "number": "FD3226",
+   "from": {
+    "code": "KBV",
+    "city": "Krabi",
+    "airport": "Aeropuerto Internacional de Krabi",
+    "tz": "+07:00",
+    "time": "16:45"
+   },
+   "to": {
+    "code": "DMK",
+    "city": "Bangkok",
+    "airport": "Aeropuerto Don Mueang",
+    "tz": "+07:00",
+    "time": "18:15"
+   },
+   "note": "Vuelo interno de vuelta a Bangkok."
+  },
+  {
+   "id": "f5",
+   "date": "2026-11-16",
+   "airline": "Qatar Airways",
+   "number": "QR839",
+   "from": {
+    "code": "BKK",
+    "city": "Bangkok",
+    "airport": "Aeropuerto Suvarnabhumi",
+    "tz": "+07:00",
+    "time": "09:45"
+   },
+   "to": {
+    "code": "DOH",
+    "city": "Doha",
+    "airport": "Aeropuerto Internacional Hamad",
+    "tz": "+03:00",
+    "time": "12:40"
+   },
+   "note": "Conexión en Doha de 2 h 05 min.",
+   "locator": "7MLVTU"
+  },
+  {
+   "id": "f6",
+   "date": "2026-11-16",
+   "airline": "Qatar Airways",
+   "number": "QR151",
+   "from": {
+    "code": "DOH",
+    "city": "Doha",
+    "airport": "Aeropuerto Internacional Hamad",
+    "tz": "+03:00",
+    "time": "14:45"
+   },
+   "to": {
+    "code": "MAD",
+    "city": "Madrid",
+    "airport": "Aeropuerto Adolfo Suárez Madrid-Barajas · T4S",
+    "tz": "+01:00",
+    "time": "20:35"
+   },
+   "note": "Llegada a la T4S de Barajas.",
+   "locator": "7MLVTU"
+  }
+ ],
+ "hotels": [
+  {
+   "id": "inn",
+   "city": "bkk",
+   "name": "INNSiDE by Meliá Bangkok Sukhumvit",
+   "checkIn": "2026-11-07",
+   "checkOut": "2026-11-11",
+   "nights": 4,
+   "image": "img/th/sukhumvit.jpg",
+   "address": "1472 Sukhumvit Road, Phra Khanong, Khlong Toei, Bangkok 10110 (junto al skytrain)",
+   "addressLocal": "1472 ถนนสุขุมวิท แขวงพระโขนง เขตคลองเตย กรุงเทพฯ 10110",
+   "nameLocal": "โรงแรมอินไซด์ บาย เมลิอา กรุงเทพ สุขุมวิท",
+   "query": "INNSiDE by Meliá Bangkok Sukhumvit",
+   "note": "Llegáis a las 06:40: la habitación normalmente se entrega a partir de las 14:00 o 15:00. Si no está lista, dejad las maletas en recepción. Bono del hotel: te lo envía tu agencia.",
+   "short": "INNSiDE Sukhumvit",
+   "kind": "Bangkok"
+  },
+  {
+   "id": "ana",
+   "city": "kbi",
+   "name": "Anana Ecological Resort Krabi",
+   "checkIn": "2026-11-11",
+   "checkOut": "2026-11-14",
+   "nights": 3,
+   "stars": 5,
+   "image": "img/th/ao-nang.jpg",
+   "address": "1004 Soi Suan Tu Rian, Ao Nang, Krabi 81180",
+   "addressLocal": "1004 ซอยสวนทุเรียน ตำบลอ่าวนาง อำเภอเมืองกระบี่ กระบี่ 81180",
+   "nameLocal": "อนานา อีโคโลจิคอล รีสอร์ท กระบี่",
+   "query": "Anana Ecological Resort Krabi",
+   "phone": "+66 75 680 580",
+   "note": "Localizador M52TX9 · Thai Studio con cama de matrimonio y desayuno. Entrada desde las 14:00, salida a las 12:00. Al llegar pueden pediros pasaporte y tarjeta como depósito.",
+   "short": "Anana Resort",
+   "kind": "Krabi"
+  },
+  {
+   "id": "ama",
+   "city": "bkk",
+   "name": "Amara Bangkok",
+   "checkIn": "2026-11-14",
+   "checkOut": "2026-11-16",
+   "nights": 2,
+   "stars": 5,
+   "image": "img/th/amara.jpg",
+   "address": "180/1 Surawong Road, Si Phraya, Bang Rak, Bangkok 10500",
+   "addressLocal": "180/1 ถนนสุรวงศ์ แขวงสี่พระยา เขตบางรัก กรุงเทพฯ 10500",
+   "nameLocal": "โรงแรมอมารา กรุงเทพ",
+   "query": "Amara Bangkok Surawong",
+   "phone": "+66 2 021 8888",
+   "note": "Localizador 321-11027436 · Executive Room con desayuno (pedida cama de matrimonio y planta alta). Entrada 15:00, salida 12:00.",
+   "short": "Amara Bangkok",
+   "kind": "Bangkok"
+  }
+ ],
+ "transfers": [
+  {
+   "id": "t1",
+   "date": "2026-11-07",
+   "time": "Al aterrizar (06:40)",
+   "title": "Del aeropuerto al hotel",
+   "from": "Aeropuerto Suvarnabhumi (BKK)",
+   "to": "INNSiDE by Meliá Sukhumvit",
+   "kind": "Reservado"
+  },
+  {
+   "id": "t2",
+   "date": "2026-11-11",
+   "time": "Recogida 06:00",
+   "title": "Al aeropuerto Don Mueang",
+   "from": "INNSiDE by Meliá Sukhumvit",
+   "to": "Aeropuerto Don Mueang (DMK)",
+   "kind": "Reservado"
+  },
+  {
+   "id": "t3",
+   "date": "2026-11-11",
+   "time": "Al aterrizar (10:20)",
+   "title": "Del aeropuerto de Krabi al resort",
+   "from": "Aeropuerto de Krabi (KBV)",
+   "to": "Anana Ecological Resort",
+   "kind": "Reservado"
+  },
+  {
+   "id": "t4",
+   "date": "2026-11-14",
+   "time": "Recogida 13:30",
+   "title": "Al aeropuerto de Krabi",
+   "from": "Anana Ecological Resort",
+   "to": "Aeropuerto de Krabi (KBV)",
+   "kind": "Reservado"
+  },
+  {
+   "id": "t5",
+   "date": "2026-11-14",
+   "time": "Al aterrizar (18:15)",
+   "title": "De Don Mueang al hotel",
+   "from": "Aeropuerto Don Mueang (DMK)",
+   "to": "Amara Bangkok",
+   "kind": "Reservado"
+  },
+  {
+   "id": "t6",
+   "date": "2026-11-16",
+   "time": "Recogida 05:30",
+   "title": "Al aeropuerto Suvarnabhumi",
+   "from": "Amara Bangkok",
+   "to": "Aeropuerto Suvarnabhumi (BKK)",
+   "kind": "Reservado"
+  }
+ ],
+ "days": [
+  {
+   "date": "2026-11-06",
+   "city": "mad",
+   "title": "Rumbo a Tailandia",
+   "subtitle": "Madrid → Doha → Bangkok",
+   "image": "img/ventanilla.jpg",
+   "tip": "Antes de salir, rellenad la tarjeta de llegada digital de Tailandia (TDAC) en tdac.immigration.go.th. Es gratis y se hace en los 3 días antes de llegar. Cuidado con las webs que cobran.",
+   "meta": [
+    {
+     "icon": "plane",
+     "text": "Qatar Airways · escala en Doha"
+    },
+    {
+     "icon": "clock",
+     "text": "Salida 08:05 · T4S"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Madrugada",
+     "icon": "clock",
+     "title": "A Barajas",
+     "items": [
+      "Estad en la T4S hacia las 05:00 (vuelo internacional)."
+     ]
+    },
+    {
+     "part": "Mañana",
+     "icon": "plane",
+     "title": "Vuelo a Doha",
+     "flight": "f1",
+     "items": [
+      "Llegada a Doha a las 17:00, hora de Qatar."
+     ]
+    },
+    {
+     "part": "Noche",
+     "icon": "plane",
+     "title": "Vuelo a Bangkok",
+     "flight": "f2",
+     "items": [
+      "Vuelo de noche: intentad dormir para llegar con fuerzas."
+     ]
+    }
+   ]
+  },
+  {
+   "date": "2026-11-07",
+   "city": "bkk",
+   "title": "Sawasdee, Bangkok",
+   "subtitle": "Llegada y primer contacto con la ciudad",
+   "image": "img/th/bangkok.jpg",
+   "tip": "En Tailandia son 6 horas más que en España. Aguantad despiertos hasta la noche para quitaros antes el jet lag.",
+   "meta": [
+    {
+     "icon": "plane",
+     "text": "Aterrizaje 06:40"
+    },
+    {
+     "icon": "car",
+     "text": "Traslado reservado"
+    },
+    {
+     "icon": "hotel",
+     "text": "INNSiDE · 4 noches"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "id",
+     "title": "Llegada a Suvarnabhumi",
+     "items": [
+      "Pasaporte, control de inmigración y maletas.",
+      "Id a la puerta 3 del segundo piso (el mismo piso al que llegáis): allí os espera el personal de Tu Guía en Tailandia con un cartel con vuestro nombre.",
+      "Traslado al INNSiDE by Meliá Sukhumvit. Si la habitación no está lista, dejad las maletas y salid a desayunar."
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "sun",
+     "title": "Descanso",
+     "items": [
+      "Siesta corta y piscina del hotel.",
+      "Sacad baht en un cajero o cambiad en una casa de cambio (SuperRich da buen cambio)."
+     ]
+    },
+    {
+     "part": "Noche",
+     "icon": "dinner",
+     "title": "Primera cena tailandesa",
+     "items": [
+      "Pad thai, curry verde o arroz con mango. Pedid «mai phet» si no queréis picante."
+     ]
+    }
+   ],
+   "stay": "inn",
+   "contacts": [
+    "tg1",
+    "tg2"
+   ]
+  },
+  {
+   "date": "2026-11-08",
+   "city": "ayu",
+   "title": "Las ruinas de Ayutthaya",
+   "subtitle": "Tour con guía en español y vuelta en crucero por el río",
+   "image": "img/th/ayutthaya.jpg",
+   "tip": "Para entrar en los templos: hombros cubiertos (camiseta de manga corta, nada de tirantes) y pantalón largo o falda por debajo de la rodilla.",
+   "meta": [
+    {
+     "icon": "clock",
+     "text": "Recogida 06:30 en recepción"
+    },
+    {
+     "icon": "guide",
+     "text": "Guía oficial en español"
+    },
+    {
+     "icon": "dinner",
+     "text": "Almuerzo incluido"
+    }
+   ],
+   "pack": [
+    "Ropa de templo (hombros y rodillas cubiertos)",
+    "Gorra y crema solar",
+    "Agua",
+    "Calzado fácil de quitar"
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "car",
+     "title": "Hacia Ayutthaya",
+     "items": [
+      "Recogida a las 06:30 en la recepción del hotel.",
+      "Ayutthaya fue la capital de Siam durante 400 años. Hoy es Patrimonio de la Humanidad."
+     ]
+    },
+    {
+     "part": "Mediodía",
+     "icon": "pin",
+     "title": "Los templos",
+     "items": [
+      "Visita de las ruinas con el guía."
+     ],
+     "places": [
+      "p-mahathat",
+      "p-sanphet",
+      "p-chai"
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "boat",
+     "title": "Vuelta en crucero",
+     "items": [
+      "Almuerzo y regreso a Bangkok por el río Chao Phraya."
+     ]
+    }
+   ],
+   "stay": "inn",
+   "contacts": [
+    "tg1",
+    "tg2"
+   ]
+  },
+  {
+   "date": "2026-11-09",
+   "city": "bkk",
+   "title": "La esencia de Bangkok",
+   "subtitle": "Tour con guía en español por los grandes templos",
+   "image": "img/th/gran-palacio.jpg",
+   "tip": "Si alguien en la calle os dice que el Gran Palacio está cerrado hoy y os ofrece otro plan en tuk-tuk, es un timo muy conocido. Seguid siempre a vuestro guía.",
+   "meta": [
+    {
+     "icon": "clock",
+     "text": "Recogida 07:20 en recepción"
+    },
+    {
+     "icon": "guide",
+     "text": "Guía oficial en español"
+    },
+    {
+     "icon": "dinner",
+     "text": "Almuerzo incluido"
+    }
+   ],
+   "pack": [
+    "Ropa de templo (hombros y rodillas cubiertos)",
+    "Agua y crema solar",
+    "Calzado fácil de quitar"
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "pin",
+     "title": "Templos de Bangkok",
+     "items": [
+      "Recogida a las 07:20 en la recepción del hotel.",
+      "Tour de día completo con la extensión incluida. El guía os confirmará el recorrido exacto."
+     ],
+     "places": [
+      "p-palacio",
+      "p-wpho"
+     ]
+    },
+    {
+     "part": "Mediodía",
+     "icon": "dinner",
+     "title": "Almuerzo",
+     "items": [
+      "Incluido en el tour."
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "boat",
+     "title": "El río y sus templos",
+     "items": [
+      "Vuelta al hotel al terminar el tour."
+     ],
+     "places": [
+      "p-arun"
+     ]
+    }
+   ],
+   "stay": "inn",
+   "contacts": [
+    "tg1",
+    "tg2"
+   ]
+  },
+  {
+   "date": "2026-11-10",
+   "city": "bkk",
+   "title": "Bangkok a vuestro aire",
+   "subtitle": "El río, mercados y un buen masaje",
+   "image": "img/th/wat-arun.jpg",
+   "tip": "Mañana la recogida es a las 06:00: dejad la maleta hecha esta noche.",
+   "meta": [
+    {
+     "icon": "info",
+     "text": "Día libre · ideas",
+     "pending": true
+    },
+    {
+     "icon": "sun",
+     "text": "Unos 32 °C"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "boat",
+     "title": "En barco por el Chao Phraya",
+     "items": [
+      "El Chao Phraya Express (bandera naranja) es barato y recorre el río de punta a punta. Se coge en el muelle de Sathorn, junto al skytrain Saphan Taksin."
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "pin",
+     "title": "Compras y fresquito",
+     "items": [
+      "ICONSIAM, con su mercado flotante interior, o un masaje tailandés (unos 300-400 ฿ la hora)."
+     ],
+     "places": [
+      "p-iconsiam"
+     ]
+    },
+    {
+     "part": "Atardecer",
+     "icon": "eye",
+     "title": "Wat Arun al atardecer",
+     "items": [
+      "Desde la orilla de enfrente, en alguna terraza de Tha Tien."
+     ],
+     "places": [
+      "p-arun"
+     ]
+    }
+   ],
+   "stay": "inn"
+  },
+  {
+   "date": "2026-11-11",
+   "city": "kbi",
+   "title": "Rumbo a Krabi",
+   "subtitle": "De Bangkok a las playas del mar de Andamán",
+   "image": "img/th/krabi.jpg",
+   "tip": "Los vuelos de AirAsia son muy estrictos con el peso de la maleta. Comprobad en el billete qué equipaje lleváis incluido.",
+   "meta": [
+    {
+     "icon": "clock",
+     "text": "Recogida 06:00 en recepción"
+    },
+    {
+     "icon": "plane",
+     "text": "AirAsia FD3229 · 08:55"
+    },
+    {
+     "icon": "hotel",
+     "text": "Anana · 3 noches"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Madrugada",
+     "icon": "car",
+     "title": "Al aeropuerto Don Mueang",
+     "items": [
+      "Recogida a las 06:00 en la recepción del hotel. Ojo: es el aeropuerto pequeño (DMK), no el de vuestra llegada."
+     ]
+    },
+    {
+     "part": "Mañana",
+     "icon": "plane",
+     "title": "Vuelo a Krabi",
+     "flight": "f3",
+     "items": [
+      "Al llegar, id a la puerta de salida (mismo piso al que llegáis): os espera el personal con un cartel con vuestro nombre."
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "sun",
+     "title": "Primera tarde de playa",
+     "items": [
+      "Entrada en el Anana Ecological Resort desde las 14:00.",
+      "Atardecer en la playa de Ao Nang."
+     ],
+     "places": [
+      "p-aonang"
+     ]
+    }
+   ],
+   "stay": "ana",
+   "contacts": [
+    "tg1",
+    "tg2"
+   ]
+  },
+  {
+   "date": "2026-11-12",
+   "city": "kbi",
+   "title": "Islas de Krabi",
+   "subtitle": "Día libre: barco, snorkel y arena blanca",
+   "image": "img/th/phi-phi.jpg",
+   "tip": "Las excursiones se contratan en cualquier agencia del paseo de Ao Nang o en el propio hotel. Preguntad si incluyen la tasa del parque nacional.",
+   "meta": [
+    {
+     "icon": "info",
+     "text": "Día libre · ideas",
+     "pending": true
+    },
+    {
+     "icon": "boat",
+     "text": "Excursión en barco"
+    }
+   ],
+   "pack": [
+    "Bañador y toalla",
+    "Crema solar resistente al agua",
+    "Escarpines o chanclas",
+    "Bolsa estanca para el móvil"
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "boat",
+     "title": "Las 4 islas o Phi Phi",
+     "items": [
+      "Las 4 islas: medio día, muy cerca. Phi Phi: día completo en lancha rápida."
+     ],
+     "places": [
+      "p-4islas",
+      "p-phiphi"
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "sun",
+     "title": "Descanso",
+     "items": [
+      "Piscina del resort y un masaje en la playa."
+     ]
+    },
+    {
+     "part": "Noche",
+     "icon": "dinner",
+     "title": "Cena junto al mar",
+     "items": [
+      "Pescado y marisco a la parrilla en el paseo de Ao Nang."
+     ]
+    }
+   ],
+   "stay": "ana"
+  },
+  {
+   "date": "2026-11-13",
+   "city": "kbi",
+   "title": "Railay y Phra Nang",
+   "subtitle": "Día libre entre acantilados",
+   "image": "img/th/railay-aereo.jpg",
+   "tip": "Las barcas long-tail a Railay salen de la playa de Ao Nang cuando se llenan (unas 8 personas). Guardad el billete de vuelta.",
+   "meta": [
+    {
+     "icon": "info",
+     "text": "Día libre · ideas",
+     "pending": true
+    },
+    {
+     "icon": "boat",
+     "text": "15 min en long-tail"
+    }
+   ],
+   "pack": [
+    "Bañador y toalla",
+    "Crema solar",
+    "Agua",
+    "Algo de efectivo"
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "boat",
+     "title": "A Railay en barca",
+     "items": [
+      "Id temprano: el agua está más tranquila y hay menos gente."
+     ],
+     "places": [
+      "p-railay"
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "mount",
+     "title": "Si os apetece más",
+     "items": [
+      "Subir al Templo de la Cueva del Tigre, o simplemente piscina."
+     ],
+     "places": [
+      "p-tigre"
+     ]
+    },
+    {
+     "part": "Noche",
+     "icon": "moon",
+     "title": "Última noche en Krabi",
+     "items": [
+      "Mañana dejáis el resort a las 12:00: recogida a las 13:30."
+     ]
+    }
+   ],
+   "stay": "ana"
+  },
+  {
+   "date": "2026-11-14",
+   "city": "bkk",
+   "title": "Vuelta a Bangkok",
+   "subtitle": "Krabi → Bangkok · última etapa",
+   "image": "img/th/rio-noche.jpg",
+   "tip": "Salida del resort a las 12:00. Podéis dejar las maletas en recepción y apurar la piscina hasta la recogida.",
+   "meta": [
+    {
+     "icon": "clock",
+     "text": "Recogida 13:30"
+    },
+    {
+     "icon": "plane",
+     "text": "AirAsia FD3226 · 16:45"
+    },
+    {
+     "icon": "hotel",
+     "text": "Amara · 2 noches"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "sun",
+     "title": "Última mañana de playa",
+     "items": [
+      "Desayuno y baño de despedida."
+     ]
+    },
+    {
+     "part": "Tarde",
+     "icon": "plane",
+     "title": "Vuelo a Bangkok",
+     "flight": "f4",
+     "items": [
+      "Recogida a las 13:30 en la recepción del resort.",
+      "En Don Mueang, id a la puerta 11 del segundo piso (mismo piso al que llegáis): allí os espera el personal con un cartel con vuestro nombre."
+     ]
+    },
+    {
+     "part": "Noche",
+     "icon": "hotel",
+     "title": "Amara Bangkok",
+     "items": [
+      "Entrada en el hotel, en Silom.",
+      "Cena por el barrio o en el mercado nocturno de Patpong, a 10 minutos."
+     ]
+    }
+   ],
+   "stay": "ama",
+   "contacts": [
+    "tg1",
+    "tg2"
+   ]
+  },
+  {
+   "date": "2026-11-15",
+   "city": "bkk",
+   "title": "Último día en Bangkok",
+   "subtitle": "Chinatown, miradores y recuerdos",
+   "image": "img/th/chinatown.jpg",
+   "tip": "Mañana la recogida es a las 05:30. Dejad la maleta hecha y pedid en recepción un desayuno para llevar.",
+   "meta": [
+    {
+     "icon": "info",
+     "text": "Día libre · ideas",
+     "pending": true
+    },
+    {
+     "icon": "dinner",
+     "text": "Comida callejera"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Mañana",
+     "icon": "sun",
+     "title": "Paseo tranquilo",
+     "items": [
+      "Parque Lumpini a primera hora o la casa de Jim Thompson."
+     ],
+     "places": [
+      "p-lumpini",
+      "p-jim"
+     ]
+    },
+    {
+     "part": "Atardecer",
+     "icon": "eye",
+     "title": "Bangkok desde arriba",
+     "items": [
+      "Mahanakhon SkyWalk, con su suelo de cristal."
+     ],
+     "places": [
+      "p-mahanakhon"
+     ]
+    },
+    {
+     "part": "Noche",
+     "icon": "dinner",
+     "title": "Chinatown",
+     "items": [
+      "Cena de despedida entre los puestos de Yaowarat."
+     ],
+     "places": [
+      "p-china"
+     ]
+    }
+   ],
+   "stay": "ama"
+  },
+  {
+   "date": "2026-11-16",
+   "city": "bkk",
+   "title": "Vuelta a casa",
+   "subtitle": "Bangkok → Doha → Madrid",
+   "image": "img/aeropuerto.jpg",
+   "meta": [
+    {
+     "icon": "clock",
+     "text": "Recogida 05:30"
+    },
+    {
+     "icon": "plane",
+     "text": "Salida 09:45"
+    },
+    {
+     "icon": "plane",
+     "text": "Llegada a Madrid 20:35"
+    }
+   ],
+   "blocks": [
+    {
+     "part": "Madrugada",
+     "icon": "car",
+     "title": "Al aeropuerto",
+     "items": [
+      "Recogida a las 05:30 en la recepción del Amara."
+     ]
+    },
+    {
+     "part": "Mañana",
+     "icon": "plane",
+     "title": "Vuelo a Doha",
+     "flight": "f5",
+     "items": []
+    },
+    {
+     "part": "Tarde",
+     "icon": "plane",
+     "title": "Vuelo a Madrid",
+     "flight": "f6",
+     "items": [
+      "Llegada a la T4S de Barajas a las 20:35. ¡Bienvenidos a casa!"
+     ]
+    }
+   ],
+   "contacts": [
+    "tg1",
+    "tg2"
+   ]
+  }
+ ],
+ "documents": [
+  {
+   "title": "Pasaporte",
+   "detail": "Con al menos 6 meses de validez desde la llegada. Con pasaporte español no hace falta visado para un viaje de turismo como este.",
+   "icon": "id"
+  },
+  {
+   "title": "Tarjeta de llegada (TDAC)",
+   "detail": "Obligatoria. Se rellena gratis en tdac.immigration.go.th en los 3 días antes de llegar (desde el 4 de noviembre). Guardad el QR en el móvil.",
+   "icon": "doc"
+  },
+  {
+   "title": "Billetes Qatar Airways",
+   "detail": "Localizador 7MLVTU · Madrid – Doha – Bangkok y vuelta.",
+   "icon": "ticket"
+  },
+  {
+   "title": "Vuelos internos AirAsia",
+   "detail": "FD3229 (11 nov) y FD3226 (14 nov). El localizador te lo envía tu agencia.",
+   "icon": "ticket"
+  },
+  {
+   "title": "Seguro de viaje Bujaldon",
+   "detail": "Póliza 9CY · del 6 al 17 nov. Asistencia 24 h desde el extranjero: +34 91 836 23 54.",
+   "icon": "shield"
+  }
+ ],
+ "checklist": [
+  "Pasaporte (6 meses de validez)",
+  "TDAC rellenada y el QR en el móvil",
+  "Ropa ligera de algodón o lino",
+  "Ropa de templo: camiseta con mangas y pantalón largo o falda larga",
+  "Calzado fácil de quitar (en los templos se entra descalzo)",
+  "Bañador, chanclas y escarpines",
+  "Crema solar alta y repelente de mosquitos",
+  "Gorra y gafas de sol",
+  "Adaptador universal de enchufe",
+  "Medicación habitual y algo para el estómago",
+  "Tarjeta para sacar baht en el cajero",
+  "Batería externa"
+ ],
+ "phrases": [
+  {
+   "es": "Hola",
+   "local": "สวัสดีค่ะ",
+   "say": "sa-wat-DII kha (ella) / khrap (él)"
+  },
+  {
+   "es": "Gracias",
+   "local": "ขอบคุณค่ะ",
+   "say": "khop-KHUN kha / khrap"
+  },
+  {
+   "es": "¿Cuánto cuesta?",
+   "local": "เท่าไหร่",
+   "say": "thao-RAI"
+  },
+  {
+   "es": "¿Me hace descuento?",
+   "local": "ลดได้ไหม",
+   "say": "lot dai MAI"
+  },
+  {
+   "es": "Sin picante",
+   "local": "ไม่เผ็ด",
+   "say": "mai PHET"
+  },
+  {
+   "es": "Un poco picante",
+   "local": "เผ็ดนิดหน่อย",
+   "say": "phet nit NOI"
+  },
+  {
+   "es": "Agua",
+   "local": "น้ำเปล่า",
+   "say": "nam PLAO"
+  },
+  {
+   "es": "¡Muy rico!",
+   "local": "อร่อยมาก",
+   "say": "a-ROI mak"
+  },
+  {
+   "es": "La cuenta, por favor",
+   "local": "เช็คบิล",
+   "say": "chek BIN"
+  },
+  {
+   "es": "¿Dónde está el baño?",
+   "local": "ห้องน้ำอยู่ที่ไหน",
+   "say": "hong-NAM yuu thii NAI"
+  },
+  {
+   "es": "No pasa nada",
+   "local": "ไม่เป็นไร",
+   "say": "mai pen RAI"
+  }
+ ],
+ "taxiPhrase": {
+  "local": "กรุณาพาไปที่นี่ค่ะ",
+  "es": "Por favor, lléveme a esta dirección."
+ },
+ "info": {
+  "timeDiff": "+6 h",
+  "timeDiffText": "En noviembre, en Tailandia son 6 horas más que en España.",
+  "currency": {
+   "name": "Baht tailandés",
+   "symbol": "฿",
+   "code": "THB",
+   "text": "En hoteles y centros comerciales se paga con tarjeta, pero en mercados, taxis, barcas y puestos de comida todo va en efectivo. Los cajeros cobran unos 220 ฿ por sacar: mejor sacar poco número de veces y más cantidad.",
+   "rate": 37.8,
+   "rateNote": "Cambio del 1 de noviembre de 2026 (aprox.)",
+   "quick": [
+    5,
+    10,
+    20,
+    50,
+    100
+   ]
+  },
+  "plugsType": "A/B/C/O",
+  "plugsShort": "Los cargadores finos suelen entrar; mejor llevar adaptador.",
+  "plugs": "Enchufes tipo A, B, C y O, 220 V. Muchos admiten las clavijas finas europeas, pero no todos: llevad un adaptador universal.",
+  "weatherTitle": "Clima en noviembre",
+  "weather": [
+   {
+    "city": "Bangkok",
+    "min": 24,
+    "max": 32,
+    "text": "Calor húmedo. Empieza la temporada seca: poca lluvia."
+   },
+   {
+    "city": "Krabi",
+    "min": 24,
+    "max": 31,
+    "text": "Sol con algún chaparrón corto por la tarde. Mar a 29 °C."
+   }
+  ],
+  "tips": [
+   {
+    "icon": "mosque",
+    "title": "Templos",
+    "text": "Hombros y rodillas cubiertos y sin zapatos. No toquéis la cabeza a nadie ni señaléis con los pies a una imagen de Buda."
+   },
+   {
+    "icon": "star",
+    "title": "La familia real",
+    "text": "En Tailandia se respeta muchísimo al rey. No se hacen bromas sobre la monarquía: es delito."
+   },
+   {
+    "icon": "car",
+    "title": "Moverse",
+    "text": "Usad Grab o Bolt (como Uber): precio cerrado y sin regateo. Los taxis, siempre con taxímetro («meter»). El skytrain (BTS) evita los atascos."
+   },
+   {
+    "icon": "eye",
+    "title": "Timos típicos",
+    "text": "Si alguien os dice que un templo está cerrado y os ofrece un tuk-tuk barato, es un timo para llevaros a tiendas. En los tuk-tuk, pactad el precio antes de subir."
+   },
+   {
+    "icon": "water",
+    "title": "Agua",
+    "text": "Solo embotellada, también para lavarse los dientes. El hielo de los restaurantes es industrial y seguro."
+   },
+   {
+    "icon": "coin",
+    "title": "Propinas y regateo",
+    "text": "No son obligatorias: redondear o dejar 20-50 ฿ está bien. En los mercados se regatea con una sonrisa."
+   },
+   {
+    "icon": "dinner",
+    "title": "Probad",
+    "text": "Pad thai, tom yum, curry verde, som tam (ensalada de papaya), mango con arroz glutinoso y un batido de fruta fresca."
+   },
+   {
+    "icon": "sun",
+    "title": "Sol y mosquitos",
+    "text": "El sol quema mucho aunque esté nublado. Repelente sobre todo al atardecer."
+   },
+   {
+    "icon": "wifi",
+    "title": "Internet",
+    "text": "Tailandia no está en la UE: revisad la tarifa de datos. En el aeropuerto venden tarjetas SIM o eSIM para turistas."
+   }
+  ],
+  "emergencies": [
+   {
+    "title": "Policía turística",
+    "detail": "Hablan inglés · 24 h",
+    "phone": "1155",
+    "big": true
+   },
+   {
+    "title": "Ambulancia",
+    "detail": "Urgencias médicas",
+    "phone": "1669"
+   },
+   {
+    "title": "Policía",
+    "detail": "",
+    "phone": "191"
+   },
+   {
+    "title": "Seguro Bujaldon · asistencia 24 h",
+    "detail": "Póliza 9CY · decid nombre, dónde estáis y teléfono",
+    "phone": "+34 91 836 23 54"
+   },
+   {
+    "title": "Tu Guía en Tailandia",
+    "detail": "Emergencias el día del tour o traslado · español",
+    "phone": "+66 90 324 1142"
+   }
+  ],
+  "consulateUrl": "https://www.exteriores.gob.es/Embajadas/bangkok/es/Paginas/index.aspx"
+ },
+ "included": [
+  {
+   "icon": "plane",
+   "title": "Vuelos con Qatar Airways",
+   "text": "Madrid – Doha – Bangkok y vuelta."
+  },
+  {
+   "icon": "plane",
+   "title": "Vuelos internos con AirAsia",
+   "text": "Bangkok – Krabi y Krabi – Bangkok."
+  },
+  {
+   "icon": "hotel",
+   "title": "9 noches de hotel",
+   "text": "4 en el INNSiDE by Meliá Sukhumvit, 3 en el Anana Ecological Resort de Krabi y 2 en el Amara Bangkok (estos dos con desayuno)."
+  },
+  {
+   "icon": "car",
+   "title": "6 traslados",
+   "text": "Todos los traslados entre aeropuertos y hoteles, con personal esperándoos con un cartel."
+  },
+  {
+   "icon": "guide",
+   "title": "2 tours con guía en español",
+   "text": "Ayutthaya con vuelta en crucero y La esencia de Bangkok. Con almuerzo y recogida en el hotel."
+  },
+  {
+   "icon": "shield",
+   "title": "Seguro de viaje",
+   "text": "Bujaldon Prime 2.0, con asistencia 24 h y cancelación."
+  }
+ ],
+ "localContacts": [
+  {
+   "city": "tg1",
+   "name": "Tu Guía en Tailandia",
+   "phone": "+66 90 324 1142",
+   "detail": "Emergencias del tour o traslado · español"
+  },
+  {
+   "city": "tg2",
+   "name": "Tu Guía en Tailandia",
+   "phone": "+66 81 595 4680",
+   "detail": "Emergencias · inglés y tailandés"
+  }
+ ],
+ "scheduleNote": "Los días marcados como «Día libre · ideas» son propuestas: haced lo que más os apetezca."
+}
