@@ -16,7 +16,8 @@
   "agent": {
     "name": "Zulinet Cristina Morales Anillo",
     "firstName": "Cristina",
-    "role": "Tu agente de viajes"
+    "role": "Tu agente de viajes",
+    "photo": "img/agente.svg"
   },
   "contact": {
     "whatsapp": "+34610806011",
