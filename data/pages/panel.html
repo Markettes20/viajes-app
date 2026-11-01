@@ -582,6 +582,7 @@ function list() {
   const out = clients().filter(t => {
     const i = info(t);
     if (S.status !== "all" && (S.status === "new" ? !i.isNew : i.st !== S.status)) return false;
+    if (S.status === "all" && i.st === "fin" && !q && !r) return false; // los terminados solo salen en «Terminados» (o al buscar o filtrar por fecha)
     if (S.type !== "all" && t.type !== S.type) return false;
     if (r && (t.end < r[0] || t.start > r[1])) return false; // el viaje se solapa con el periodo
     if (q && !norm([t.code, t.client, t.group, t.title, t.dest, t.buyer, t.buyerPhone, telDigits(t.buyerPhone), t.loc, t.airline].join(" ")).includes(q)) return false;
@@ -639,7 +640,7 @@ function renderPanel() {
       </select></span>
     </div>
     ${S.when === "custom" ? `<div class="range"><span class="muted">Viajes entre</span><input type="date" id="from" value="${S.from}" aria-label="Desde"><span class="muted">y</span><input type="date" id="to" value="${S.to}" aria-label="Hasta"></div>` : ""}
-    <div class="count"><span>${rows.length === items.length ? `${rows.length} ${rows.length === 1 ? "viaje" : "viajes"}` : `${rows.length} de ${items.length} viajes`}</span>${filtered ? `<button type="button" class="clear" id="clear">Quitar filtros</button>` : ""}</div>
+    <div class="count"><span>${!filtered ? `${rows.length} ${rows.length === 1 ? "viaje" : "viajes"}${c.fin ? ` · ${c.fin === 1 ? "el terminado está" : `los ${c.fin} terminados están`} en «Terminados»` : ""}` : `${rows.length} de ${items.length} viajes`}</span>${filtered ? `<button type="button" class="clear" id="clear">Quitar filtros</button>` : ""}</div>
   </div></div>
   <main class="wrap">${rows.length ? (S.view === "grid" ? grid(rows) : table(rows)) : `<div class="empty"><b>${items.length ? "Ningún viaje con estos filtros" : "Todavía no hay viajes con código"}</b><span>${items.length ? "Prueba con otra fecha o quita los filtros." : "Cuando se cree un código nuevo aparecerá aquí."}</span>${items.length ? `<button type="button" class="btn" id="clear2">Quitar filtros</button>` : ""}</div>`}</main>`;
   bind();
